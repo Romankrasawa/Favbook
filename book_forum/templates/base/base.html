@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block extra_css %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'img/site.webmanifest'%}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/header.css'%}">
+    <link rel="stylesheet" href="{% static 'css/footer.css'%}">
+    <link rel="stylesheet" href="{% static 'css/base.css'%}">
+    <link rel="stylesheet" href="{% static 'css/loader.css'%}">
+    {% endblock %}
+    <title>{%block title%}Title{%endblock%}</title>
+</head>
+<body>
+    {%include "base/preloader.html"%}
+    {%include "base/header.html"%}
+    <div class="content">
+        {% block content %}
+        
+        {% endblock %}
+    </div>
+    {%include "base/footer.html"%}
+    {% block extra_script %}
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'bootstrap/js/jquery-3.6.0.min.js'%}"></script>
+    <!-- <script src="{% static 'bootstrap/js/jquery-ui.min.js'%}"></script> -->
+    <script src="{% static 'bootstrap/js/slick.min.js'%}"></script>
+    <script>
+   
+    $('.recent-slick').slick({
+        infinite: true,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        pauseOnHover:true,
+        arrows:false,
+        swipe:true,
+        variableWidth: true,
+    })
+    $('.discussion-slick').slick({
+        infinite: true,
+        slidesToShow:3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        pauseOnHover:true,
+        arrows:false,
+        vertical:true,
+        draggable: true,
+        // verticalSwiping: true,
+    })
+    window.addEventListener("load", function(event) {
+
+        $("#loader-background").fadeOut();
+    });
+    </script>
+    
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+a {
+  text-decoration: none; }
+
+input {
+  border: 0.5px; }
+  input:focus {
+    outline: none; }
+
+button {
+  border: 0.5px; }
+
+/*# sourceMappingURL=base.css.map */
