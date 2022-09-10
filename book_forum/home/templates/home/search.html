@@ -1,0 +1,17 @@
+{%extends "base/base.html"%}
+{% load static %}
+
+{% block extra_css %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/home.css'%}">
+<link rel="stylesheet" href="{% static 'css/book_element.css'%}">
+<link rel="stylesheet" href="{% static 'css/discussion_element.css'%}">
+{% endblock %}
+
+{%block title%}Search {{request.GET.search}}  {%endblock%}
+
+{%block content%}
+{%for i in '01234567890000000000000'|make_list%}
+
+{%endfor%}
+{%endblock%}

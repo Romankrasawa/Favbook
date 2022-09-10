@@ -1,0 +1,103 @@
+{%extends "base/base.html"%}
+{% load static %}
+
+{% block extra_css %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/book.css'%}">
+<link rel="stylesheet" href="{% static 'css/book_element.css'%}">
+<link rel="stylesheet" href="{% static 'css/discussion_element.css'%}">
+{% endblock %}
+
+{%block title%}Книга{%endblock%}
+
+{%block content%}
+<div class="book_page_header">
+    <div class="book_page_background_img">
+        <img src="{% static 'img/book_panorama_4.jpg'%}" alt="Panorama">
+    </div>
+</div>
+<div class="book_page_body_area p-0">
+    <div class="book_page_info_area">
+        <div class="book_page_cover">
+            <img src="{% static 'img/deffault_cover.jpg'%}" alt="Cover">
+        </div>
+        <div class="book_page_info">
+            <span>Назва: Гаррі Поттер і кубок вогню</span>
+            <span>Автор:</span>
+            <span>Статус:</span>
+            <span>Жанри:</span>
+            <span>Рік:</span>
+            <span>Рейтинг:</span>
+            <span>Перегляди:</span>
+        </div>
+    </div> 
+    <div class="book_page_body">
+        <div id="tabs-list" class="container-fluid p-0">  
+            <ul class="row row-cols-2">  
+               <li class="col-6"><a href="#book_page_info" class="tab bg-info">Інформація</a></li>  
+               <li class="col-6"><a href="#book_discussion_area" class="tab bg-info">Обговорення</a></li>  
+            </ul> 
+            <div id="book_page_info">
+                <h1>Book nameee</h1>
+                <div class="book_page_description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem aliquam fuga, illo animi praesentium ducimus magnam corporis, fugit rem odit velit rerum laboriosam. Nemo reprehenderit nihil aliquid perspiciatis?<span id="dots">...</span><span id="more"> Quas, facilis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem aliquam fuga, illo animi praesentium ducimus magnam corporis, fugit rem odit velit rerum laboriosam. Nemo reprehenderit nihil aliquid perspiciatis? Quas, facilis?
+                    Illum numquam harum veritatis asperiores odit ipsa quae. Consequatur suscipit dicta commodi! Velit fuga quas ex laudantium quibusdam temporibus libero molestias possimus odio neque. Nam omnis veritatis cum delectus id.
+                    Similique rerum modi facilis doloribus deleniti harum perferendis, quam facere, iste, rem odit. Similique autem quibusdam dolorum possimus. Asperiores consequuntur saepe praesentium vel architecto temporibus tempore ipsa itaque cum inventore?
+                    Alias esse, sint facere architecto molestiae voluptatibus reprehenderit molestias expedita repellat voluptates. Numquam perspiciatis incidunt molestias nemo ipsam possimus labore expedita qui provident ducimus nulla illo dolore accusamus, pariatur ex!</span></p>
+                    <button onclick="myFunction()" id="readmore">Read more</button>
+                </div>
+                <div class="book_page_rating">
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="Ідеальна">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="Хороша">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="Нормальна">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="Так-собі">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="Погана">1 star</label>
+                    </div>
+                </div>
+                <div class="book_page_comment_area">
+                    {%include "book/base/commentary.html"%}
+                    {%include "book/base/commentary.html"%}
+                    {%include "book/base/commentary.html"%}
+                </div>
+            </div> 
+
+            <div id="book_discussion_area">
+                <a href="/book/dddd/add_discussion" class="btn btn-dark">Додати обговорення</a>
+                {%include "base/discussion_element.html"%}
+                {%include "base/discussion_element.html"%}
+                {%include "base/discussion_element.html"%}
+                {%include "base/discussion_element.html"%}
+                {%include "base/discussion_element.html"%}
+                {%include "base/discussion_element.html"%}
+                {%include "base/discussion_element.html"%}
+                {%include "base/discussion_element.html"%}
+                {%include "base/discussion_element.html"%}
+                {%include "base/discussion_element.html"%}
+            </div> 
+        </div>
+    </div>
+</div>
+<style>
+    .book_preview_info{
+        background-image: url("{%static 'img/paper_texture.jpg'%}");
+    }
+    .book_preview_reactions{
+        background-image: url("{%static 'img/wood_texture.jpg'%}");
+    }
+    .discussion-element{
+        background-image: url("{%static 'img/paper_texture.jpg'%}");
+    }
+    .last_news{
+        background-image: url("{%static 'img/paper_texture.jpg''%}");
+    }
+    .popular_categories{
+        background-image: url("{%static 'img/paper_texture.jpg''%}");
+    }
+</style>
+{%endblock%}

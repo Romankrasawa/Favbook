@@ -1,0 +1,65 @@
+.discussion-element{
+    height: 130px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 40px;
+    &:hover{
+        box-shadow: 0px 5px 3px black;
+    }
+    & a{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-radius: 40px;
+        height: 100%;
+        width: 100%;
+        & .discussion-user{
+            height: 100%;
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+        & .discussion-info{
+            width: 65%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            & .discussion-title{
+                width: 80%;
+                height: 100%;
+                display: -webkit-box;
+                align-items: center;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            & .discussion-status{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 20%;
+                height: 100%;
+        }
+    }
+    & .discussion-view{
+        width: 10%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        & img{
+            height: 25px;
+        }
+    }
+    }
+}
