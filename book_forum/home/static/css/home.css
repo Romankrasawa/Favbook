@@ -1,10 +1,3 @@
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: aquamarine;
-  padding: 30px 0; }
-
 .home_welcome {
   width: 100%;
   height: auto;
@@ -12,79 +5,26 @@
   grid-template-columns: 2fr 1fr;
   align-items: center;
   justify-items: center;
-  padding: 20px 20px; }
+  padding: 20px 20px;
+  font-weight: bold;
+  font-family: Optima;
+  font-style: italic; }
   .home_welcome h1 {
     font-size: 45px; }
   .home_welcome img {
     height: 320px; }
 
 .home_label {
-  margin: 20px 0; }
+  margin: 20px 0;
+  font-weight: bold;
+  font-family: Optima;
+  font-style: italic; }
 
 .recent-slider {
   width: 82%;
   height: 385px; }
 
-.book_preview {
-  display: flex;
-  flex-direction: column;
-  border-radius: 30px;
-  width: 300px;
-  height: 375px;
-  background-color: coral;
-  margin: 0 5px 5px 10px; }
-  .book_preview:hover {
-    box-shadow: 7px 5px 5px black; }
-
-.book_preview_image {
-  background-color: #b950ff;
-  border-radius: 30px 30px 0 0;
-  width: 100%;
-  height: 225px;
-  overflow: hidden; }
-  .book_preview_image img {
-    object-fit: cover;
-    object-position: center;
-    width: 100%;
-    height: 100%; }
-
-.book_preview_info {
-  height: 100px;
-  width: 100%;
-  padding: 10px 10px;
-  overflow: hidden;
-  text-overflow: ellipsis; }
-  .book_preview_info span {
-    white-space: nowrap; }
-
-.book_preview_reactions {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 50px;
-  align-items: center;
-  border-radius: 0 0 20px 20px; }
-  .book_preview_reactions img {
-    height: 25px; }
-  .book_preview_reactions .rating {
-    height: 100%;
-    width: 30%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 3px;
-    padding: 10px; }
-  .book_preview_reactions .view {
-    height: 100%;
-    width: 70%;
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-    flex-wrap: wrap;
-    gap: 5px;
-    padding: 10px; }
-
-.new_books {
+.new_books, .popular-books {
   width: 82%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -92,68 +32,53 @@
   gap: 10px; }
 
 .discussion-slider {
-  width: 82%;
-  height: 410px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
-  .discussion-slider .discussion-element {
-    height: 130px;
-    margin: 10px;
-    width: 96%;
-    border-radius: 40px; }
-    .discussion-slider .discussion-element:hover {
-      box-shadow: 7px 5px 5px black; }
-    .discussion-slider .discussion-element a {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      border-radius: 40px;
-      height: 100%;
+  align-items: center;
+  width: 82%;
+  height: 410px; }
+  .discussion-slider .discussion-slick {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 410px; }
+    .discussion-slider .discussion-slick .slick-list {
       width: 100%; }
-      .discussion-slider .discussion-element a .discussion-user {
-        height: 100%;
-        width: 25%;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        gap: 15px;
-        justify-content: center;
-        align-items: center; }
-      .discussion-slider .discussion-element a .discussion-info {
-        width: 65%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        overflow: hidden;
-        text-overflow: ellipsis; }
-        .discussion-slider .discussion-element a .discussion-info .discussion-title {
-          width: 80%;
-          height: 100%;
-          display: -webkit-box;
-          align-items: center;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          text-overflow: ellipsis; }
-        .discussion-slider .discussion-element a .discussion-info .discussion-status {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 20%;
-          height: 100%; }
-      .discussion-slider .discussion-element a .discussion-view {
-        width: 10%;
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
-        align-items: center;
-        justify-content: center; }
-        .discussion-slider .discussion-element a .discussion-view img {
-          height: 25px; }
+
+.home_info {
+  width: 82%;
+  min-height: 500px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 80px;
+  justify-items: center;
+  align-items: center;
+  padding: 5px; }
+  .home_info .last_news, .home_info .popular_categories {
+    width: 100%;
+    height: 100%;
+    background-color: blueviolet;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center; }
+
+.popular_categories_area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%; }
+  .popular_categories_area a {
+    display: flex;
+    width: 100%;
+    height: 25px;
+    justify-content: center; }
 
 @media screen and (max-width: 680px) {
   .home_welcome {
@@ -161,6 +86,25 @@
     .home_welcome h1 {
       font-size: 35px; }
     .home_welcome img {
-      height: 280px; } }
+      height: 280px; }
+
+  .home_info {
+    grid-template-columns: 1fr; }
+
+  .discussion-slider .discussion-element {
+    padding: 5px;
+    height: auto; }
+    .discussion-slider .discussion-element a {
+      flex-direction: column; }
+      .discussion-slider .discussion-element a
+      .discussion-user {
+        width: 100%;
+        flex-direction: row; }
+      .discussion-slider .discussion-element a .discussion-info {
+        width: 100%;
+        flex-direction: column; }
+      .discussion-slider .discussion-element a .discussion-view {
+        width: 100%;
+        flex-direction: row; } }
 
 /*# sourceMappingURL=home.css.map */

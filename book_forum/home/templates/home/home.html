@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 <link rel="stylesheet" href="{% static 'css/home.css'%}">
+<link rel="stylesheet" href="{% static 'css/book_element.css'%}">
+<link rel="stylesheet" href="{% static 'css/discussion_element.css'%}">
+<link rel="stylesheet" href="{% static 'css/news_element.css'%}">
 {% endblock %}
 
 {%block title%}Home{%endblock%}
@@ -24,231 +27,13 @@
 
     <div class="recent-slider">
         <div class="recent-slick">
-
+            {%for i in '0123456789'|make_list %}
             <div>
                 <div class="slider_element">
-                    <a href="/forum/book/12345" class="book_preview">
-                        <div class="book_preview_image">
-                            <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                        </div>
-                        <div class="book_preview_info">
-                            <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                            <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                            <span>Рік: 2003</span>
-                        </div>
-                        <div class="book_preview_reactions">
-                            <div class="rating">
-                                <img src="{%static 'img/ico/star.png'%}" alt="">
-                                4.65
-                            </div>
-                            <div class="view">
-                                <img src="{%static 'img/ico/view.png'%}" alt="">
-                                2,321
-                            </div>
-                        </div>
-                    </a>
+                    {%include "base/book_element.html"%}
                 </div>
             </div>
-            <div><div class="slider_element"><a href="/forum/book/12345" class="book_preview">
-                <div class="book_preview_image">
-                    <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                </div>
-                <div class="book_preview_info">
-                    <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                    <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                    <span>Рік: 2003</span>
-                </div>
-                <div class="book_preview_reactions">
-                    <div class="rating">
-                        <img src="{%static 'img/ico/star.png'%}" alt="">
-                        4.65
-                    </div>
-                    <div class="view">
-                        <img src="{%static 'img/ico/view.png'%}" alt="">
-                        2,321
-                    </div>
-                </div>
-            </a></div></div>
-            <div><div class="slider_element"><a href="/forum/book/12345" class="book_preview">
-                <div class="book_preview_image">
-                    <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                </div>
-                <div class="book_preview_info">
-                    <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                    <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                    <span>Рік: 2003</span>
-                </div>
-                <div class="book_preview_reactions">
-                    <div class="rating">
-                        <img src="{%static 'img/ico/star.png'%}" alt="">
-                        4.65
-                    </div>
-                    <div class="view">
-                        <img src="{%static 'img/ico/view.png'%}" alt="">
-                        2,321
-                    </div>
-                </div>
-            </a></div></div>
-            <div><div class="slider_element"><a href="/forum/book/12345" class="book_preview">
-                <div class="book_preview_image">
-                    <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                </div>
-                <div class="book_preview_info">
-                    <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                    <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                    <span>Рік: 2003</span>
-                </div>
-                <div class="book_preview_reactions">
-                    <div class="rating">
-                        <img src="{%static 'img/ico/star.png'%}" alt="">
-                        4.65
-                    </div>
-                    <div class="view">
-                        <img src="{%static 'img/ico/view.png'%}" alt="">
-                        2,321
-                    </div>
-                </div>
-            </a></div></div>
-            <div><div class="slider_element"><a href="/forum/book/12345" class="book_preview">
-                <div class="book_preview_image">
-                    <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                </div>
-                <div class="book_preview_info">
-                    <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                    <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                    <span>Рік: 2003</span>
-                </div>
-                <div class="book_preview_reactions">
-                    <div class="rating">
-                        <img src="{%static 'img/ico/star.png'%}" alt="">
-                        4.65
-                    </div>
-                    <div class="view">
-                        <img src="{%static 'img/ico/view.png'%}" alt="">
-                        2,321
-                    </div>
-                </div>
-            </a></div></div>
-            <div><div class="slider_element"><a href="/forum/book/12345" class="book_preview">
-                <div class="book_preview_image">
-                    <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                </div>
-                <div class="book_preview_info">
-                    <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                    <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                    <span>Рік: 2003</span>
-                </div>
-                <div class="book_preview_reactions">
-                    <div class="rating">
-                        <img src="{%static 'img/ico/star.png'%}" alt="">
-                        4.65
-                    </div>
-                    <div class="view">
-                        <img src="{%static 'img/ico/view.png'%}" alt="">
-                        2,321
-                    </div>
-                </div>
-            </a></div></div>
-            <div><div class="slider_element"><a href="/forum/book/12345" class="book_preview">
-                <div class="book_preview_image">
-                    <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                </div>
-                <div class="book_preview_info">
-                    <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                    <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                    <span>Рік: 2003</span>
-                </div>
-                <div class="book_preview_reactions">
-                    <div class="rating">
-                        <img src="{%static 'img/ico/star.png'%}" alt="">
-                        4.65
-                    </div>
-                    <div class="view">
-                        <img src="{%static 'img/ico/view.png'%}" alt="">
-                        2,321
-                    </div>
-                </div>
-            </a></div></div>
-            <div><div class="slider_element"><a href="/forum/book/12345" class="book_preview">
-                <div class="book_preview_image">
-                    <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                </div>
-                <div class="book_preview_info">
-                    <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                    <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                    <span>Рік: 2003</span>
-                </div>
-                <div class="book_preview_reactions">
-                    <div class="rating">
-                        <img src="{%static 'img/ico/star.png'%}" alt="">
-                        4.65
-                    </div>
-                    <div class="view">
-                        <img src="{%static 'img/ico/view.png'%}" alt="">
-                        2,321
-                    </div>
-                </div>
-            </a></div></div>
-            <div><div class="slider_element"><a href="/forum/book/12345" class="book_preview">
-                <div class="book_preview_image">
-                    <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                </div>
-                <div class="book_preview_info">
-                    <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                    <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                    <span>Рік: 2003</span>
-                </div>
-                <div class="book_preview_reactions">
-                    <div class="rating">
-                        <img src="{%static 'img/ico/star.png'%}" alt="">
-                        4.65
-                    </div>
-                    <div class="view">
-                        <img src="{%static 'img/ico/view.png'%}" alt="">
-                        2,321
-                    </div>
-                </div>
-            </a></div></div>
-            <div><div class="slider_element"><a href="/forum/book/12345" class="book_preview">
-                <div class="book_preview_image">
-                    <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                </div>
-                <div class="book_preview_info">
-                    <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                    <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                    <span>Рік: 2003</span>
-                </div>
-                <div class="book_preview_reactions">
-                    <div class="rating">
-                        <img src="{%static 'img/ico/star.png'%}" alt="">
-                        4.65
-                    </div>
-                    <div class="view">
-                        <img src="{%static 'img/ico/view.png'%}" alt="">
-                        2,321
-                    </div>
-                </div>
-            </a></div></div>
-            <div><div class="slider_element"><a href="/forum/book/12345" class="book_preview">
-                <div class="book_preview_image">
-                    <img src="{%static 'img/test_cover.jpg'%}" alt="">
-                </div>
-                <div class="book_preview_info">
-                    <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                    <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                    <span>Рік: 2003</span>
-                </div>
-                <div class="book_preview_reactions">
-                    <div class="rating">
-                        <img src="{%static 'img/ico/star.png'%}" alt="">
-                        4.65
-                    </div>
-                    <div class="view">
-                        <img src="{%static 'img/ico/view.png'%}" alt="">
-                        2,321
-                    </div>
-                </div>
-            </a></div></div>
+            {%endfor%}
         </div>
     </div>
 
@@ -259,281 +44,90 @@
 
 
 
-    <div class="new_books">
-        <a href="/forum/book/12345" class="book_preview">
-            <div class="book_preview_image">
-                <img src="{%static 'img/test_cover.jpg'%}" alt="">
-            </div>
-            <div class="book_preview_info">
-                <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                <span>Рік: 2003</span>
-            </div>
-            <div class="book_preview_reactions">
-                <div class="rating">
-                    <img src="{%static 'img/ico/star.png'%}" alt="">
-                    4.65
-                </div>
-                <div class="view">
-                    <img src="{%static 'img/ico/view.png'%}" alt="">
-                    2,321
-                </div>
-            </div>
-        </a>
-        <a href="/forum/book/12345" class="book_preview">
-            <div class="book_preview_image">
-                <img src="{%static 'img/test_cover.jpg'%}" alt="">
-            </div>
-            <div class="book_preview_info">
-                <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                <span>Рік: 2003</span>
-            </div>
-            <div class="book_preview_reactions">
-                <div class="rating">
-                    <img src="{%static 'img/ico/star.png'%}" alt="">
-                    4.65
-                </div>
-                <div class="view">
-                    <img src="{%static 'img/ico/view.png'%}" alt="">
-                    2,321
-                </div>
-            </div>
-        </a>
-        <a href="/forum/book/12345" class="book_preview">
-            <div class="book_preview_image">
-                <img src="{%static 'img/test_cover.jpg'%}" alt="">
-            </div>
-            <div class="book_preview_info">
-                <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                <span>Рік: 2003</span>
-            </div>
-            <div class="book_preview_reactions">
-                <div class="rating">
-                    <img src="{%static 'img/ico/star.png'%}" alt="">
-                    4.65
-                </div>
-                <div class="view">
-                    <img src="{%static 'img/ico/view.png'%}" alt="">
-                    2,321
-                </div>
-            </div>
-        </a>
-        <a href="/forum/book/12345" class="book_preview">
-            <div class="book_preview_image">
-                <img src="{%static 'img/test_cover.jpg'%}" alt="">
-            </div>
-            <div class="book_preview_info">
-                <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                <span>Рік: 2003</span>
-            </div>
-            <div class="book_preview_reactions">
-                <div class="rating">
-                    <img src="{%static 'img/ico/star.png'%}" alt="">
-                    4.65
-                </div>
-                <div class="view">
-                    <img src="{%static 'img/ico/view.png'%}" alt="">
-                    2,321
-                </div>
-            </div>
-        </a>
-        <a href="/forum/book/12345" class="book_preview">
-            <div class="book_preview_image">
-                <img src="{%static 'img/test_cover.jpg'%}" alt="">
-            </div>
-            <div class="book_preview_info">
-                <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                <span>Рік: 2003</span>
-            </div>
-            <div class="book_preview_reactions">
-                <div class="rating">
-                    <img src="{%static 'img/ico/star.png'%}" alt="">
-                    4.65
-                </div>
-                <div class="view">
-                    <img src="{%static 'img/ico/view.png'%}" alt="">
-                    2,321
-                </div>
-            </div>
-        </a>
-        <a href="/forum/book/12345" class="book_preview">
-            <div class="book_preview_image">
-                <img src="{%static 'img/test_cover.jpg'%}" alt="">
-            </div>
-            <div class="book_preview_info">
-                <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                <span>Рік: 2003</span>
-            </div>
-            <div class="book_preview_reactions">
-                <div class="rating">
-                    <img src="{%static 'img/ico/star.png'%}" alt="">
-                    4.65
-                </div>
-                <div class="view">
-                    <img src="{%static 'img/ico/view.png'%}" alt="">
-                    2,321
-                </div>
-            </div>
-        </a>
-        <a href="/forum/book/12345" class="book_preview">
-            <div class="book_preview_image">
-                <img src="{%static 'img/test_cover.jpg'%}" alt="">
-            </div>
-            <div class="book_preview_info">
-                <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-                <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-                <span>Рік: 2003</span>
-            </div>
-            <div class="book_preview_reactions">
-                <div class="rating">
-                    <img src="{%static 'img/ico/star.png'%}" alt="">
-                    4.65
-                </div>
-                <div class="view">
-                    <img src="{%static 'img/ico/view.png'%}" alt="">
-                    2,321
-                </div>
-            </div>
-        </a>
+    <div class="popular-books">
+        {%for i in '0123456789'|make_list%}
+
+        {%include "base/book_element.html"%}
+
+        {%endfor%}
     </div>
 
 
 
-    <h3 class="home_label">Популярні книги:</h1>
+    <h3 class="home_label">Популярні обговорення:</h1>
 
 
 
     <div class="discussion-slider">
         
         <div class="discussion-slick">
+            {%for i in '0123456789'|make_list%}
 
-            <div class="discussion-element">
-                <a href="book/dicussion/How_about_djdjdjjdjkdkddlkldld">
-                    <div class="discussion-user">
-                        <div class="rounded-circle" style="width:50px;height:50px;">
-                                <img src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
-                        </div>
-                      <span>@roman_krasawa845</span>
-                    </div>
-                    <div class="discussion-info">
-                        <h4 class="discussion-title">
-                            How abot this have happened in real jkd di gfu lo e ei luffy mugivara yonko!!!
-                        </h4>
-                        <span class="discussion-status">
-                            [CLOSED]
-                        </span>
-                    </div>
-                    <div class="discussion-view">
-                            <img src="{%static '/img/ico/reply.png'%}" alt="">
-                            134
-                    </div>
-                </a>
-            </div>
-            <div class="discussion-element">
-                <a href="book/dicussion/How_about_djdjdjjdjkdkddlkldld"class="discussion-element">
-                    <div class="discussion-user">
-                        <div class="rounded-circle" style="width:50px;height:50px;">
-                                <img src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
-                        </div>
-                      <span>@roman_krasawa845</span>
-                    </div>
-                    <div class="discussion-info">
-                        <span>
-                            how abot this have happened in real jkd di gfu lo e ei luffy mugivara yonko
-                        </span>
-                        <span>
-                            [CLOSED]
-                        </span>
-                    </div>
-                    <div class="discussion-view">
-                        <div class="discussion_replies">
-                            <img src="{%static '/img/ico/reply.png'%}" alt="">
-                            134
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="discussion-element">
-                <a href="book/dicussion/How_about_djdjdjjdjkdkddlkldld"class="discussion-element">
-                    <div class="discussion-user">
-                        <div class="rounded-circle" style="width:50px;height:50px;">
-                                <img src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
-                        </div>
-                      <span>@roman_krasawa845</span>
-                    </div>
-                    <div class="discussion-info">
-                        <span>
-                            how abot this have happened in real jkd di gfu lo e ei luffy mugivara yonko
-                        </span>
-                        <span>
-                            [CLOSED]
-                        </span>
-                    </div>
-                    <div class="discussion-view">
-                        <div class="discussion_replies">
-                            <img src="{%static '/img/ico/reply.png'%}" alt="">
-                            134
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="discussion-element">
-                <a href="book/dicussion/How_about_djdjdjjdjkdkddlkldld"class="discussion-element">
-                    <div class="discussion-user">
-                        <div class="rounded-circle" style="width:50px;height:50px;">
-                                <img src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
-                        </div>
-                      <span>@roman_krasawa845</span>
-                    </div>
-                    <div class="discussion-info">
-                        <span>
-                            how abot this have happened in real jkd di gfu lo e ei luffy mugivara yonko
-                        </span>
-                        <span>
-                            [CLOSED]
-                        </span>
-                    </div>
-                    <div class="discussion-view">
-                        <div class="discussion_replies">
-                            <img src="{%static '/img/ico/reply.png'%}" alt="">
-                            134
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="discussion-element">
-                <a href="book/dicussion/How_about_djdjdjjdjkdkddlkldld" class="discussion-element">
-                    <div class="discussion-user">
-                        <div class="rounded-circle" style="width:50px;height:50px;">
-                                <img src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
-                        </div>
-                      <span>@roman_krasawa845</span>
-                    </div>
-                    <div class="discussion-info">
-                        <span>
-                            how abot this have happened in real jkd di gfu lo e ei luffy mugivara yonko
-                        </span>
-                        <span>
-                            [CLOSED]
-                        </span>
-                    </div>
-                    <div class="discussion-view">
-                        <div class="discussion_replies">
-                            <img src="{%static '/img/ico/reply.png'%}" alt="">
-                            134
-                        </div>
-                    </div>
-                </a>
-            </div>
-            
+            {%include "base/discussion_element.html"%}
 
+            {%endfor%}
         </div>
     </div>
+
+
+
+
+    <h3 class="home_label">Нові книги:</h1>
+
+
+
+        <div class="new_books">
+            {%for i in '0123456789'|make_list%}
+
+            {%include "base/book_element.html"%}
+
+            {%endfor%}
+        </div>
+        
+
+
+        <h3 class="home_label">Нові обговорення:</h1>
+
+
+
+        <div class="discussion-slider">
+        
+            <div class="discussion-slick">
+                {%for i in '0123456789'|make_list%}
+
+                {%include "base/discussion_element.html"%}
+
+                {%endfor%}
+            </div>
+        </div>
+
+
+        <h3 class="home_label">Інформативний куток:</h1>
+
+
+
+                <div class="home_info">
+                    <div class="last_news">
+                        <h3 style="color:black ;">Останні Новини:</h1>
+                            <div class="last_news_area">
+                                {%for i in '012'|make_list%}
+                                {%include "base/news_element.html"%}
+                                <hr>
+                                {%endfor%}
+                                </div>
+                                <a href="news"class="home_label">Всі Новини</a>
+                            </div>
+            <div class="popular_categories">
+                <h3 style="color:black ;">Популярні категорії:</h1>
+                    <div class="popular_categories_area">
+                        {%for i in '0123456'|make_list%}
+                        <a href="book/category" class="category_option">Category1111111111111111111111111</a>
+                        <hr>
+                        {%endfor%}
+                    </div>
+                    <a href="news"class="home_label">Всі категорії</a>
+            </div>
+        </div>
     <style>
         .book_preview_info{
             background-image: url("{%static 'img/paper_texture.jpg'%}");
@@ -543,6 +137,12 @@
         }
         .discussion-element{
             background-image: url("{%static 'img/paper_texture.jpg'%}");
+        }
+        .last_news{
+            background-image: url("{%static 'img/paper_texture.jpg''%}");
+        }
+        .popular_categories{
+            background-image: url("{%static 'img/paper_texture.jpg''%}");
         }
     </style>
 {%endblock%}

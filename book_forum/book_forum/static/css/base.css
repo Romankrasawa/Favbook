@@ -1,5 +1,30 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden; }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+  color: #d8c455;
+  width: 100%;
+  min-height: 90vh; }
+
 a {
   text-decoration: none; }
+  a:link {
+    color: black; }
+  a:visited {
+    color: black; }
+  a:focus {
+    color: black; }
+  a:active {
+    color: black; }
+  a:hover {
+    color: #313030; }
 
 input {
   border: 0.5px; }
@@ -8,5 +33,8 @@ input {
 
 button {
   border: 0.5px; }
+
+hr {
+  width: 100%; }
 
 /*# sourceMappingURL=base.css.map */

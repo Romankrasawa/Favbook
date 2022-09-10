@@ -2,60 +2,19 @@
 <header class="container-fluid">
     <div class="row">
         <div class="col-3">
-            <a href="#" class="logo_area">
+            <a href="/home/" class="logo_area">
                 <img src="{% static 'img/logo.png'%}" alt="Logo">
                 <span id="logo_text">FavBook</span>
             </a>
         </div>
-        <div class="col-6">
-            <form action="#" method="get" class="search_area">
-                <input type="search" name="search_text" id="search_input"  autocomplete="off">
+        <div class="col-5">
+            <form action="/search/" method="get" class="search_area">
+                <input type="search" name="search" id="search_input"  autocomplete="off">
                 <button type="submit" id="search_button"><img src="{% static 'img/ico/search.png'%}" alt="Пошук"></button>
             </form>
         </div>
-        <!-- <div class="col-3 log_in_area">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal">Register</button>
-            <div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="RegisterModalTitle">Registration</h5>
-                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      ...
-                    </div>
-                    <div class="modal-footer">
-                      <a type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Log in</a>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Log in</button>
-            <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
-                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      ...
-                    </div>
-                    <div class="modal-footer">
-                      <a type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal">Register</a>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div> -->
-        <div class="account_area col-3">
+        {%if request.user.is_authenticated %}
+        <div class="account_area col-4">
           
           <div class="account_list dropdown">
             <div class="rounded-circle" style="width:50px;height:50px;">
@@ -67,57 +26,31 @@
               <span class="visually-hidden">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" >
-              <li><a class="dropdown-item" href="#">Профіль</a></li>
-              <li><a class="dropdown-item" href="#">Друзі</a></li>
-              <li><a class="dropdown-item" href="#">Чат</a></li>
-              <li><a class="dropdown-item" href="#">Книги</a></li>
-                <div class="dropdown-item" id="category_accordeon">
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-                        Категорії
-                      </button>
-                    </h2>
-                      <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
-                        <div class="accordion-body">
-                          <a href="category/1">category/1</a>
-                          <hr>
-                          <a href="category/1">category/1</a>
-                          <hr>
-                          <a href="category/1">category/1</a>
-                          <hr>
-                          <a href="category/1">category/1</a>
-                          <hr>
-                          <a href="category/1">category/1</a>
-                          <hr>
-                          <a href="category/1">category/1</a>
-                          <hr><a href="category/1">category/1</a>
-                          <hr>
-                          <a href="category/1">category/1</a>
-                          <hr>
-                          <a href="category/1">category/1</a>
-                          <hr>
-                          <a href="category/1">category/1</a>
-                          <hr>
-                          <a href="category/1">category/1</a>
-                          <hr>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              <li><a class="dropdown-item" href="#">Обговорення</a></li>
-              <li><a class="dropdown-item" href="#">Вподобане</a></li>
-              <li><a class="dropdown-item" href="#">Додати книгу</a></li>
-              <li><a class="dropdown-item" href="#">Створити обговорення</a></li>
+              <li><a class="dropdown-item" href="/account/">Профіль</a></li>
+              <li><a class="dropdown-item" href="/friends/">Друзі</a></li>
+              <li><a class="dropdown-item" href="/chat/">Чат</a></li>
+              <li><a class="dropdown-item" href="/book/dddd">Книги</a></li>
+              <li><a class="dropdown-item" href="/book/category/">Категорії</a></li>
+              <li><a class="dropdown-item" href="/book/sdfdsfsf/discussion/dddd">Обговорення</a></li>
+              <li><a class="dropdown-item" href="/book/add_book/">Додати книгу</a></li>
+              <li><a class="dropdown-item" href="/book/sfdsfdsd/add_discussions">Створити обговорення</a></li>
               <hr>
-              <li><a class="dropdown-item" href="#">Новини</a></li>
-              <li><a class="dropdown-item" href="#">Сповіщення</a></li>
-              <li><a class="dropdown-item" href="#">Налаштування</a></li>
+              <li><a class="dropdown-item" href="/news/">Новини</a></li>
+              <li><a class="dropdown-item" href="/notifications/">Сповіщення</a></li>
+              <li><a class="dropdown-item" href="/settings/">Налаштування</a></li>
               <hr>
-              <li><a class="dropdown-item" href="#">Вийти</a></li>        
+              <li><a class="dropdown-item" href="/log_out/">Вийти</a></li>        
             </ul>        
           </div>
       </div>
+      {%else%}
+      <div class="col-4 log_in_area">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal"  id="registerButton">Зареєструватись</button>
+        
+        <button type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Увійти</button>
+        
+    </div>
+    {%endif%}
     </div>
 </header>
 
@@ -128,48 +61,16 @@
           <input type="search" name="search_text" id="search_input"  autocomplete="off">
           <button type="submit" id="search_button"><img src="{% static 'img/ico/search.png'%}" alt="Пошук"></button>
       </form>
-      <div class="col-3 log_in_area">
-        <button type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal">Register</button>
-        <div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="RegisterModalTitle">Registration</h5>
-                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <a type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Log in</a>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Log in</button>
-        <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
-                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <a type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal">Register</a>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-    </div>
+      {%if request.user.is_authenticated %}
+      
+    {%else%}
+    <div class="col-3 log_in_area">
+      <button type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal">Зареєструватись</button>
+
+      <button type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Увійти</button>
+
+  </div>
+    {%endif%}
   </div>
   </div>
 </div>
@@ -180,3 +81,71 @@
     </button>
   </div>
 </nav>
+
+
+
+<div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="RegisterModalTitle">Реєстрація</h5>
+        <button type="button" class="close rounded-circle" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post" class="modal_form" id="register_form">
+          <div class="form-floating">
+            <input type="text" name="name" id="modal_name" placeholder="Ім'я" class="form-control"   autocomplete="off">
+            <label for="modal_name">Ім'я</label>
+          </div>
+          <div class="form-floating">
+            <input type="email" name="email" id="modal_email" placeholder="Електронна пошта" class="form-control"   autocomplete="off">
+            <label for="modal_email">Електронна пошта</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="password" id="modal_password" placeholder="Пароль" class="form-control"  autocomplete="off">
+            <label for="modal_password">Пароль</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="repeat_password" id="modal_repeatpassword" placeholder="Повторний парол" class="form-control"  autocomplete="off">
+            <label for="modal_repeatpassword">Повторний пароль</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Уже маєте аккаунт</a>
+        <button type="button" class="btn btn-primary">Зареєструватись</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Вхід</h5>
+        <button type="button" class="close rounded-circle" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post" class="modal_form" id="login_form">
+          <div class="form-floating">
+            <input type="text" name="name" id="modal_name" placeholder="Ім'я" class="form-control">
+            <label for="modal_name">Ім'я або пошта</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="password" id="modal_password" placeholder="Пароль" class="form-control">
+            <label for="modal_password">Пароль</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal">Ще не зареєстровані</a>
+        <button type="button" class="btn btn-primary">Увійти</button>
+      </div>
+    </div>
+  </div>
+</div>
