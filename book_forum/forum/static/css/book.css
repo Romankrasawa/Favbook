@@ -42,6 +42,7 @@
   background-color: #4b2e7a; }
   .book_page_info_area .book_page_cover {
     width: 95%;
+    max-width: 380px;
     height: fit-content;
     overflow: hidden;
     border-radius: 15px; }
@@ -100,6 +101,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   gap: 10px;
+  width: 100%;
   align-items: center;
   padding: 20px; }
 
@@ -108,6 +110,22 @@
 
 #readmore {
   background: transparent; }
+
+.book_page_rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: fit-content; }
+
+.book_page_comment_area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px; }
+  .book_page_comment_area button {
+    width: 60%; }
 
 #book_discussion_area {
   width: 100%;
@@ -135,7 +153,7 @@
   overflow: hidden;
   white-space: nowrap;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 45px;
   color: #ccc; }
 
 .rate:not(:checked) > label:before {
@@ -154,5 +172,12 @@
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
   color: #c59b08; }
+
+@media screen and (max-width: 900px) {
+  .book_page_body_area {
+    flex-direction: column; }
+
+  .book_page_info_area, .book_page_body {
+    width: 100%; } }
 
 /*# sourceMappingURL=book.css.map */

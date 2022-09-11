@@ -107,27 +107,4 @@
     .home_info{
         grid-template-columns: 1fr;
     }
-    .discussion-slider{
-        & .discussion-element{
-            padding: 5px;
-            height: auto;
-            & a{
-                flex-direction: column;
-                &
-                .discussion-user{
-                    width: 100%;
-                    flex-direction: row;
-                }
-                .discussion-info{
-                    width: 100%;
-                    flex-direction: column;
-                }
-                .discussion-view{
-                    width: 100%;
-                    flex-direction: row;
-                }
-            }
-        }
-
-}
 }

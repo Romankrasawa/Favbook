@@ -89,22 +89,6 @@
       height: 280px; }
 
   .home_info {
-    grid-template-columns: 1fr; }
-
-  .discussion-slider .discussion-element {
-    padding: 5px;
-    height: auto; }
-    .discussion-slider .discussion-element a {
-      flex-direction: column; }
-      .discussion-slider .discussion-element a
-      .discussion-user {
-        width: 100%;
-        flex-direction: row; }
-      .discussion-slider .discussion-element a .discussion-info {
-        width: 100%;
-        flex-direction: column; }
-      .discussion-slider .discussion-element a .discussion-view {
-        width: 100%;
-        flex-direction: row; } }
+    grid-template-columns: 1fr; } }
 
 /*# sourceMappingURL=home.css.map */
