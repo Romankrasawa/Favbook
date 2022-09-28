@@ -1,0 +1,153 @@
+{%extends "base/base.html"%} {% load static %} {% block extra_css %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/book.css'%}" />
+<link rel="stylesheet" href="{% static 'css/book_element.css'%}" />
+<link rel="stylesheet" href="{% static 'css/discussion_element.css'%}" />
+<link rel="stylesheet" href="{% static 'css/discussion.css'%}" />
+<link rel="stylesheet" href="{% static 'css/commentary.css'%}" />
+{% endblock %} {%block title%}Обговорення{%endblock%} {%block content%}
+<div class="discussion_page_area">
+  <div class="discussion_page_header">
+    <div class="discusssion_page_info_area">
+      <div class="discussion_page_info">
+        <div class="discussion_page_user">
+          <div class="account-image">
+            <a href="">
+              <div class="rounded-circle" style="width: 25px; height: 25px">
+                <img
+                  src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}"
+                  alt=""
+                  id="account_image"
+                  class="rounded-circle"
+                  style="
+                    object-fit: cover;
+                    object-position: center;
+                    height: 100%;
+                    width: 100%;
+                  "
+                />
+              </div>
+            </a>
+          </div>
+          <span><a href="">Your nickname(You)</a></span>
+        </div>
+
+        <div class="discussion_page_title_area">
+          <div class="discussion_page_title">
+            <h2>
+              FGYlki; o ji;wesij; s ]ps[ sd pfes]ps [i's f][saepe '[ fs'f ops'
+              f]ops o]p ]os]bg-infoiif i]sof o][jso j]fsoj j]o]jsj]s jo???!!!
+            </h2>
+          </div>
+
+          <div class="discussion_page_status">
+            <h4>Відкрите</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="discussion_page_description">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus,
+          amet nemo repellat, facere inventore voluptatem qui quae laboriosam
+          impedit, dicta
+            eos? Voluptate perspiciatis qui quos? Velit aliquam tenetur quisquam
+            est. Necessitatibus, odit laudantium voluptas labore voluptatum
+            mollitia nostrum dolore beatae modi consequatur pariatur nesciunt
+            ullam asperiores delectus sed voluptate incidunt consectetur nam
+            dolorum quae minus aperiam rem nulla quo. Dicta? Accusamus explicabo
+            fuga sequi praesentium culpa eaque modi, laborum esse, quo maxime
+            nostrum necessitatibus perspiciatis dolores quaerat, officiis
+            deserunt molestias cum! Minima hic consequatur unde maiores,
+            voluptatem sed non nisi! Accusamus, doloremque. Ut natus molestiae
+            nobis adipisci saepe quo nihil est in quibusdam non error amet
+            voluptates itaque nulla, quis eveniet! A quibusdam repellendus
+            ratione porro suscipit illum, voluptas cupiditate?
+        </p>
+        <button onclick ="read_more(this)" data-mode="More">Більше</button>
+      </div>
+      <div class="discussion_reaction">
+        <span class="like-comment"
+          ><img src="{% static 'img/ico/like.png' %} " alt="Like" /> 22222</span
+        >
+        <span class="dislike-comment"
+          ><img src="{% static 'img/ico/dislike.png' %} " alt="Dislike" />
+          22222</span
+        >
+        <span class="answer-comment"
+          ><img src="{%static '/img/ico/reply.png'%}" alt=""> 22222</span
+        >
+      </div>
+    </div>
+
+    <div class="discussion_page_book">{%include "base/book_element.html"%}</div>
+  </div>
+  <div class="discussion_page_comment_area">
+    <form action="" class="add_comment">
+      <textarea name="" id=""></textarea>
+      <button type="submit">
+        Додати коментар
+      </button>
+    </form>
+    {%include "book/base/discussion_comment_element.html"%}
+        
+    {%include "book/base/discussion_comment_element.html"%} 
+    {%include "book/base/discussion_comment_element.html"%} 
+    {%include "book/base/discussion_comment_element.html"%} 
+    {%include "book/base/discussion_comment_element.html"%}
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="Add_comment_Modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="CommentModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CommentModalLongTitle">Додати коментар</h5>
+        <button
+          type="button"
+          class="close rounded-circle"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="answer_comment">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
+          corporis culpa sapiente dignissimos tempora assumenda eos sit
+          incidunt, exercitationem eaque perspiciatis laudantium suscipit
+          voluptas? Sequi consectetur perspiciatis excepturi minus tempore?
+        </div>
+        <form
+          action="book/fff/add_comment"
+          method="post"
+          class="modal_form"
+          id="login_form"
+        >
+          <div class="form-floating">
+            <textarea
+              name="comment"
+              id="modal_comment"
+              placeholder="Ім'я"
+              class="form-control"
+            ></textarea>
+            <label for="modal_comment">Текст Коментаря</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Відповісти</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

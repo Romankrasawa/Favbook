@@ -15,7 +15,7 @@
 
 {%block content%}
     <div class="home_welcome">
-            <h1>Вітаємо на домашній сторінці</h1>
+            <h1>Вітаємо на <br><span id="word_main_home">Головній</span> сторінці</h1>
             <img src="{%static 'img/My project.png'%}" alt="home_logo">
     </div>
 
@@ -135,7 +135,7 @@
         .book_preview_reactions{
             background-image: url("{%static 'img/wood_texture.jpg'%}");
         }
-        .discussion-element{
+        .discussion-element a{
             background-image: url("{%static 'img/paper_texture.jpg'%}");
         }
         .last_news{
@@ -145,4 +145,5 @@
             background-image: url("{%static 'img/paper_texture.jpg''%}");
         }
     </style>
+     {%include "base/flash_message.html"%}
 {%endblock%}

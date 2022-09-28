@@ -1,0 +1,22 @@
+.flash_area{
+    padding: 15px;
+    width: 100vw;
+    display: none;
+    position: fixed;
+    top: calc(100vh - 20px);
+    transform: translate(0%, -100%);
+    justify-content: center;
+    align-items: center;
+    & .flash_body{
+        padding: 5px 15px 5px 15px;
+        max-width: 90%;
+        border-radius: 30px;
+        background-color: rgb(146, 206, 56);
+        font-size: 20px;
+        display: flex;
+        color: black;
+        justify-content: center;
+        align-items: center;
+        overflow-wrap: break-word;
+    }
+}

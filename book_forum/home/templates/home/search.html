@@ -4,14 +4,92 @@
 {% block extra_css %}
 {{block.super}}
 <link rel="stylesheet" href="{% static 'css/home.css'%}">
+<link rel="stylesheet" href="{% static 'css/search.css'%}">
 <link rel="stylesheet" href="{% static 'css/book_element.css'%}">
 <link rel="stylesheet" href="{% static 'css/discussion_element.css'%}">
+<link rel="stylesheet" href="{% static 'css/profile_element.css'%}">
 {% endblock %}
 
 {%block title%}Search {{request.GET.search}}  {%endblock%}
 
 {%block content%}
-{%for i in '01234567890000000000000'|make_list%}
+    <h1>За результатами: <span>Аоо лд шдіщша шщірщіващ пв ор і аіа іва іваі аі ваіща</span></h1>
+    <h3>Знайдено 3456 результати</h3>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal"  id="registerButton">Зареєструватись</button>
+            
+    <button type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Увійти</button>
+    <div class="search_result_elements">
+    {%for i in '0123456789'|make_list%}
 
-{%endfor%}
+    {%include "base/profile_element.html"%}
+
+    {%endfor%}
+    {%for i in '0123456789'|make_list%}
+
+    {%include "base/book_element.html"%}
+
+    {%endfor%}
+    {%for i in '0123456789'|make_list%}
+
+    {%include "base/discussion_element.html"%}
+
+    {%endfor%}
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Попередня</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">2</span>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Наступна</a>
+          </li>
+        </ul>
+      </nav>
+
+    <div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="RegisterModalTitle">Реєстрація</h5>
+            <button type="button" class="close rounded-circle" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <form action="" method="post" class="modal_form" id="register_form">
+                
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Зареєструватись</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Вхід</h5>
+            <button type="button" class="close rounded-circle" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <form action="" method="post" class="modal_form" id="login_form">
+                
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Увійти</button>
+            </div>
+        </div>
+        </div>
+    </div>
 {%endblock%}

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{% static 'css/footer.css'%}">
     <link rel="stylesheet" href="{% static 'css/base.css'%}">
     <link rel="stylesheet" href="{% static 'css/loader.css'%}">
+    <link rel="stylesheet" href="{% static 'css/flash_message.css'%}">
     {% endblock %}
     <title>{%block title%}Title{%endblock%}</title>
 </head>
@@ -47,54 +48,14 @@
     <script src="{% static 'bootstrap/js/jquery-ui.min.js'%}"></script>
     <script src="{% static 'bootstrap/js/slick.min.js'%}"></script>
     <script src="{% static 'bootstrap/js/Chart.js'%}"></script>
-    <script>
-   
-    $('.recent-slick').slick({
-        infinite: true,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        pauseOnHover:true,
-        arrows:false,
-        swipe:true,
-        variableWidth: true,
-    })
-    $('.discussion-slick').slick({
-        infinite: true,
-        slidesToShow:3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        pauseOnHover:true,
-        arrows:false,
-        vertical:true,
-        draggable: true,
-        // verticalSwiping: true,
-    })
-    window.addEventListener("load", function(event) {
-
-        $("#loader-background").fadeOut();
-    });
-    $(function() {  
-     $( "#tabs-list" ).tabs();  
-  });  
-  function myFunction() {
-  var dots = document.getElementById("dots");
-  var moreText = document.getElementById("more");
-  var btnText = document.getElementById("readmore");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = "Більше";
-    moreText.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "Меньше";
-    moreText.style.display = "inline";
-  }
-} 
-    </script>
-
+    <script src="{% static 'bootstrap/js/autosize.min.js'%}"></script>
+    <script src="{% static 'js/readmore.js'%}"></script>
+    <script src="{% static 'js/loader.js'%}"></script>
+    <script src="{% static 'js/tabs.js'%}"></script>
+    <script src="{% static 'js/autocomplete_search.js'%}"></script>
+    <script src="{% static 'js/sliders.js'%}"></script>
+    <script src="{% static 'js/text-area.js'%}"></script>
+    <script src="{% static 'js/flash_message.js'%}"></script>
     {% endblock %}
 </body>
 </html>

@@ -9,8 +9,17 @@
         </div>
         <div class="col-5">
             <form action="/search/" method="get" class="search_area">
-                <input type="search" name="search" id="search_input"  autocomplete="off">
-                <button type="submit" id="search_button"><img src="{% static 'img/ico/search.png'%}" alt="Пошук"></button>
+              <div class="search">
+                <input type="search" name="search" id="search_input"  autocomplete="off" placeholder="Пошук">
+              </div>
+              <div id="search_autocomplete">
+                {%for i in '012345678'|make_list%}
+                <div class="search_autocomplete_item">
+                  <img src="{%static '/img/ico/find.png'%}" alt="">
+                  <a href="/search">search sssssfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</a>
+                </div>
+                {%endfor%}
+              </div>
             </form>
         </div>
         {%if request.user.is_authenticated %}
@@ -18,7 +27,7 @@
           
           <div class="account_list dropdown">
             <div class="rounded-circle" style="width:50px;height:50px;">
-              <a href="/account/">
+              <a href="#">
                 <img src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
               </a>
             </div>

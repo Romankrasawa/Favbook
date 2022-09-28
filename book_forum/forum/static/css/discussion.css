@@ -1,3 +1,114 @@
+.discussion_page_area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #ff7faa; }
 
+.discussion_page_header {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  background-color: #e57fff; }
+
+.discusssion_page_info_area {
+  width: calc(100% - 325px);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #7f9dff; }
+  .discusssion_page_info_area .discussion_page_user {
+    width: 100%;
+    padding: 10px;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    background-color: #0f6448; }
+  .discusssion_page_info_area .discussion_page_title_area {
+    width: 100%;
+    padding: 10px;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px; }
+    .discusssion_page_info_area .discussion_page_title_area .discussion_page_title {
+      width: calc(100% - 125px); }
+    .discusssion_page_info_area .discussion_page_title_area .discussion_page_status {
+      height: 100%;
+      width: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+  .discusssion_page_info_area .discussion_page_description {
+    width: 100%;
+    padding: 10px;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row; }
+
+.discussion_reaction {
+  width: 100%;
+  padding: 10px;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px; }
+  .discussion_reaction span {
+    flex-wrap: wrap;
+    gap: 5px; }
+    .discussion_reaction span img {
+      height: 32px; }
+
+.discussion_page_comment_area {
+  padding: 15px 15px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+  min-height: 100px; }
+
+.add_comment {
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+  min-height: 100px; }
+  .add_comment button {
+    width: 300px;
+    height: 80px;
+    border-radius: 20px; }
+  .add_comment textarea {
+    width: calc(100% - 315px);
+    min-height: 80px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 0; }
 
 /*# sourceMappingURL=discussion.css.map */

@@ -1,0 +1,7 @@
+.search_result_elements{
+    width: 82%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: center;
+    gap: 25px;
+}

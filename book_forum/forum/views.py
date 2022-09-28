@@ -4,8 +4,14 @@ from django.shortcuts import render
 def book(request, book_id):
     return render(request, template_name='book/book.html')
 
+def books(request):
+    return render(request, template_name='book/books.html')
+
 def discussion(request, book_id, discussion_id):
     return render(request, template_name='book/discussion.html')
+
+def discussions(request):
+    return render(request, template_name='book/discussions.html')    
 
 def category(request):
     return render(request, template_name='book/category.html')

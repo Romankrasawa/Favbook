@@ -1,0 +1,83 @@
+.profile_element_area{
+    border-radius: 35px;
+    width: 300px;
+    height:auto;
+    overflow: hidden;
+    & .profile_img{
+        width: 100%;
+        height: 180px;
+        padding: 10px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: aqua;
+        & img{
+            object-fit: cover;
+            object-position: center;
+            width: 160px;
+            height: 160px;
+        }
+    }
+    & .profile_name{
+        width: 100%;
+        height: 50px;
+        background-color: rgb(52, 134, 134);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    & .profile_active{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100px;
+        & .profile_chat{
+            width: 100%;
+            height: 50px;
+
+            background-color: chocolate;
+            & a{
+                width: 100%;
+                height: 100%;
+                padding: 2.5px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                gap:10px;
+            }
+            & img{
+                width: 30px;
+                height: 30px;
+            }
+        }
+        & .profile_add_friend{
+            width: 100%;
+            height: 50px;
+
+            background-color: chocolate;
+            & a{
+                width: 100%;
+                height: 100%;
+                padding: 2.5px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                gap:10px;
+            }
+            & img{
+                width: 30px;
+                height: 30px;
+            }
+        }
+        
+    }
+}

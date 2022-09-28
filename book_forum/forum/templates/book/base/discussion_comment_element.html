@@ -1,0 +1,73 @@
+{% load static %}
+<div class="comment_element" id="aaa">
+  <div class="comment-body">
+    <div class="comment-header">
+      <div class="comment-info">
+        <div class="account-image">
+          <a href="">
+            <div class="rounded-circle" style="width: 25px; height: 25px">
+              <img
+                src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}"
+                alt=""
+                id="account_image"
+                class="rounded-circle"
+                style="
+                  object-fit: cover;
+                  object-position: center;
+                  height: 100%;
+                  width: 100%;
+                "
+              />
+            </div>
+          </a>
+        </div>
+        <span
+          ><a href="">Your nickname(You)</a> to
+          <a href="">other nickname</a></span
+        >
+      </div>
+      <div class="comment-make-answer">
+        <button
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#Add_comment_Modal"
+          class="btn btn-dark"
+        >
+          Відповісти
+        </button>
+      </div>
+    </div>
+      <div class="comment-show-original">
+        <span
+          >Original text Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. </span
+        >
+      </div>
+
+    <div class="comment-content">
+      <p>
+        Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, ducimus ex nihil perferendis illum reiciendis. Explicabo distinctio quaerat sunt ipsa. Amet ratione praesentium excepturi voluptatibus dolorum sapiente tempore repellendus totam?
+        Est animi, ad expedita sint iusto consequuntur nisi excepturi in quam a reprehenderit velit molestiae beatae natus pariatur eos numquam, minima id voluptates quo aliquam? Modi, neque! Ad, suscipit iure!
+        Voluptate error quia repudiandae natus. Totam fugiat obcaecati accusantium consequatur tenetur id velit ullam sed consectetur veniam eveniet dolore necessitatibus optio inventore nam, suscipit iste odit corrupti veritatis cumque maxime!
+        In aperiam facere ea eius reprehenderit exercitationem fugit. Corporis nemo reprehenderit adipisci cum? Sint doloribus aliquid, velit laboriosam blanditiis, pariatur, consequatur corrupti nemo libero voluptatum omnis excepturi perferendis quae! Sit.
+        Eos, possimus, officia omnis, iure voluptatum expedita sequi corrupti aspernatur pariatur eaque vitae architecto repellendus fugiat! Optio consequatur a magnam non! Voluptate autem doloribus minus amet iste fugit saepe voluptatum?
+        Aut ea excepturi dolorum cumque hic ipsam corrupti ab in. Earum voluptates nihil, beatae magnam vel assumenda sit doloribus sequi! Quo ab maxime sunt incidunt suscipit molestiae aspernatur accusamus a.
+        Facilis reiciendis ratione ex nesciunt incidunt. Amet obcaecati distinctio a, nihil fugit sequi dolorem quis porro saepe itaque praesentium accusamus optio culpa ipsum ea facere cupiditate nobis est autem eligendi!
+        Animi quas error amet quisquam voluptas voluptatum, adipisci, veniam est tempore libero, consectetur laboriosam perspiciatis? Fugiat, necessitatibus distinctio quaerat et perferendis quibusdam doloribus dignissimos harum expedita, quas consequatur rem quia.
+        Hic corrupti consequuntur nobis, perspiciatis voluptatibus ex impedit quibusdam laborum, exercitationem amet ipsum fugit illum est natus reiciendis aliquam nesciunt omnis excepturi mollitia nostrum sapiente odio quas a enim. Molestias.
+        Doloribus accusantium omnis molestias alias culpa ex tenetur deserunt nam. Quibusdam laudantium, voluptas voluptate veritatis, modi quos sunt velit, expedita nostrum dolore dolor facilis odit distinctio eum commodi deleniti ea!
+      </p>
+      <button onclick ="read_more(this)" data-mode="More">Більше</button>
+    </div>
+    <div class="comment-footer">
+      <span class="like-comment"
+        ><img src="{% static 'img/ico/like.png' %} " alt="Like" /> 22222</span
+      >
+      <span class="dislike-comment"
+        ><img src="{% static 'img/ico/dislike.png' %} " alt="Dislike" />
+        22222</span
+      >
+      <span class="comment-date">33.03.2984</span>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,7 @@ header{
     background: rgb(186,158,8);
     background: linear-gradient(38deg, rgba(186,158,8,1) 21%, rgba(255,244,181,1) 51%, rgba(200,176,44,1) 98%);
     padding: 5px 0;
+    height: 70px;
     & .logo_area{
         width: fit-content;
         padding: 0 10px;
@@ -20,29 +21,70 @@ header{
         }
     }
     & .search_area{
+        position: relative;
         height: 100%;
         width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        .search{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
         & #search_input{
-            padding-left: 10px;
-            border-radius: 15px 0 0 15px;
-            width:85%;
+            padding:  0 10px 0 10px;
+            border-radius: 15px 15px 15px 15px;
+            width:100%;
             max-width: 600px;
             height: 50%;
         }
-        & #search_button{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 0 15px 15px 0;
-            width: 15%;
-            max-width: 80px;
-            height: 50%;
-            & img{
-                height: 70%;
+        #search_autocomplete{
+            display: none;
+            flex-direction: column;
+            justify-self: center;
+            width: 100%;
+            max-width: 600px;
+            max-height: 310px;
+            background-color: rgb(255, 255, 255);
+            flex-wrap: wrap;
+            gap:2px;
+            position: absolute;
+            top:75%;
+            margin-left: auto;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            border-radius: 0 0 15px 15px;
+            overflow: hidden;
+            padding: 5px;
+            & .search_autocomplete_item{
+                display: flex;
+                width: 100%;
+                overflow: hidden;
+                flex-direction: row;
+                padding: 3px;
+                align-items: center;
+                height: 30px;
+                border-width: 50px;
+                border-color: rgb(0, 0, 0);
+                background-color: rgb(210, 252, 238);
+                border-radius: 10px;
+                & img{
+                    width: 15px;
+                    height: 15px;
+                    margin-right: 10px;
+                }
+                & a{
+                    width: calc(100% - 25px);
+                    height: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+            & .search_autocomplete_item:hover{
+                background-color: rgb(199, 216, 216);
+
             }
         }
     }
@@ -71,6 +113,12 @@ header{
     padding-right: 30px;
     justify-content: right;
     height: 100%;
+    & img{
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .account-dropdown{

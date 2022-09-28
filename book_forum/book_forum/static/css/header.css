@@ -1,7 +1,8 @@
 header {
   background: #ba9e08;
   background: linear-gradient(38deg, #ba9e08 21%, #fff4b5 51%, #c8b02c 98%);
-  padding: 5px 0; }
+  padding: 5px 0;
+  height: 70px; }
   header .logo_area {
     width: fit-content;
     padding: 0 10px;
@@ -17,28 +18,64 @@ header {
       font-size: 35px;
       font-weight: bold; }
   header .search_area {
+    position: relative;
     height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center; }
+    width: 100%; }
+    header .search_area .search {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center; }
     header .search_area #search_input {
-      padding-left: 10px;
-      border-radius: 15px 0 0 15px;
-      width: 85%;
+      padding: 0 10px 0 10px;
+      border-radius: 15px 15px 15px 15px;
+      width: 100%;
       max-width: 600px;
       height: 50%; }
-    header .search_area #search_button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 0 15px 15px 0;
-      width: 15%;
-      max-width: 80px;
-      height: 50%; }
-      header .search_area #search_button img {
-        height: 70%; }
+    header .search_area #search_autocomplete {
+      display: none;
+      flex-direction: column;
+      justify-self: center;
+      width: 100%;
+      max-width: 600px;
+      max-height: 310px;
+      background-color: white;
+      flex-wrap: wrap;
+      gap: 2px;
+      position: absolute;
+      top: 75%;
+      margin-left: auto;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      border-radius: 0 0 15px 15px;
+      overflow: hidden;
+      padding: 5px; }
+      header .search_area #search_autocomplete .search_autocomplete_item {
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+        flex-direction: row;
+        padding: 3px;
+        align-items: center;
+        height: 30px;
+        border-width: 50px;
+        border-color: black;
+        background-color: #d2fcee;
+        border-radius: 10px; }
+        header .search_area #search_autocomplete .search_autocomplete_item img {
+          width: 15px;
+          height: 15px;
+          margin-right: 10px; }
+        header .search_area #search_autocomplete .search_autocomplete_item a {
+          width: calc(100% - 25px);
+          height: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+      header .search_area #search_autocomplete .search_autocomplete_item:hover {
+        background-color: #c7d8d8; }
   header .log_in_area {
     display: flex;
     flex-direction: row;
@@ -61,6 +98,11 @@ header {
   padding-right: 30px;
   justify-content: right;
   height: 100%; }
+  .account_list img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%; }
 
 .account-dropdown {
   background-color: transparent;
