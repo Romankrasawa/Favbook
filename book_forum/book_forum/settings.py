@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-df)trk^pjts4o$87h7#5am8nx$xqs1)n%48ke-#5a-^mcr6eu5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =  ['localhost', '127.0.0.1', '.ngrok.io']
 
 
 # Application definition
@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'forum.apps.ForumConfig',
-    'chat.apps.ChatConfig',
     'user.apps.UserConfig',
-    'home.apps.HomeConfig'
+    'home.apps.HomeConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +53,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = ['user.Backend.UserBackend']
+
+AUTH_USER_MODEL = 'user.User'
 
 ROOT_URLCONF = 'book_forum.urls'
 
@@ -67,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'user.utils.registerForm',
+                'user.utils.logInForm',
             ],
         },
     },
@@ -130,7 +136,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [BASE_DIR / 'book_forum/static', BASE_DIR / 'home/static',BASE_DIR / 'user/static',BASE_DIR / 'chat/static',BASE_DIR / 'forum/static']
+STATICFILES_DIRS = [BASE_DIR / 'book_forum/static', BASE_DIR / 'home/static',BASE_DIR / 'user/static',BASE_DIR / 'forum/static']
 STATIC_URL = 'static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

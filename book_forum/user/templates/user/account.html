@@ -1,0 +1,42 @@
+{%extends "base/base.html"%}
+{% load static %}
+
+{% block extra_css %}
+{{block.super}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<link rel="stylesheet" href="{% static 'css/account.css'%}">
+<link rel="stylesheet" href="{% static 'css/book_element.css'%}">
+<link rel="stylesheet" href="{% static 'css/discussion_element.css'%}">
+<link rel="stylesheet" href="{% static 'css/news_element.css'%}">
+{% endblock %}
+
+{%block title%}{{title}} {%endblock%}
+
+{%block content%}
+<div class="account_profile_area">
+    <div class="account_header">
+        <div class="account_panorama">
+
+        </div>
+        <div class="account_image rounded-circle">
+            <img src="{{request.user.photo.url}}" alt="">
+        </div>
+    </div>
+    <div class="account_body">
+        <div class="account_info">
+            <div class="account_name"><h1>{{request.user.username}}</h1></div>
+            <div class="account_active">
+                <div class="account_followed">
+                    <a href="{%url 'books'%}" class="account_option">Обрані книги</a>
+                    <a href="{%url 'discussions'%}" class="account_option">Обрані обговорення</a>
+                </div>
+                <div class="account_settings">
+                    <a href="{%url 'settings'%}" class="account_option">Налаштування</a>
+                    <a href="{%url 'log_out'%}" class="account_option log_out">Вийти з Акаунту</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

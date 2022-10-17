@@ -2,8 +2,9 @@
     padding-top: 0;
 }
 .book_page_header{
-    width: 100%;
+    width: calc(100% + 12%);
     height: 200px;
+    margin-left: -6%;
 }
 .book_page_background_img{
     width: 100%;
@@ -26,7 +27,7 @@
     min-height: 500px;
     height: auto;
     padding: 5px;
-
+    border-radius: 0 0 30px 30px;
 
 }
 .book_page_info_area{
@@ -41,7 +42,7 @@
     height: fit-content;
     padding: 20px 10px;
     border-radius: 0 25px 25px 0;
-    background-color: #4b2e7a;
+
     & .book_page_cover{
         width: 95%;
         max-width: 380px;
@@ -56,7 +57,6 @@
     }
     & .book_page_info{
         border-radius: 15px;
-        background-color: #9e7bd6;
         width: 95%;
         padding: 10px;
         display: flex;
@@ -74,7 +74,6 @@
     color: black;
     margin-right: auto;
     width:calc(100% - 360px);
-    background-color: #c9a8ff;
 }
 #tabs-list{
     width: 100%;
@@ -118,9 +117,27 @@
     align-items: center;
     padding: 20px;
 }
-#more {display: none;}
-#readmore{
-    background: transparent;
+.book_page_description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    & p{
+        display: flex;
+        width: 100%;
+        max-height: 200px;
+        overflow: hidden;
+        line-height: 25px;
+    }
+    & button{
+        display: none;
+        margin-left: auto;
+        background-color: transparent;
+    }
 }
 .book_page_rating{
     display: flex;
@@ -128,12 +145,29 @@
     align-items: center;
     width: 100%;
     height: fit-content;
+    flex-wrap: wrap;
+    gap: 15px;
+    & img{
+        width: 30px;
+        height: 30px;
+    }
+}
+.book_reaction{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 .book_page_comment_area{
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
+    width:95%;
     gap: 15px;
     & button{
         width: 60%;

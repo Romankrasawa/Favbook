@@ -25,5 +25,37 @@ readMore.forEach(element => {
     }
 })
 }
+
+function renderBookDescriptionReadMore(){
+    readMore = document.querySelectorAll(".book_page_description")
+    readMore.forEach(element => {
+        console.log("readmore work")
+        if (element.firstElementChild.scrollHeight > 200){
+            console.log("overflow")
+            element.lastElementChild.style.display = "flex"
+        }
+        else{
+            element.lastElementChild.style.display = "none"
+        }
+    })
+    }
+
+function renderDiscussionDescriptionReadMore(){
+    readMore = document.querySelectorAll(".discussion_page_description")
+        readMore.forEach(element => {
+        console.log("readmore work")
+        if (element.firstElementChild.scrollHeight > 200){
+            console.log("overflow")
+            element.lastElementChild.style.display = "flex"
+        }
+        else{
+            element.lastElementChild.style.display = "none"
+        }
+    })
+    }
 window.addEventListener("resize", renderCommentReadMore)
+window.addEventListener("resize", renderBookDescriptionReadMore)
+window.addEventListener("resize", renderDiscussionDescriptionReadMore)
+renderBookDescriptionReadMore()
+renderDiscussionDescriptionReadMore()
 renderCommentReadMore()

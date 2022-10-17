@@ -1,6 +1,5 @@
 header{
-    background: rgb(186,158,8);
-    background: linear-gradient(38deg, rgba(186,158,8,1) 21%, rgba(255,244,181,1) 51%, rgba(200,176,44,1) 98%);
+
     padding: 5px 0;
     height: 70px;
     & .logo_area{
@@ -15,7 +14,7 @@ header{
             height:60px;
         }
         & #logo_text{
-            font-family: Royal_2;
+            font-family: monospace;
             font-size: 35px;
             font-weight: bold;
         }
@@ -46,7 +45,6 @@ header{
             width: 100%;
             max-width: 600px;
             max-height: 310px;
-            background-color: rgb(255, 255, 255);
             flex-wrap: wrap;
             gap:2px;
             position: absolute;
@@ -57,6 +55,7 @@ header{
             border-radius: 0 0 15px 15px;
             overflow: hidden;
             padding: 5px;
+            z-index: 999;
             & .search_autocomplete_item{
                 display: flex;
                 width: 100%;
@@ -67,7 +66,6 @@ header{
                 height: 30px;
                 border-width: 50px;
                 border-color: rgb(0, 0, 0);
-                background-color: rgb(210, 252, 238);
                 border-radius: 10px;
                 & img{
                     width: 15px;
@@ -82,10 +80,7 @@ header{
                     white-space: nowrap;
                 }
             }
-            & .search_autocomplete_item:hover{
-                background-color: rgb(199, 216, 216);
 
-            }
         }
     }
     & .log_in_area{
@@ -131,30 +126,59 @@ header{
     justify-content: center;
     padding: 10px;
     & .search_area{
-        height: 100px;
+        position: relative;
         width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: 15px 10px;
-        & #search_input{
-            padding-left: 10px;
-            border-radius: 15px 0 0 15px;
-            width:80%;
-            height: 50%;
-        }
-        & #search_button{
+        .search{
+            width: 100%;
             display: flex;
-            justify-content: center;
+            flex-direction: row;
             align-items: center;
-            border-radius: 0 15px 15px 0;
-            width: 10%;
-            min-width: 50px;
-            height: 50%;
-            & img{
-                height: 70%;
+            justify-content: center;
+        }
+        & #search_input{
+            padding:  0 10px 0 10px;
+            border-radius: 15px 15px 15px 15px;
+            width:100%;
+            max-width: 600px;
+            height: 50px;
+        }
+        #search_autocomplete{
+            display: none;
+            flex-direction: column;
+            justify-self: center;
+            width: 100%;
+            max-width: 600px;
+            flex-wrap: wrap;
+            gap:3px;
+            border-radius: 0 0 15px 15px;
+            overflow: hidden;
+            padding: 5px;
+            z-index: 999;
+            & .search_autocomplete_item{
+                display: flex;
+                width: 100%;
+                overflow: hidden;
+                flex-direction: row;
+                padding: 3px;
+                align-items: center;
+                height: 30px;
+                border-width: 50px;
+                border-color: rgb(0, 0, 0);
+                border-radius: 10px;
+                & img{
+                    width: 15px;
+                    height: 15px;
+                    margin-right: 10px;
+                }
+                & a{
+                    width: calc(100% - 25px);
+                    height: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
             }
+
         }
     }
     & .burger-item{
@@ -218,14 +242,14 @@ header{
     }
 
 }
-@media screen and (max-width: 680px){
-    header{
-        display: none;
-    }
-    .navbar-burger{
-        display:block;
-    }
-    .burger_menu{
-        display: flex;
-    }
-}
+// @media screen and (max-width: 680px){
+//     header{
+//         display: none;
+//     }
+//     .navbar-burger{
+//         display:block;
+//     }
+//     .burger_menu{
+//         display: flex;
+//     }
+// }

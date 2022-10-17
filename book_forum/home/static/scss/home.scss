@@ -6,10 +6,9 @@
     grid-template-columns: 2fr 1fr;
     align-items: center;
     justify-items: center;
-    padding: 20px 20px;
+    padding: 20px 0;
     font-weight: bold;
-    font-family: Optima;
-    font-style: italic;
+    color: black;
     & h1{
         font-size: 45px;
     }
@@ -20,8 +19,7 @@
 .home_label{
     margin: 20px 0;
     font-weight: bold;
-    font-family: Optima;
-    font-style: italic;
+    
 }
 .recent-slider{
     width: 82%;
@@ -71,7 +69,6 @@
     & .last_news, .popular_categories{
         width: 100%;
         height: 100%;
-        background-color: blueviolet;
         border-radius: 25px;
         display: flex;
         flex-direction: column;

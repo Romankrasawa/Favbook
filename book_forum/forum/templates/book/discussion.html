@@ -1,11 +1,12 @@
-{%extends "base/base.html"%} {% load static %} {% block extra_css %}
+{%extends "base/base.html"%}
+{% load static %}
+{%load tags%}
+{% block extra_css %}
 {{block.super}}
-<link rel="stylesheet" href="{% static 'css/book.css'%}" />
 <link rel="stylesheet" href="{% static 'css/book_element.css'%}" />
-<link rel="stylesheet" href="{% static 'css/discussion_element.css'%}" />
 <link rel="stylesheet" href="{% static 'css/discussion.css'%}" />
 <link rel="stylesheet" href="{% static 'css/commentary.css'%}" />
-{% endblock %} {%block title%}Обговорення{%endblock%} {%block content%}
+{% endblock %} {%block title%}{{title}} {%endblock%} {%block content%}
 <div class="discussion_page_area">
   <div class="discussion_page_header">
     <div class="discusssion_page_info_area">
@@ -15,7 +16,7 @@
             <a href="">
               <div class="rounded-circle" style="width: 25px; height: 25px">
                 <img
-                  src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}"
+                  src="{{discussion.user.photo.url}}"
                   alt=""
                   id="account_image"
                   class="rounded-circle"
@@ -29,53 +30,38 @@
               </div>
             </a>
           </div>
-          <span><a href="">Your nickname(You)</a></span>
+          <span><a href="{{discussion.user.get_absolute_url}}">@{{discussion.user.username}}</a></span>
         </div>
 
         <div class="discussion_page_title_area">
           <div class="discussion_page_title">
             <h2>
-              FGYlki; o ji;wesij; s ]ps[ sd pfes]ps [i's f][saepe '[ fs'f ops'
-              f]ops o]p ]os]bg-infoiif i]sof o][jso j]fsoj j]o]jsj]s jo???!!!
+              {{discussion.title}}
             </h2>
           </div>
 
           <div class="discussion_page_status">
-            <h4>Відкрите</h4>
+            <h4>[{{discussion.get_status_display}}]</h4>
           </div>
         </div>
       </div>
 
       <div class="discussion_page_description">
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus,
-          amet nemo repellat, facere inventore voluptatem qui quae laboriosam
-          impedit, dicta
-            eos? Voluptate perspiciatis qui quos? Velit aliquam tenetur quisquam
-            est. Necessitatibus, odit laudantium voluptas labore voluptatum
-            mollitia nostrum dolore beatae modi consequatur pariatur nesciunt
-            ullam asperiores delectus sed voluptate incidunt consectetur nam
-            dolorum quae minus aperiam rem nulla quo. Dicta? Accusamus explicabo
-            fuga sequi praesentium culpa eaque modi, laborum esse, quo maxime
-            nostrum necessitatibus perspiciatis dolores quaerat, officiis
-            deserunt molestias cum! Minima hic consequatur unde maiores,
-            voluptatem sed non nisi! Accusamus, doloremque. Ut natus molestiae
-            nobis adipisci saepe quo nihil est in quibusdam non error amet
-            voluptates itaque nulla, quis eveniet! A quibusdam repellendus
-            ratione porro suscipit illum, voluptas cupiditate?
+                        {{discussion.description}}
         </p>
         <button onclick ="read_more(this)" data-mode="More">Більше</button>
       </div>
       <div class="discussion_reaction">
         <span class="like-comment"
-          ><img src="{% static 'img/ico/like.png' %} " alt="Like" /> 22222</span
+          ><img src="{% static 'img/ico/like.png' %} " alt="Like" class="reaction_icon{%if discussion in request.user.liked_discussion.all%} reaction_icon_active{%endif%}"/>{%num_to_short discussion.liked_discusion.count%}</span
         >
         <span class="dislike-comment"
-          ><img src="{% static 'img/ico/dislike.png' %} " alt="Dislike" />
-          22222</span
+          ><img src="{% static 'img/ico/dislike.png' %} " alt="Dislike" class="reaction_icon{%if discussion in request.user.disliked_discussion.all%} reaction_icon_active{%endif%}"/>
+          {%num_to_short discussion.disliked_discusion.count%}</span
         >
         <span class="answer-comment"
-          ><img src="{%static '/img/ico/reply.png'%}" alt=""> 22222</span
+          ><img src="{%static '/img/ico/reply.png'%}" alt=""> {%num_to_short discussion.discussion_comments.count%}</span
         >
       </div>
     </div>
@@ -83,21 +69,23 @@
     <div class="discussion_page_book">{%include "base/book_element.html"%}</div>
   </div>
   <div class="discussion_page_comment_area">
-    <form action="" class="add_comment">
-      <textarea name="" id=""></textarea>
-      <button type="submit">
+                         {%if request.user.is_authenticated%}
+    <form action="{%url 'add_discussion_comment' book_id=book.slug discussion_id=discussion.slug%}" class="add_comment" method="post">
+            {% csrf_token %}
+      {{form.content}}
+      <button type="submit" class="btn">
         Додати коментар
       </button>
     </form>
-    {%include "book/base/discussion_comment_element.html"%}
-        
-    {%include "book/base/discussion_comment_element.html"%} 
-    {%include "book/base/discussion_comment_element.html"%} 
-    {%include "book/base/discussion_comment_element.html"%} 
-    {%include "book/base/discussion_comment_element.html"%}
+            {%endif%}
+    {%for comment in discussion.discussion_comments.all%}
+
+      {%include "book/base/discussion_comment_element.html" with comment=comment%}
+
+    {%endfor%}
   </div>
 </div>
-
+                                 {%if request.user.is_authenticated%}
 <div
   class="modal fade"
   id="Add_comment_Modal"
@@ -127,27 +115,24 @@
           voluptas? Sequi consectetur perspiciatis excepturi minus tempore?
         </div>
         <form
-          action="book/fff/add_comment"
+          action="{%url 'answer_discussion_comment' book_id=book.slug discussion_id=discussion.slug%}"
           method="post"
           class="modal_form"
-          id="login_form"
+          id="answer_form"
         >
+                      {% csrf_token %}
+            {{answerform.answer}}
           <div class="form-floating">
-            <textarea
-              name="comment"
-              id="modal_comment"
-              placeholder="Ім'я"
-              class="form-control"
-            ></textarea>
-            <label for="modal_comment">Текст Коментаря</label>
+            {{answerform.content}}
+            <label for="{{answerform.content.id}}">{{answerform.content.label}}</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Відповісти</button>
+        <input type="submit" class="btn" form="answer_form" value="Відповісти"/>
       </div>
     </div>
   </div>
 </div>
-
+{%endif%}
 {%endblock%}

@@ -1,7 +1,50 @@
-.search_result_elements{
+.search_info_area{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    & h2{
+        font-style: italic;
+    }
+}
+.search_result_profiles_books{
     width: 82%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     justify-items: center;
     gap: 25px;
+    padding: 10px;
+}
+.search_result_discusions{
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 25px;
+    padding: 10px;
+}
+.active_search_area{
+    height: 60px;
+    width: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    & button{
+        width: 140px;
+        height: 40px;
+        border-radius: 30px;
+    }
+}
+#SortingModal .modal-footer, #FilterModal .modal-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

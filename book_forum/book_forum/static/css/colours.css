@@ -1,0 +1,251 @@
+header {
+  background-color: #240046; }
+
+footer {
+  background-color: #240046;
+  color: #f4ebfa; }
+
+textarea {
+  background-color: #f4ebfa; }
+
+header a {
+  text-decoration: none; }
+  header a:link {
+    color: #ebc9ff; }
+  header a:visited {
+    color: #ebc9ff; }
+  header a:focus {
+    color: #ebc9ff; }
+  header a:active {
+    color: #ebc9ff; }
+  header a:hover {
+    color: #ebc9ff; }
+
+#search_input {
+  background-color: #f1daff; }
+
+#search_autocomplete {
+  background-color: #9d4edd; }
+  #search_autocomplete .search_autocomplete_item {
+    background-color: #5a189a; }
+
+.search_autocomplete_item:hover {
+  background-color: #e6bbff; }
+
+header .dropdown-menu {
+  background-color: #7b2cbf; }
+  header .dropdown-menu hr {
+    color: #ebc9ff; }
+
+header .dropdown-item:hover {
+  background-color: #5a189a;
+  color: #ebc9ff; }
+
+.account-dropdown {
+  color: #f1daff; }
+  .account-dropdown :hover {
+    color: #e6bbff; }
+
+.content {
+  background-color: #ebc9ff; }
+
+.home_welcome h1 {
+  color: #10002b; }
+  .home_welcome h1 #word_main_home {
+    color: #5a189a; }
+
+.home_label {
+  color: #10002b; }
+
+.book_preview:hover {
+  filter: brightness(1.25); }
+
+.book_preview_info {
+  color: #e6bbff;
+  background-color: #5a189a; }
+
+.book_preview_reactions {
+  color: #e6bbff;
+  background-color: #240046; }
+  .book_preview_reactions img {
+    filter: invert(94%) sepia(86%) saturate(3215%) hue-rotate(184deg) brightness(102%) contrast(103%); }
+
+.discussion-element a {
+  color: #e6bbff;
+  background-color: #7b2cbf; }
+  .discussion-element a .discussion-view img {
+    filter: invert(94%) sepia(86%) saturate(3215%) hue-rotate(184deg) brightness(102%) contrast(103%); }
+
+.discussion-element a:hover {
+  filter: brightness(1.25); }
+
+.book_page_background_img {
+  background-color: #c77dff; }
+
+.book_page_body_area {
+  background-color: #e0aaff; }
+
+.book_page_info_area {
+  color: #ebc9ff;
+  background-color: #5a189a; }
+
+.book_page_body {
+  color: #10002b; }
+
+.tab {
+  background-color: #7b2cbf;
+  text-decoration: none; }
+  .tab:link {
+    color: #ebc9ff; }
+  .tab:visited {
+    color: #ebc9ff; }
+  .tab:focus {
+    color: #ebc9ff; }
+  .tab:active {
+    color: #ebc9ff; }
+  .tab:hover {
+    color: #ebc9ff; }
+
+.tab:hover {
+  background-color: #5a189a;
+  filter: brightness(1.25); }
+
+.comment_element {
+  background-color: #c77dff;
+  color: #10002b; }
+
+.reaction_icon:hover {
+  transform: scale(1.2);
+  filter: brightness(0.65);
+  filter: invert(7%) sepia(44%) saturate(6123%) hue-rotate(267deg) brightness(91%) contrast(114%); }
+
+.reaction_icon {
+  cursor: pointer; }
+
+.reaction_icon_active {
+  transform: scale(1.2);
+  filter: invert(7%) sepia(44%) saturate(6123%) hue-rotate(267deg) brightness(91%) contrast(114%); }
+
+#loader-background {
+  color: #240046; }
+
+.modal-body, .modal-footer, .modal-header {
+  color: #10002b;
+  background-color: #ebc9ff; }
+
+.close {
+  background-color: #f1daff; }
+
+.close:hover {
+  background-color: #f4ebfa; }
+
+.btn, .btn:focus {
+  color: #f1daff;
+  background-color: #5a189a;
+  border-radius: 15px;
+  text-decoration: none; }
+  .btn:link, .btn:focus:link {
+    color: #f1daff; }
+  .btn:visited, .btn:focus:visited {
+    color: #f1daff; }
+  .btn:focus, .btn:focus:focus {
+    color: #f1daff; }
+  .btn:active, .btn:focus:active {
+    color: #f1daff; }
+  .btn:hover, .btn:focus:hover {
+    color: #f1daff; }
+
+.btn:hover {
+  filter: brightness(1.25);
+  color: #f1daff;
+  background-color: #240046; }
+
+.answer_comment {
+  background-color: #7b2cbf;
+  color: #f1daff; }
+
+.comment-show-original {
+  background-color: #7b2cbf;
+  color: #f1daff; }
+
+.account_panorama {
+  background-color: #3c096c; }
+
+.account_header, .account_body {
+  background-color: #9d4edd;
+  color: #f1daff; }
+
+.account_option {
+  background-color: #5a189a;
+  color: #f1daff;
+  text-decoration: none; }
+  .account_option:link {
+    color: #f1daff; }
+  .account_option:visited {
+    color: #f1daff; }
+  .account_option:focus {
+    color: #f1daff; }
+  .account_option:active {
+    color: #f1daff; }
+  .account_option:hover {
+    color: #f1daff; }
+
+.account_option:hover {
+  background-color: #3c096c;
+  filter: brightness(1.25);
+  color: #f1daff; }
+
+.discussion_page_user {
+  background-color: #3c096c; }
+
+.discussion_page_title_area {
+  color: #f1daff;
+  background-color: #7b2cbf; }
+
+.discussion_page_description {
+  color: #10002b;
+  background-color: #e0aaff; }
+
+.discusssion_page_info_area {
+  background-color: #e0aaff; }
+
+.discussion_reaction {
+  background-color: #c77dff; }
+
+.comment-info:link {
+  color: #10002b; }
+.comment-info:visited {
+  color: #10002b; }
+.comment-info:focus {
+  color: #10002b; }
+.comment-info:active {
+  color: #10002b; }
+.comment-info:hover {
+  color: #10002b; }
+
+.page-link {
+  background-color: #3c096c; }
+  .page-link:focus {
+    color: #f1daff;
+    background-color: #5a189a; }
+  .page-link:active {
+    color: #f1daff;
+    background-color: #5a189a; }
+  .page-link:hover {
+    color: #f1daff;
+    background-color: #5a189a; }
+
+.disabled .page-link {
+  background-color: #3c096c;
+  filter: brightness(0.5); }
+
+.active .page-link {
+  background-color: #5a189a;
+  filter: brightness(1.5); }
+
+.nav-pills .nav-item {
+  border-radius: 0;
+  background-color: #3c096c;
+  color: #f1daff; }
+
+/*# sourceMappingURL=colours.css.map */

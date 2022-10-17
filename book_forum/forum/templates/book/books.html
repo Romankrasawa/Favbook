@@ -1,0 +1,65 @@
+{%extends "base/base.html"%} {% load static %} {% block extra_css %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/books.css'%}" />
+<link rel="stylesheet" href="{% static 'css/book_element.css'%}" />
+{% endblock %} {%block title%}{{title}} {%endblock%}
+{%block content%}
+  <div id="books_tabs">
+  <nav>
+    <div class="nav nav-pills nav-fill" role="tablist">
+
+      <button id="books_created_tab" class="nav-item btn" data-bs-toggle="tab" data-bs-target="#books_created" type="button" role="tab" aria-controls="books_created" aria-selected="true">Створені</button>
+
+      <button id="books_liked_tab" class="nav-item btn" data-bs-toggle="tab" data-bs-target="#books_liked" type="button" role="tab" aria-controls="books_liked" aria-selected="false">Вподобані</button>
+
+      <button id="books_disliked_tab" class="nav-item btn" data-bs-toggle="tab" data-bs-target="#books_disliked" type="button" role="tab" aria-controls="books_disliked" aria-selected="false">Невподобані</button>
+
+
+  </nav>
+  <div class="tab-content">
+    <div class="tab-pane" id="books_created" role="tabpanel" aria-labelledby="books_created_tab">
+      {%if created_book%}
+        {%for book in created_book%}
+
+          {%include "base/book_element.html" with book=book%}
+
+        {%endfor%}
+      {%else%}
+      <h2>Тут покищо пусто</h2>
+      {%endif%}
+    </div>
+    <div class="tab-pane" id="books_liked" role="tabpanel" aria-labelledby="books_liked_tab">
+      {%if liked_book%}
+        {%for book in liked_book%}
+
+          {%include "base/book_element.html" with book=book%}
+
+        {%endfor%}
+      {%else%}
+      <h2>Тут покищо пусто</h2>
+      {%endif%}
+    </div>
+    <div class="tab-pane" id="books_disliked" role="tabpanel" aria-labelledby="books_disliked_tab">
+      {%if disliked_book%}
+        {%for book in disliked_book%}
+
+          {%include "base/book_element.html" with book=book%}
+
+        {%endfor%}
+      {%else%}
+      <h2>Тут покищо пусто</h2>
+      {%endif%}
+    </div>
+  </div>
+</div>
+
+{%endblock%} 
+{% block extra_script %}
+{{block.super}}
+<script>
+  var someTabTriggerEl = document.querySelector('#books_created_tab')
+  var tab = new bootstrap.Tab(someTabTriggerEl)
+
+  tab.show()
+</script>
+{%endblock%}

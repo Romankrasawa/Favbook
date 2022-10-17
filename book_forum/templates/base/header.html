@@ -1,25 +1,20 @@
 {% load static %}
+
 <header class="container-fluid">
     <div class="row">
         <div class="col-3">
-            <a href="/home/" class="logo_area">
+            <a href="{%url 'home'%}" class="logo_area">
                 <img src="{% static 'img/logo.png'%}" alt="Logo">
                 <span id="logo_text">FavBook</span>
             </a>
         </div>
         <div class="col-5">
-            <form action="/search/" method="get" class="search_area">
+            <form action="{%url 'search'%}" method="get" class="search_area">
+                                                {% csrf_token %}
               <div class="search">
-                <input type="search" name="search" id="search_input"  autocomplete="off" placeholder="Пошук">
+                <input type="search" name="search" id="search_input"  autocomplete="off" placeholder="Для пошуку обговорень введіть #">
               </div>
-              <div id="search_autocomplete">
-                {%for i in '012345678'|make_list%}
-                <div class="search_autocomplete_item">
-                  <img src="{%static '/img/ico/find.png'%}" alt="">
-                  <a href="/search">search sssssfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</a>
-                </div>
-                {%endfor%}
-              </div>
+
             </form>
         </div>
         {%if request.user.is_authenticated %}
@@ -27,28 +22,23 @@
           
           <div class="account_list dropdown">
             <div class="rounded-circle" style="width:50px;height:50px;">
-              <a href="#">
-                <img src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
+              <a href="{%url 'account'%}">
+                <img src="{{request.user.photo.url}}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
               </a>
             </div>
             <button type="button" class="account-dropdown dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
               <span class="visually-hidden">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" >
-              <li><a class="dropdown-item" href="/account/">Профіль</a></li>
-              <li><a class="dropdown-item" href="/friends/">Друзі</a></li>
-              <li><a class="dropdown-item" href="/chat/">Чат</a></li>
-              <li><a class="dropdown-item" href="/book/dddd">Книги</a></li>
-              <li><a class="dropdown-item" href="/book/category/">Категорії</a></li>
-              <li><a class="dropdown-item" href="/book/sdfdsfsf/discussion/dddd">Обговорення</a></li>
-              <li><a class="dropdown-item" href="/book/add_book/">Додати книгу</a></li>
-              <li><a class="dropdown-item" href="/book/sfdsfdsd/add_discussions">Створити обговорення</a></li>
+              <li><a class="dropdown-item" href="{%url 'account'%}">Профіль</a></li>
+              <li><a class="dropdown-item" href="{%url 'books'%}">Книги</a></li>
+              <li><a class="dropdown-item" href="{%url 'discussions'%}">Обговорення</a></li>
+              <li><a class="dropdown-item" href="{%url 'add_book'%}">Додати книгу</a></li>
+              <li><a class="dropdown-item" href="{%url 'add_discussion'%}">Створити обговорення</a></li>
               <hr>
-              <li><a class="dropdown-item" href="/news/">Новини</a></li>
-              <li><a class="dropdown-item" href="/notifications/">Сповіщення</a></li>
-              <li><a class="dropdown-item" href="/settings/">Налаштування</a></li>
+              <li><a class="dropdown-item" href="{%url 'settings'%}">Налаштування</a></li>
               <hr>
-              <li><a class="dropdown-item" href="/log_out/">Вийти</a></li>        
+              <li><a class="dropdown-item" href="{%url 'log_out'%}">Вийти</a></li>
             </ul>        
           </div>
       </div>
@@ -65,13 +55,36 @@
 
 <div class="collapse" id="burgerMenu">
   <div class="burger_menu">
-    <div class="bg-dark">
-      <form action="#" method="get" class="search_area">
-          <input type="search" name="search_text" id="search_input"  autocomplete="off">
-          <button type="submit" id="search_button"><img src="{% static 'img/ico/search.png'%}" alt="Пошук"></button>
-      </form>
+    <div class="">
+      <a href="/home/" class="logo_area">
+        <img src="{% static 'img/logo.png'%}" alt="Logo">
+        <span id="logo_text">FavBook</span>
+    </a>
+    <form action="/search/" method="get" class="search_area">
+      <div class="search">
+        <input type="search" name="search" id="search_input"  autocomplete="off" placeholder="Пошук">
+      </div>
+      <div id="search_autocomplete">
+        {%for i in '012345678'|make_list%}
+        <div class="search_autocomplete_item">
+          <img src="{%static '/img/ico/find.png'%}" alt="">
+          <a href="/search">search sssssfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</a>
+        </div>
+        {%endfor%}
+      </div>
+    </form>
       {%if request.user.is_authenticated %}
-      
+    <ul class="dropdown-menu" >
+      <li><a class="burger-item" href="/profile/">Профіль</a></li>
+      <li><a class="burger-item" href="/book">Книги</a></li>
+      <li><a class="burger-item" href="/book/discussion/">Обговорення</a></li>
+      <li><a class="burger-item" href="/book/add_book/">Додати книгу</a></li>
+      <li><a class="dropdown-item" href="/book/sfdsfdsd/add_discussions">Створити обговорення</a></li>
+      <hr>
+      <li><a class="burger-item" href="/profile/settings/">Налаштування</a></li>
+      <hr>
+      <li><a class="burger-item" href="/log_out/">Вийти</a></li>        
+    </ul>
     {%else%}
     <div class="col-3 log_in_area">
       <button type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal">Зареєструватись</button>
@@ -103,28 +116,25 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="post" class="modal_form" id="register_form">
+        <form action="{%url 'register'%}" method="post" class="modal_form" id="register_user_form">
+                                  {% csrf_token %}
           <div class="form-floating">
-            <input type="text" name="name" id="modal_name" placeholder="Ім'я" class="form-control"   autocomplete="off">
-            <label for="modal_name">Ім'я</label>
+            {{registerform.username}}
+            <label for="{{registerform.username.id}}">{{registerform.username.label}}</label>
           </div>
           <div class="form-floating">
-            <input type="email" name="email" id="modal_email" placeholder="Електронна пошта" class="form-control"   autocomplete="off">
-            <label for="modal_email">Електронна пошта</label>
+            {{registerform.email}}
+            <label for="{{registerform.email.id}}">{{registerform.email.label}}</label>
           </div>
           <div class="form-floating">
-            <input type="password" name="password" id="modal_password" placeholder="Пароль" class="form-control"  autocomplete="off">
-            <label for="modal_password">Пароль</label>
-          </div>
-          <div class="form-floating">
-            <input type="password" name="repeat_password" id="modal_repeatpassword" placeholder="Повторний парол" class="form-control"  autocomplete="off">
-            <label for="modal_repeatpassword">Повторний пароль</label>
+            {{registerform.password}}
+            <label for="{{registerform.password.id}}">{{registerform.password.label}}</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <a type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Уже маєте аккаунт</a>
-        <button type="button" class="btn btn-primary">Зареєструватись</button>
+        <input type="submit" class="btn btn-primary" value="Зареєструватись" form="register_user_form"/>
       </div>
     </div>
   </div>
@@ -140,20 +150,21 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="post" class="modal_form" id="login_form">
+        <form action="{%url 'log_in'%}" method="post" class="modal_form" id="login_user_form">
+                                  {% csrf_token %}
           <div class="form-floating">
-            <input type="text" name="name" id="modal_name" placeholder="Ім'я" class="form-control">
-            <label for="modal_name">Ім'я або пошта</label>
+            {{loginform.username}}
+            <label for="{{loginform.username.id}}">{{loginform.username.label}}</label>
           </div>
           <div class="form-floating">
-            <input type="password" name="password" id="modal_password" placeholder="Пароль" class="form-control">
-            <label for="modal_password">Пароль</label>
+            {{loginform.password}}
+            <label for="{{loginform.password.id}}">{{loginform.password.label}}</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <a type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal">Ще не зареєстровані</a>
-        <button type="button" class="btn btn-primary">Увійти</button>
+        <input type="submit" class="btn btn-primary" value="Увійти" form="login_user_form"/>
       </div>
     </div>
   </div>

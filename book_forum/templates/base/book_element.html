@@ -1,21 +1,22 @@
 {% load static %}
-<a href="/book/12345" class="book_preview">
+{%load tags%}
+<a href="{{book.get_absolute_url}}"  class="book_preview">
     <div class="book_preview_image">
-        <img src="{%static 'img/test_cover.jpg'%}" alt="">
+        <img src="{{book.cover.url}}" alt="">
     </div>
     <div class="book_preview_info">
-        <span title="Гаррі поттер і кубок вогню">Назва: Гаррі поттер і кубок вогню</span>
-        <span title="Джоан Кейтлін Роулінг">Автор: Джоан Кейтлін Роулінг</span>
-        <span>Рік: 2003</span>
+        <span title="Гаррі поттер і кубок вогню">Назва: {{book.title}}</span>
+        <span title="Джоан Кейтлін Роулінг">Автор: {{book.author}}</span>
+        <span>Рік: {{book.year}}</span>
     </div>
     <div class="book_preview_reactions">
         <div class="rating">
-            <img src="{%static 'img/ico/star.png'%}" alt="">
-            4.65
+            <img src="{%static 'img/ico/like.png'%}" alt="">
+             {%num_to_short book.likes%}
         </div>
         <div class="view">
             <img src="{%static 'img/ico/view.png'%}" alt="">
-            2,321
+            {%num_to_short book.views%}
         </div>
     </div>
 </a>

@@ -1,0 +1,65 @@
+{%extends "base/base.html"%} {% load static %} {% block extra_css %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/discussions.css'%}" />
+<link rel="stylesheet" href="{% static 'css/discussion_element.css'%}" />
+{% endblock %} {%block title%}{{title}} {%endblock%}
+{%block content%}
+  <div id="discussions_tabs">
+  <nav>
+    <div class="nav nav-pills nav-fill" role="tablist">
+
+      <button id="discussions_created_tab" class="nav-item btn" data-bs-toggle="tab" data-bs-target="#discussions_created" type="button" role="tab" aria-controls="discussions_created" aria-selected="true">Створені</button>
+
+      <button id="discussions_liked_tab" class="nav-item btn" data-bs-toggle="tab" data-bs-target="#discussions_liked" type="button" role="tab" aria-controls="discussions_liked" aria-selected="false">Вподобані</button>
+
+      <button id="discussions_disliked_tab" class="nav-item btn" data-bs-toggle="tab" data-bs-target="#discussions_disliked" type="button" role="tab" aria-controls="discussions_disliked" aria-selected="false">Невподобані</button>
+
+
+  </nav>
+  <div class="tab-content">
+    <div class="tab-pane" id="discussions_created" role="tabpanel" aria-labelledby="discussions_created_tab">
+       {%if created_discussion%}
+        {%for discussion in created_discussion%}
+
+          {%include "base/discussion_element.html" with discussion=discussion%}
+
+        {%endfor%}
+      {%else%}
+      <h2>Тут покищо пусто</h2>
+      {%endif%}
+    </div>
+    <div class="tab-pane" id="discussions_liked" role="tabpanel" aria-labelledby="discussions_liked_tab">
+       {%if liked_discussion%}
+        {%for discussion in liked_discussion%}
+
+          {%include "base/discussion_element.html" with discussion=discussion%}
+
+        {%endfor%}
+      {%else%}
+      <h2>Тут покищо пусто</h2>
+      {%endif%}
+    </div>
+    <div class="tab-pane" id="discussions_disliked" role="tabpanel" aria-labelledby="discussions_disliked_tab">
+      {%if disliked_discussion%}
+        {%for discussion in disliked_discussion%}
+
+          {%include "base/discussion_element.html" with discussion=discussion%}
+
+        {%endfor%}
+      {%else%}
+      <h2>Тут покищо пусто</h2>
+      {%endif%}
+    </div>
+  </div>
+</div>
+
+{%endblock%} 
+{% block extra_script %}
+{{block.super}}
+<script>
+  var someTabTriggerEl = document.querySelector('#discussions_created_tab')
+  var tab = new bootstrap.Tab(someTabTriggerEl)
+
+  tab.show()
+</script>
+{%endblock%}

@@ -1,26 +1,67 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from forum.models import *
+from django.db.models import Count
+from .filters import *
+from django.core.paginator import Paginator
+from django.http import JsonResponse
+from django.urls import reverse_lazy
+
 
 # Create your views here.
 def home(request):
-    return render(request, template_name='home/home.html')
+    popular_books = Book.objects.annotate(likes=Count('liked_book')).all().order_by('-views')[:25]
+    new_books = Book.objects.annotate(likes=Count('liked_book')).all().order_by('-created_at')[:25]
+    popular_discussion = Discussion.objects.annotate(comments=Count('discussion_comments')).all().order_by('-comments')[:25]
+    new_discussion = Discussion.objects.annotate(comments=Count('discussion_comments')).all().order_by('-created_at')[:25]
+    context = {
+                'popular_books' : popular_books,
+                'popular_discussions': popular_discussion,
+                'new_books': new_books,
+                'new_discussions': new_discussion,
+                'title': f'Головна'
+                }
+    return render(request, template_name='home/home.html', context=context)
 
 def search(request):
-    return render(request, template_name='home/search.html')
+    try:
+        type = request.GET['search'][0]
+        if type == '#':
+            return redirect(reverse_lazy('search_discussions' , kwargs = {'search':request.GET['search'][1:]}))
+        else:
+            return redirect(reverse_lazy('search_books' , kwargs = {'search':request.GET['search']}))
+    except:
+        return redirect(reverse_lazy('home'))
 
-def search_profiles(request):
-    return render(request, template_name='home/search.html')
 
-def search_books(request):
-    return render(request, template_name='home/search.html')
+def search_books(request, search):
+    filter = SearchBookFilter(request.GET, queryset=Book.objects.filter(search_title__icontains = search))
+    paginator = Paginator(filter.qs, 2)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'type': 'book',
+        'filter':filter,
+        'page_obj': page_obj,
+        'search':search,
+        'title': f'Пошук книги {search}'
+    }
+    print(filter.qs)
+    return render(request, template_name='home/search.html', context=context)
 
-def search_discussions(request):
-    return render(request, template_name='home/search.html')
-
-def news(request):
-    return render(request, template_name='home/news.html')
+def search_discussions(request, search):
+    filter = SearchDiscussionFilter(request.GET, queryset = Discussion.objects.filter(search_title__icontains = search))
+    paginator = Paginator(filter.qs, 2)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'type': 'discussion',
+        'filter':filter,
+        'page_obj': page_obj,
+        'search': search,
+        'title' : f'Пошук обговорення {search}'
+    }
+    print(filter.qs)
+    return render(request, template_name='home/search.html', context=context)
 
 # def error500(request):
-#     return render(request, template_name='home/home.html')
-
-# def error404(request):
 #     return render(request, template_name='home/home.html')

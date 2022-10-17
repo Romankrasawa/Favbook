@@ -1,0 +1,87 @@
+.content {
+  padding: 0; }
+
+.account_profile_area {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1; }
+  .account_profile_area .account_header {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 50px;
+    border-radius: 30px 30px 0 0; }
+    .account_profile_area .account_header .account_panorama {
+      width: 100%;
+      height: 200px;
+      border-radius: 30px 30px 0 0; }
+    .account_profile_area .account_header .account_image {
+      position: absolute;
+      top: 30px;
+      width: 200px;
+      height: 200px;
+      overflow: hidden; }
+      .account_profile_area .account_header .account_image img {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%; }
+  .account_profile_area .account_body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 15px 30px 15px;
+    border-radius: 0 0 30px 30px;
+    overflow: hidden; }
+    .account_profile_area .account_body .account_name {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
+    .account_profile_area .account_body .account_description {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+    .account_profile_area .account_body .account_active {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      .account_profile_area .account_body .account_active .account_followed, .account_profile_area .account_body .account_active .account_settings {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 10px; }
+        .account_profile_area .account_body .account_active .account_followed .account_option, .account_profile_area .account_body .account_active .account_settings .account_option {
+          width: 95%;
+          height: 40px;
+          border-radius: 15px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center; }
+
+.account_info {
+  width: 90%; }
+
+/*# sourceMappingURL=account.css.map */

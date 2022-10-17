@@ -1,0 +1,311 @@
+$color_1 : #10002b;
+$color_2 : #240046;
+$color_3 : #3c096c;
+$color_4 : #5a189a;
+$color_5 : #7b2cbf;
+$color_6 : #9d4edd;
+$color_7 : #c77dff;
+$color_8 : #e0aaff;
+$color_9 : #e0aaff;
+$color_10 : #e6bbff;
+$color_11 : #ebc9ff;
+$color_12 : #f1daff;
+$color_13 : #f4ebfa;
+$light_icons : invert(94%) sepia(86%) saturate(3215%) hue-rotate(184deg) brightness(102%) contrast(103%);
+$active_icons : invert(7%) sepia(44%) saturate(6123%) hue-rotate(267deg) brightness(91%) contrast(114%);
+
+header{
+    background-color: $color_2;
+}
+footer{
+    background-color: $color_2;
+    color: $color_13;
+    & .footer_links img{
+        $light_icons : invert(94%) sepia(86%) saturate(3215%) hue-rotate(184deg) brightness(102%) contrast(103%);
+    }
+}
+textarea{
+    background-color: $color_13;
+}
+header a{  
+    &:link{
+        color: $color_11;
+    }
+    &:visited{
+        color: $color_11;
+    }
+    &:focus{
+        color: $color_11;
+    }
+    &:active{
+        color: $color_11;
+    }
+    &:hover{
+        color: $color_11;
+    }
+    text-decoration: none;
+}
+#search_input{
+    background-color: $color_12;
+
+}
+#search_autocomplete{
+    background-color: $color_6;
+    & .search_autocomplete_item{
+        background-color: $color_4;
+
+    }
+}
+.search_autocomplete_item:hover{
+    background-color: $color_10;
+}
+header .dropdown-menu{
+    background-color: $color_5;
+
+    & hr{
+        color: $color_11;
+    }
+}
+header .dropdown-item:hover{
+    background-color: $color_4;
+    color: $color_11;
+}
+.account-dropdown{
+    color: $color_12;
+    & :hover{
+        color: $color_10;
+    }
+}
+.content{
+    background-color: $color_11;
+}
+.home_welcome h1{
+    color: $color_1;
+    & #word_main_home{
+        color: $color_4;
+    }
+}
+.home_label{
+    color: $color_1;
+}
+
+.book_preview:hover{
+    filter: brightness(1.25)
+}
+.book_preview_info{
+    color: $color_10;
+    background-color: $color_4;
+}
+.book_preview_reactions{
+    color: $color_10;
+    background-color: $color_2;
+    & img{
+        filter: $light_icons;
+    }
+
+
+}
+.discussion-element a{
+    color:$color_10;
+    background-color: $color_5;
+    & .discussion-view img{
+        filter: $light_icons;
+    }
+}
+.discussion-element a:hover{
+    filter: brightness(1.25)
+}
+.book_page_background_img{
+    background-color: $color_7;
+}
+.book_page_body_area{
+    background-color: $color_9;
+}
+.book_page_info_area{
+    color: $color_11;
+    background-color: $color_4;
+}
+.book_page_body{
+    color:$color_1
+}
+.tab{
+    background-color: $color_5;
+    &:link{
+        color: $color_11;
+    }
+    &:visited{
+        color: $color_11;
+    }
+    &:focus{
+        color: $color_11;
+    }
+    &:active{
+        color: $color_11;
+    }
+    &:hover{
+        color: $color_11;
+    }
+    text-decoration: none;
+}
+.tab:hover{
+    background-color: $color_4;
+    filter: brightness(1.25)
+}
+.comment_element{
+    background-color: $color_7;
+    color: $color_1;
+}
+.reaction_icon:hover{
+    transform: scale(1.2);
+    filter: brightness(0.65);
+    filter: $active_icons;
+}
+.reaction_icon{
+    cursor: pointer;
+}
+.reaction_icon_active{
+    transform: scale(1.2);
+    filter: $active_icons;
+}
+#loader-background {
+    color: $color_2; 
+}
+.modal-body, .modal-footer, .modal-header{
+    color: $color_1;
+    background-color: $color_11;
+}
+.close{
+    background-color: $color_12; 
+}
+.close:hover{
+    background-color: $color_13;
+}
+.btn, .btn:focus{
+    color:$color_12;
+    background-color: $color_4;
+    border-radius: 15px;
+    &:link{
+        color: $color_12;
+    }
+    &:visited{
+        color: $color_12;
+    }
+    &:focus{
+        color: $color_12;
+    }
+    &:active{
+        color: $color_12;
+    }
+    &:hover{
+        color: $color_12;
+    }
+    text-decoration: none;
+}
+.btn:hover{
+    filter: brightness(1.25);
+    color:$color_12;
+    background-color: $color_2;
+}
+.answer_comment{
+    background-color: $color_5;
+    color:$color_12;
+}
+.comment-show-original{
+    background-color: $color_5;
+    color:$color_12;
+}
+.account_panorama{
+    background-color: $color_3;
+}
+.account_header, .account_body{
+    background-color: $color_6;
+    color: $color_12;
+}
+.account_option{
+    background-color: $color_4;
+    color: $color_12;
+    &:link{
+        color: $color_12;
+    }
+    &:visited{
+        color: $color_12;
+    }
+    &:focus{
+        color: $color_12;
+    }
+    &:active{
+        color: $color_12;
+    }
+    &:hover{
+        color: $color_12;
+    }
+    text-decoration: none;
+}
+.account_option:hover{
+    background-color: $color_3;
+    filter: brightness(1.25);
+    color:$color_12;
+}
+.discussion_page_user{
+    background-color: $color_3;
+}
+.discussion_page_title_area{
+    color: $color_12;
+    background-color: $color_5;
+}
+.discussion_page_description{
+    color: $color_1;
+    background-color: $color_9;
+}
+.discusssion_page_info_area{
+    background-color: $color_9;
+}
+.discussion_reaction{
+    background-color: $color_7;
+}
+.comment-info{
+    &:link{
+        color: $color_1;
+    }
+    &:visited{
+        color: $color_1;
+    }
+    &:focus{
+        color: $color_1;
+    }
+    &:active{
+        color: $color_1;
+    }
+    &:hover{
+        color: $color_1;
+    }
+}
+
+.page-link{
+    background-color: $color_3;
+    &:focus{
+        color: $color_12;
+        background-color:$color_4;
+    }
+    &:active{
+        color: $color_12;
+        background-color:$color_4;
+    }
+    &:hover{
+        color: $color_12;
+        background-color:$color_4;
+    }
+}
+.disabled .page-link{
+    background-color: $color_3;
+    filter: brightness(0.5);
+}
+.active .page-link{
+    background-color: $color_4;
+    filter: brightness(1.5);
+}
+.nav-pills .nav-item{
+    border-radius: 0;
+    background-color: $color_3;
+    color: $color_12;
+}

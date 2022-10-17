@@ -4,30 +4,23 @@
     <div class="comment-header">
       <div class="comment-info">
         <div class="account-image">
-          <a href="">
+          <a href="{{comment.user.get_absolute_url}}">
             <div class="rounded-circle" style="width:25px;height:25px;">
-              <img src="{%static '/img/photo_2022-06-19_21-36-19.jpg'%}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
+              <img src="{{comment.user.photo.url}}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
             </div>
           </a>
         </div>
-        <span><a href="">Your nickname(You)</a> </span>
-        <!-- to <a href="">other nickname</a> -->
+        <span><a href="">{{comment.user.username}}</a> </span>
+
       </div>
-      <!-- <div class="comment-make-answer">
-        <button class="comment-make-answer-button">Answer</button>
-      </div>
-      <div class="comment-show-original">
-        <a href="#">Original text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus sunt quaerat non earum rerum officiis minus</a>
-      </div> -->
+
     </div>
-    <div class="comment-content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus voluptate saepe delectus explicabo totam eos doloribus illo itaque perferendis. Aliquam amet ullam maxime? Doloremque omnis odio molestiae illum esse voluptate.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus voluptate saepe delectus explicabo totam eos doloribus illo itaque perferendis. Aliquam amet ullam maxime? Doloremque omnis odio molestiae illum esse voluptate.</p>
+    <div class="book-comment-content">
+      <p>{{comment.content}}</p>
     </div>
     <div class="comment-footer">
-      <!-- <span class="like-comment"><img src=" url_for('static', filename='src/img/ico/like.png') " alt="Like"> 22222</span>
-      <span class="dislike-comment"><img src=" url_for('static', filename='src/img/ico/dislike.png') " alt="Dislike"> 22222</span> -->
-      <span class="comment-date">33.03.2984</span>
+
+      <span class="comment-date">{{comment.created_at|date:"M d, Y"}}</span>
     </div>
 </div>
 </div>

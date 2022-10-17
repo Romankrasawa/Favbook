@@ -1,0 +1,51 @@
+.content {
+  padding: 0 20px 20px 20px; }
+
+.nav-pills .nav-item {
+  border-radius: 0; }
+
+.nav-pills {
+  border-radius: 0 0 20px 20px;
+  overflow: hidden; }
+
+#books_created, #books_disliked, #books_liked {
+  width: 100%;
+  height: auto;
+  min-height: calc(100vh - 220px);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0 0 0; }
+
+.tab-content > .active {
+  display: grid; }
+
+#books_tabs {
+  width: 100%; }
+  #books_tabs ul {
+    border-color: black;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 50px; }
+    #books_tabs ul :first-child a {
+      border-radius: 0 0 0 30px; }
+    #books_tabs ul :last-child a {
+      border-radius: 0 0 30px 0; }
+    #books_tabs ul a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 0; }
+    #books_tabs ul li {
+      width: 50%;
+      height: 100%;
+      padding: 0;
+      margin: 0; }
+
+/*# sourceMappingURL=books.css.map */

@@ -3,15 +3,15 @@
 
 {% block extra_css %}
 {{block.super}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<link rel="stylesheet" href="{% static 'bootstrap/css/slick.min.css'%}">
+<link rel="stylesheet" href="{% static 'bootstrap/css/slick-theme.css'%}"/>
 <link rel="stylesheet" href="{% static 'css/home.css'%}">
 <link rel="stylesheet" href="{% static 'css/book_element.css'%}">
 <link rel="stylesheet" href="{% static 'css/discussion_element.css'%}">
 <link rel="stylesheet" href="{% static 'css/news_element.css'%}">
 {% endblock %}
 
-{%block title%}Home{%endblock%}
+{%block title%}{{title}} {%endblock%}
 
 {%block content%}
     <div class="home_welcome">
@@ -19,131 +19,60 @@
             <img src="{%static 'img/My project.png'%}" alt="home_logo">
     </div>
 
-
-
-    <h3 class="home_label">Останні переглянуті книги:</h1>
-
-
-
-    <div class="recent-slider">
-        <div class="recent-slick">
-            {%for i in '0123456789'|make_list %}
-            <div>
-                <div class="slider_element">
-                    {%include "base/book_element.html"%}
-                </div>
-            </div>
-            {%endfor%}
-        </div>
-    </div>
-
-
-
-
-    <h3 class="home_label">Популярні книги:</h1>
+        {%if popular_books%}
+    <h3 class="home_label">Популярні книги:</h3>
 
 
 
     <div class="popular-books">
-        {%for i in '0123456789'|make_list%}
-
-        {%include "base/book_element.html"%}
-
-        {%endfor%}
+            {%for book in popular_books%}
+                    {%include "base/book_element.html" with book=book%}
+            {%endfor%}
     </div>
 
-
-
-    <h3 class="home_label">Популярні обговорення:</h1>
+    {%endif%}
+    {%if popular_discussions%}
+    <h3 class="home_label">Популярні обговорення:</h3>
 
 
 
     <div class="discussion-slider">
         
         <div class="discussion-slick">
-            {%for i in '0123456789'|make_list%}
-
-            {%include "base/discussion_element.html"%}
-
+            {%for discussion in popular_discussions%}
+                {%include "base/discussion_element.html" with discussion=discussion%}
             {%endfor%}
+
         </div>
     </div>
 
+    {%endif%}
 
+    {%if new_books%}
 
-
-    <h3 class="home_label">Нові книги:</h1>
+    <h3 class="home_label">Нові книги:</h3>
 
 
 
         <div class="new_books">
-            {%for i in '0123456789'|make_list%}
-
-            {%include "base/book_element.html"%}
-
+            {%for book in new_books%}
+                    {%include "base/book_element.html" with book=book%}
             {%endfor%}
         </div>
         
-
-
-        <h3 class="home_label">Нові обговорення:</h1>
+    {%endif%}
+    {%if new_discussions%}
+        <h3 class="home_label">Нові обговорення:</h3>
 
 
 
         <div class="discussion-slider">
         
             <div class="discussion-slick">
-                {%for i in '0123456789'|make_list%}
-
-                {%include "base/discussion_element.html"%}
-
-                {%endfor%}
+            {%for discussion in new_discussions%}
+                {%include "base/discussion_element.html" with discussion=discussion%}
+            {%endfor%}
             </div>
         </div>
-
-
-        <h3 class="home_label">Інформативний куток:</h1>
-
-
-
-                <div class="home_info">
-                    <div class="last_news">
-                        <h3 style="color:black ;">Останні Новини:</h1>
-                            <div class="last_news_area">
-                                {%for i in '012'|make_list%}
-                                {%include "base/news_element.html"%}
-                                <hr>
-                                {%endfor%}
-                                </div>
-                                <a href="news"class="home_label">Всі Новини</a>
-                            </div>
-            <div class="popular_categories">
-                <h3 style="color:black ;">Популярні категорії:</h1>
-                    <div class="popular_categories_area">
-                        {%for i in '0123456'|make_list%}
-                        <a href="book/category" class="category_option">Category1111111111111111111111111</a>
-                        <hr>
-                        {%endfor%}
-                    </div>
-                    <a href="news"class="home_label">Всі категорії</a>
-            </div>
-        </div>
-    <style>
-        .book_preview_info{
-            background-image: url("{%static 'img/paper_texture.jpg'%}");
-        }
-        .book_preview_reactions{
-            background-image: url("{%static 'img/wood_texture.jpg'%}");
-        }
-        .discussion-element a{
-            background-image: url("{%static 'img/paper_texture.jpg'%}");
-        }
-        .last_news{
-            background-image: url("{%static 'img/paper_texture.jpg''%}");
-        }
-        .popular_categories{
-            background-image: url("{%static 'img/paper_texture.jpg''%}");
-        }
-    </style>
-     {%include "base/flash_message.html"%}
+    {%endif%}
 {%endblock%}

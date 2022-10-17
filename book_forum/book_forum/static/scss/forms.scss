@@ -1,0 +1,63 @@
+.form{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    max-width: 900px;
+}
+.form-floating{
+    width: 100%;
+}
+.form-control{
+    border-radius: 15px;
+}
+#image-preview-area{
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    & #image-preview{
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+    }
+}
+.drag_and_drop{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative  ;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    border-radius: 30px;
+    border: 2px dashed rgb(179, 179, 179);
+    overflow: hidden;
+}
+.file {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    padding: 4px;
+
+    position: relative;
+    cursor: pointer;
+
+}
+#value{
+    content: 'Drag & Drop';
+    position: absolute;
+    color: #ffffff;
+    font-size: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.form_submit{
+    width: 90%;
+    height: 50px;
+}
