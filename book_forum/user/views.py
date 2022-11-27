@@ -44,9 +44,14 @@ def register(request):
 @login_required(login_url=reverse_lazy('home'))
 def settings(request):
     if request.method == "POST":
-        if request.FILES.get('photo'):
-            request.user.photo = request.FILES.get('photo')
-            request.user.save()
+        # request.user.photo = request.FILES.get('photo', request.user.photo)
+        # print(request.POST.get('username'),'\n',request.POST.get('email'))
+        # request.user.username = request.POST.get('username', request.user.username)
+        # request.user.email = request.POST.get('email', request.user.email)
+        User.objects.filter(slug__iexact = request.user.slug).update(username = request.POST.get('username', request.user.username),
+                            email = request.POST.get('email', request.user.email),
+                            photo = request.FILES.get('photo', request.user.photo)
+                            )
         return redirect(reverse_lazy('account'))
     else:
         form = SettingsUserForm(initial={'username':request.user.username,

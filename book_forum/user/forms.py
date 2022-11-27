@@ -32,15 +32,18 @@ class LoginUserForm(forms.ModelForm):
             raise ValidationError('Назва не повинна починатись з цифри')
         return username
 
-class SettingsUserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['photo']
-        widgets = {
-            'photo': forms.FileInput(attrs={"class": "file", 'placeholder': 'Книга', 'onchange':"updatePreview(this, 'image-preview')"}),
-        }
-    def clean_title(self):
+class SettingsUserForm(forms.Form):
+    photo = forms.ImageField(required = False, label = 'Фото', widget = forms.FileInput(attrs={"class": "file", 'placeholder': 'Книга', 'onchange':"updatePreview(this, 'image-preview')"}))
+    username = forms.CharField(required = False, label = 'Імя',widget = forms.TextInput(attrs={"class": "form-control", 'placeholder': 'Книга', 'autocomplete':'off'}))
+    email = forms.EmailField(required = False, label = 'Електронна пошта', widget = forms.TextInput(attrs={"class": "form-control", 'placeholder': 'Книга', 'onchange':"updatePreview(this, 'image-preview')"}))
+
+    def clean_username(self):
         username = self.cleaned_data['username']
-        if re.match('@', username):
-            raise ValidationError('Назва не повинна починатись з цифри')
+        if User.objects.filter(username__iexact=username).exists():
+           raise ValidationError('Назва не повинна починатись з цифри')
         return username
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email__iexact=email).exists():
+           raise ValidationError('Назва не повинна починатись з цифри')
+        return email
