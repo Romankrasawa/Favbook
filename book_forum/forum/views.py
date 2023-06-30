@@ -7,12 +7,11 @@ from .models import *
 
 
 # Page views
-def book(request, book_id):
-    book = get_object_or_404(Book, slug=book_id)
+def book(request, book_slug):
+    book = get_object_or_404(Book, slug=book_slug)
     book.views += 1
     book.save()
     form = CreateBook_commentForm
-
     context = {'form':form,
                'book':book,
                'title': f'Книга {book.title}'
@@ -32,9 +31,9 @@ def books(request):
     }
     return render(request, template_name='book/books.html', context=context)
 
-def discussion(request, book_id, discussion_id):
-    book = get_object_or_404(Book, slug=book_id)
-    discussion = get_object_or_404(Discussion, Q(slug=discussion_id) & Q(book = book))
+def discussion(request, book_slug, discussion_slug):
+    book = get_object_or_404(Book, slug=book_slug)
+    discussion = get_object_or_404(Discussion, Q(slug=discussion_slug) & Q(book = book))
     form = CreateDiscussion_commentForm
     answerform = AnswerDiscussion_commentForm
 
@@ -76,40 +75,42 @@ def add_book(request):
                    'title': f'Додати книгу'
                    }
         return render(request, template_name='book/add_book.html', context=context)
+
 @login_required(login_url=reverse_lazy('home'))
-def add_discussion_comment(request,book_id,discussion_id):
+def add_discussion_comment(request,book_slug,discussion_slug):
     if request.method == "POST":
-        book = get_object_or_404(Book, slug=book_id)
-        discussion = get_object_or_404(Discussion, Q(slug=discussion_id) & Q(book=book))
+        book = get_object_or_404(Book, slug=book_slug)
+        discussion = get_object_or_404(Discussion, Q(slug=discussion_slug) & Q(book=book))
         form = CreateDiscussion_commentForm(request.POST)
         if form.is_valid():
             Discussion_comment.objects.create(**form.cleaned_data, user = request.user, discussion = discussion)
-            return redirect(reverse_lazy('discussion', kwargs = {'book_id':book_id, 'discussion_id':discussion_id}))
-        return redirect(reverse_lazy('discussion', kwargs={'book_id': book_id, 'discussion_id': discussion_id}))
+            return redirect(reverse_lazy('discussion', kwargs = {'book_slug':book_slug, 'discussion_slug':discussion_slug}))
+        return redirect(reverse_lazy('discussion', kwargs={'book_slug': book_slug, 'discussion_slug': discussion_slug}))
 
 @login_required(login_url=reverse_lazy('home'))
-def add_book_comment(request,book_id):
+def add_book_comment(request,book_slug):
     if request.method == "POST":
-        book = get_object_or_404(Book, slug=book_id)
+        book = get_object_or_404(Book, slug=book_slug)
         form = CreateDiscussion_commentForm(request.POST)
         if form.is_valid():
             Book_comment.objects.create(**form.cleaned_data, user = request.user, book = book)
-            return redirect(reverse_lazy('book', kwargs = {'book_id':book_id}))
-        return redirect(reverse_lazy('book', kwargs={'book_id': book_id}))
+            return redirect(reverse_lazy('book', kwargs = {'book_slug':book_slug}))
+        return redirect(reverse_lazy('book', kwargs={'book_slug': book_slug}))
 
 @login_required(login_url=reverse_lazy('home'))
-def answer_discussion_comment(request,book_id,discussion_id):
+def answer_discussion_comment(request,book_slug,discussion_slug):
     if request.method == "POST":
-        book = get_object_or_404(Book, slug=book_id)
+        book = get_object_or_404(Book, slug=book_slug)
         print(request.POST.get('answer'), request.POST.get('content'))
         answer =  get_object_or_404(Discussion_comment, id = request.POST.get('answer'))
-        discussion = get_object_or_404(Discussion, Q(slug=discussion_id) & Q(book=book))
+        discussion = get_object_or_404(Discussion, Q(slug=discussion_slug) & Q(book=book))
         content = request.POST.get('content')
         form = AnswerDiscussion_commentForm(request.POST)
         if form.is_valid():
             Discussion_comment.objects.create(content = content, user = request.user, discussion = discussion, answer = answer)
-            return redirect(reverse_lazy('discussion', kwargs={'book_id': book_id, 'discussion_id': discussion_id}))
-        return redirect(reverse_lazy('discussion', kwargs={'book_id': book_id, 'discussion_id': discussion_id}))
+            return redirect(reverse_lazy('discussion', kwargs={'book_slug': book_slug, 'discussion_slug': discussion_slug}))
+        return redirect(reverse_lazy('discussion', kwargs={'book_slug': book_slug, 'discussion_slug': discussion_slug}))
+
 @login_required(login_url=reverse_lazy('home'))
 def add_discussion(request):
     if request.method == "POST":
@@ -123,8 +124,8 @@ def add_discussion(request):
         return render(request, template_name='book/add_discussion.html', context={"form":form,'title': f'Додати обговорення'})
 
 @login_required(login_url=reverse_lazy('home'))
-def add_concrete_discussion(request, book_id):
-    book = get_object_or_404(Book, slug=book_id)
+def add_concrete_discussion(request, book_slug):
+    book = get_object_or_404(Book, slug=book_slug)
     form = CreateDiscussionForm(initial={'book': book})
     return render(request, template_name='book/add_discussion.html', context={"form":form,'title':'Додати обговорення'})
 
@@ -135,8 +136,8 @@ def add_concrete_discussion(request, book_id):
 #book ajax
 
 @login_required(login_url=reverse_lazy('home'))
-def like_book(request, book_id):
-    book = get_object_or_404(Book, slug=book_id)
+def like_book(request, book_slug):
+    book = get_object_or_404(Book, slug=book_slug)
     if book in request.user.disliked_book.all():
         request.user.disliked_book.remove(book)
         request.user.liked_book.add(book)
@@ -145,8 +146,8 @@ def like_book(request, book_id):
     return HttpResponse("ok")
 
 @login_required(login_url=reverse_lazy('home'))
-def dislike_book(request, book_id):
-    book = get_object_or_404(Book, slug=book_id)
+def dislike_book(request, book_slug):
+    book = get_object_or_404(Book, slug=book_slug)
     if book in request.user.liked_book.all():
         request.user.liked_book.remove(book)
         request.user.disliked_book.add(book)
@@ -158,8 +159,8 @@ def dislike_book(request, book_id):
 
 #discussion ajax
 @login_required(login_url=reverse_lazy('home'))
-def like_discussion(request, book_id, discussion_id):
-    discussion = get_object_or_404(Discussion, slug=discussion_id)
+def like_discussion(request, book_slug, discussion_slug):
+    discussion = get_object_or_404(Discussion, slug=discussion_slug)
 
     if discussion in request.user.disliked_discussion.all():
         request.user.disliked_discussion.remove(discussion)
@@ -171,8 +172,8 @@ def like_discussion(request, book_id, discussion_id):
     return HttpResponse("ok")
 
 @login_required(login_url=reverse_lazy('home'))
-def dislike_discussion(request, book_id, discussion_id):
-    discussion = get_object_or_404(Discussion, slug=discussion_id)
+def dislike_discussion(request, book_slug, discussion_slug):
+    discussion = get_object_or_404(Discussion, slug=discussion_slug)
     print(discussion)
     if discussion in request.user.liked_discussion.all():
         request.user.liked_discussion.remove(discussion)

@@ -70,7 +70,7 @@
   </div>
   <div class="discussion_page_comment_area">
                          {%if request.user.is_authenticated%}
-    <form action="{%url 'add_discussion_comment' book_id=book.slug discussion_id=discussion.slug%}" class="add_comment" method="post">
+    <form action="{%url 'add_discussion_comment' book_slug=book.slug discussion_slug=discussion.slug%}" class="add_comment" method="post">
             {% csrf_token %}
       {{form.content}}
       <button type="submit" class="btn">
@@ -115,7 +115,7 @@
           voluptas? Sequi consectetur perspiciatis excepturi minus tempore?
         </div>
         <form
-          action="{%url 'answer_discussion_comment' book_id=book.slug discussion_id=discussion.slug%}"
+          action="{%url 'answer_discussion_comment' book_slug=book.slug discussion_slug=discussion.slug%}"
           method="post"
           class="modal_form"
           id="answer_form"

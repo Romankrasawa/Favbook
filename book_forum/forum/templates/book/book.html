@@ -79,7 +79,7 @@
 
       <div id="book_discussion_area">
                      {%if request.user.is_authenticated%}
-        <a href="{%url 'add_concrete_discussion' book_id=book.slug%}" class="btn">Додати обговорення</a>
+        <a href="{%url 'add_concrete_discussion' book_slug=book.slug%}" class="btn">Додати обговорення</a>
                     {%endif%}
         {%for discussion in book.discussion_book.all%}
             {%include "base/discussion_element.html" with discussion=discussion%}
@@ -114,7 +114,7 @@
       </div>
       <div class="modal-body">
         <form
-          action="{%url 'add_book_comment' book_id=book.slug%}"
+          action="{%url 'add_book_comment' book_slug=book.slug%}"
           method="post"
           class="modal_form"
           id="add_comment_form"

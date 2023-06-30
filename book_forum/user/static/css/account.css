@@ -3,6 +3,7 @@
 
 .account_profile_area {
   width: 100%;
+  max-width: 700px;
   height: auto;
   padding: 20px;
   display: flex;

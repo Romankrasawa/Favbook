@@ -4,14 +4,20 @@ from django.db.models import Count
 from slugify import slugify
 from django.urls import reverse_lazy
 import uuid
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def covers_file_name(self, filename):
-    print(f"########################/covers/{slugify(self.title)}/{filename}")
-    return f"covers/{slugify(self.title)}/{filename}"
+    logger.debug(f"Path::/covers/{slugify(self.title)}/{filename}")
+    return f"covers/{slugify(self.pk)}/{filename}"
+
 
 class Category(models.Model):
-    slug = models.SlugField(primary_key = True, default='New')
-    title = models.CharField(max_length = 100)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.SlugField(blank=True)
+    title = models.CharField(max_length = 100, unique=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -23,13 +29,16 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Категорія'
         verbose_name_plural = 'Категорії'
+
+
 class Book(models.Model):
 
     class Status(models.TextChoices):
         ONGOING = "OG", "Виходить"
         FINISHED = "FN", "Закінчене"
 
-    slug = models.SlugField(primary_key = True, default='New')
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.SlugField(blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Користувач", related_name='user_book')
     title = models.CharField(max_length = 100, verbose_name="Назва", unique=True)
     search_title = models.CharField(max_length = 100)
@@ -54,7 +63,7 @@ class Book(models.Model):
     get_category.fget.short_description = 'Категорії'
 
     def get_absolute_url(self):
-        return reverse_lazy('book', kwargs = {'book_id':self.slug})
+        return reverse_lazy('book', kwargs = {'book_slug':self.slug})
 
     def __str__(self):
         return self.title
@@ -87,8 +96,8 @@ class Discussion(models.Model):
     class Status(models.TextChoices):
         OPENED = "OP", "Відкрите"
         CLOSED = "CL", "Закрите"
-
-    slug = models.SlugField(primary_key = True, default='New')
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.SlugField(blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Користувач", related_name='user_discussion')
     book = models.ForeignKey(Book, on_delete=models.CASCADE,  verbose_name="Книга", related_name='discussion_book')
     title = models.CharField(max_length = 100, verbose_name="Назва", unique=True)
@@ -104,7 +113,7 @@ class Discussion(models.Model):
         super(Discussion, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse_lazy('discussion', kwargs = {'book_id':self.book.slug, 'discussion_id':self.slug})
+        return reverse_lazy('discussion', kwargs = {'book_slug':self.book.slug, 'discussion_slug':self.slug})
 
 
     def __str__(self):

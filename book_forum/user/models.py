@@ -6,6 +6,8 @@ from django.contrib.auth.base_user import BaseUserManager
 from slugify import slugify
 from django.urls import reverse_lazy
 import uuid
+import os
+from django.conf import settings
 
 from forum.models import *
 
@@ -41,13 +43,13 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
 
 def photo_file_name(self, filename):
-    return f"photos/{slugify(self.username)}/{filename}"
+    return f"photos/{self.pk}/{filename}"
 
 class User(AbstractBaseUser, PermissionsMixin):
-    slug = models.SlugField(primary_key=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    slug = models.SlugField(blank=True)
     username = models.CharField(max_length = 30, verbose_name="Імя", unique=True)
     email = models.EmailField(max_length = 70, verbose_name='Електронна Пошта', unique=True)
-    token = models.UUIDField(default=uuid.uuid4)
     photo = models.ImageField(upload_to=photo_file_name, default='default/default_avatar.png', verbose_name="Фото")
     is_superuser = models.BooleanField(default=False, verbose_name="Адміністратор")
     is_staff = models.BooleanField(default=False)
@@ -94,8 +96,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.slug = slugify(self.username)
         super(User, self).save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        os.remove(os.path.join(settings.MEDIA_ROOT, self.photo))
+        super().delete(*args, **kwargs)
+
     def get_absolute_url(self):
-        return reverse_lazy('profile', kwargs = {'user_id':self.slug})
+        return reverse_lazy('profile', kwargs = {'user_slug':self.slug})
 
     def __str__(self):
         return self.username

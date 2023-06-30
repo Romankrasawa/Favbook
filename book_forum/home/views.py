@@ -5,21 +5,24 @@ from .filters import *
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.urls import reverse_lazy
+import logging
 
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def home(request):
-    popular_books = Book.objects.annotate(likes=Count('liked_book')).all().order_by('-views')[:25]
-    new_books = Book.objects.annotate(likes=Count('liked_book')).all().order_by('-created_at')[:25]
+    popular_book = Book.objects.annotate(likes=Count('liked_book')).all().order_by('-views')[:25]
+    new_book = Book.objects.annotate(likes=Count('liked_book')).all().order_by('-created_at')[:25]
     popular_discussion = Discussion.objects.annotate(comments=Count('discussion_comments')).all().order_by('-comments')[:25]
     new_discussion = Discussion.objects.annotate(comments=Count('discussion_comments')).all().order_by('-created_at')[:25]
     context = {
-                'popular_books' : popular_books,
+                'popular_books' : popular_book,
                 'popular_discussions': popular_discussion,
-                'new_books': new_books,
+                'new_books': new_book,
                 'new_discussions': new_discussion,
                 'title': f'Головна'
                 }
+    logger.debug("okey")
     return render(request, template_name='home/home.html', context=context)
 
 def search(request):
