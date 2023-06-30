@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'home.apps.HomeConfig',
     'django_filters',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

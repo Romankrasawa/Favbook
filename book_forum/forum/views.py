@@ -4,13 +4,13 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from .forms import *
 from .models import *
-
+from .services import *
 
 # Page views
 def book(request, book_slug):
-    book = get_object_or_404(Book, slug=book_slug)
-    book.views += 1
-    book.save()
+    logger.debug(type(request))
+    book = get_book_by_slug(book_slug)
+    increase_book_views(book)
     form = CreateBook_commentForm
     context = {'form':form,
                'book':book,
@@ -20,23 +20,21 @@ def book(request, book_slug):
 
 @login_required(login_url=reverse_lazy('home'))
 def books(request):
-    created_book = request.user.user_book.all()
-    liked_book = request.user.liked_book.all()
-    disliked_book = request.user.disliked_book.all()
+    books_info = get_info_about_fav_user_books(request)
+    created_book,liked_book,disliked_book = books_info
     context = {
         'created_book':created_book,
         'liked_book':liked_book,
         'disliked_book':disliked_book,
-        'title': f'Книги'
+        'title': 'Книги'
     }
     return render(request, template_name='book/books.html', context=context)
 
 def discussion(request, book_slug, discussion_slug):
-    book = get_object_or_404(Book, slug=book_slug)
-    discussion = get_object_or_404(Discussion, Q(slug=discussion_slug) & Q(book = book))
+    book = get_book_by_slug(book_slug)
+    discussion = get_discussion_by_book_and_slug(book, discussion_slug)
     form = CreateDiscussion_commentForm
     answerform = AnswerDiscussion_commentForm
-
     context = {'form':form,
                'answerform':answerform,
                'book':book,
@@ -47,32 +45,24 @@ def discussion(request, book_slug, discussion_slug):
 
 @login_required(login_url=reverse_lazy('home'))
 def discussions(request):
-    created_discussion = request.user.user_discussion.all()
-    liked_discussion = request.user.liked_discussion.all()
-    disliked_discussion = request.user.disliked_discussion.all()
+    discussions_info = get_info_about_fav_user_discussions(request)
+    created_discussion,liked_discussion,disliked_discussion = discussions_info
     context = {
         'created_discussion':created_discussion,
         'liked_discussion':liked_discussion,
         'disliked_discussion':disliked_discussion,
-        'title': f'Обговорення'
+        'title': 'Обговорення'
     }
     return render(request, template_name='book/discussions.html', context=context)
 
 @login_required(login_url=reverse_lazy('home'))
 def add_book(request):
     if request.method == "POST":
-        form = CreateBookForm(request.POST, request.FILES)
-        if form.is_valid() and form.is_multipart():
-            category = form.cleaned_data['category']
-            form.cleaned_data.pop("category", None)
-            book = Book.objects.create(**form.cleaned_data, user = request.user)
-            book.category.set(category)
-            return redirect(book.get_absolute_url())
-        return redirect(add_book)
+        return add_book_func(request)
     else:
         form = CreateBookForm
-        context = {'form':form,
-                   'title': f'Додати книгу'
+        context = {'form' : form,
+                   'title': 'Додати книгу'
                    }
         return render(request, template_name='book/add_book.html', context=context)
 
