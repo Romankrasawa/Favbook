@@ -63,3 +63,79 @@ DEBUG|2023-06-30 19:10:31,054|home.views|okey
 DEBUG|2023-06-30 19:12:13,969|forum.services|<class 'django.core.handlers.wsgi.WSGIRequest'>
 DEBUG|2023-06-30 19:14:41,526|forum.services|<class 'django.core.handlers.wsgi.WSGIRequest'>
 DEBUG|2023-06-30 19:15:03,186|home.views|okey
+DEBUG|2023-07-02 15:46:06,726|home.views|okey
+DEBUG|2023-07-02 15:47:06,413|user.views|1b393917-d97e-4599-8f09-e25e0638b813, test@gmail.com
+DEBUG|2023-07-02 15:47:12,286|user.views|1b393917-d97e-4599-8f09-e25e0638b813, test@gmail.com
+DEBUG|2023-07-02 15:47:19,125|home.views|okey
+DEBUG|2023-07-02 15:47:38,340|home.views|okey
+DEBUG|2023-07-02 15:47:58,580|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.com
+DEBUG|2023-07-02 17:26:29,133|user.views|form is on post
+DEBUG|2023-07-02 17:26:56,798|user.views|form is on post
+DEBUG|2023-07-02 17:27:25,734|user.views|form is on post
+DEBUG|2023-07-02 17:27:25,738|user.views|Form is okey
+DEBUG|2023-07-02 17:27:25,739|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.com
+DEBUG|2023-07-02 17:30:04,838|user.views|form is on post
+DEBUG|2023-07-02 17:30:17,742|user.views|form is on post
+DEBUG|2023-07-02 17:30:17,744|user.views|Form is okey
+DEBUG|2023-07-02 17:30:17,744|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comff
+DEBUG|2023-07-02 17:30:42,139|user.views|form is on post
+DEBUG|2023-07-02 17:33:52,054|user.views|form is on post
+DEBUG|2023-07-02 17:33:52,070|user.views|Form is okey
+DEBUG|2023-07-02 17:33:52,072|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comfff
+DEBUG|2023-07-02 17:33:57,567|user.views|form is on post
+DEBUG|2023-07-02 17:33:57,567|user.views|Form is okey
+DEBUG|2023-07-02 17:33:57,569|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comfff
+DEBUG|2023-07-02 17:34:02,854|user.views|form is on post
+DEBUG|2023-07-02 17:34:02,854|user.views|Form is okey
+DEBUG|2023-07-02 17:34:02,855|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comfff
+DEBUG|2023-07-02 17:41:01,546|user.views|form is on post
+DEBUG|2023-07-02 17:41:02,463|user.views|form is on post
+DEBUG|2023-07-02 17:41:03,578|user.views|form is on post
+DEBUG|2023-07-02 17:42:15,866|user.views|form is on post
+DEBUG|2023-07-02 17:43:36,046|user.views|form is on post
+DEBUG|2023-07-02 17:43:36,065|user.views|Form is okey
+DEBUG|2023-07-02 17:43:36,067|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comfff
+DEBUG|2023-07-02 17:44:54,856|user.views|form is on post
+DEBUG|2023-07-02 17:44:54,858|user.views|Form is okey
+DEBUG|2023-07-02 17:44:54,859|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comfff
+DEBUG|2023-07-02 17:45:00,303|user.views|form is on post
+DEBUG|2023-07-02 17:45:08,033|user.views|form is on post
+DEBUG|2023-07-02 17:45:08,048|user.views|Form is okey
+DEBUG|2023-07-02 17:45:08,049|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comfff
+DEBUG|2023-07-02 17:49:14,958|user.views|form is on post
+DEBUG|2023-07-02 17:49:14,973|user.views|Form is okey
+DEBUG|2023-07-02 17:49:14,974|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comfff
+DEBUG|2023-07-02 17:49:19,295|user.views|form is on post
+DEBUG|2023-07-02 17:49:19,296|user.views|Form is okey
+DEBUG|2023-07-02 17:49:19,296|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comfff
+DEBUG|2023-07-02 17:49:25,393|user.views|form is on post
+DEBUG|2023-07-02 17:53:40,439|home.views|okey
+DEBUG|2023-07-02 17:55:57,328|home.views|okey
+DEBUG|2023-07-02 17:59:07,991|user.views|form is on post
+DEBUG|2023-07-02 17:59:07,993|user.views|Form is okey
+DEBUG|2023-07-02 17:59:07,994|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comfff
+DEBUG|2023-07-02 17:59:49,802|user.views|form is on post
+DEBUG|2023-07-02 17:59:54,445|user.views|form is on post
+DEBUG|2023-07-02 17:59:54,446|user.views|Form is okey
+DEBUG|2023-07-02 17:59:54,447|user.views|48373ff4-6864-449f-bda4-aa614c39863b, test2@gmail.comfff
+DEBUG|2023-07-02 18:00:02,297|home.views|okey
+DEBUG|2023-07-02 18:06:32,955|home.views|okey
+DEBUG|2023-07-02 18:07:06,380|home.views|okey
+DEBUG|2023-07-02 18:09:07,679|home.views|okey
+DEBUG|2023-07-02 18:09:19,368|home.views|okey
+DEBUG|2023-07-02 18:09:41,853|home.views|okey
+DEBUG|2023-07-02 18:10:35,889|home.views|okey
+DEBUG|2023-07-02 18:11:21,833|home.views|okey
+DEBUG|2023-07-02 19:50:27,988|home.views|okey
+DEBUG|2023-07-02 19:51:20,244|home.views|okey
+DEBUG|2023-07-02 19:52:09,902|home.views|okey
+DEBUG|2023-07-02 19:59:56,409|home.views|okey
+DEBUG|2023-07-02 20:00:26,491|home.views|okey
+DEBUG|2023-07-02 20:01:12,092|home.views|okey
+DEBUG|2023-07-02 20:01:44,494|home.views|okey
+DEBUG|2023-07-02 20:04:28,370|home.views|okey
+DEBUG|2023-07-02 20:06:44,567|home.views|okey
+DEBUG|2023-07-02 20:07:10,411|home.views|okey
+DEBUG|2023-07-02 20:07:48,766|home.views|okey
+DEBUG|2023-07-02 20:09:12,925|home.views|okey
+DEBUG|2023-07-02 20:13:38,170|home.views|okey

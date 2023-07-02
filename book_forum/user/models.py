@@ -71,22 +71,27 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_liked_book(self):
         return [book.title for book in self.liked_book.all()]
     get_liked_book.fget.short_description = 'Вподобані книги'
+
     @property
     def get_disliked_book(self):
         return [book.title for book in self.disliked_book.all()]
     get_disliked_book.fget.short_description = 'Невподобані книги'
+
     @property
     def get_liked_discussion(self):
         return [discussion.title for discussion in self.liked_discussion.all()]
     get_liked_discussion.fget.short_description = 'Вподобані обговорення'
+
     @property
     def get_disliked_discussion(self):
         return [discussion.title for discussion in self.disliked_discussion.all()]
     get_disliked_discussion.fget.short_description = 'Невподобані обговорення'
+
     @property
     def get_liked_discussion_comment(self):
         return [discussion_comment.title for discussion_comment in self.liked_discussion_comment.all()]
     get_liked_discussion_comment.fget.short_description = 'Вподобані коментарі'
+    
     @property
     def get_disliked_discussion_comment(self):
         return [discussion_comment.title for discussion_comment in self.disliked_discussion_comment.all()]

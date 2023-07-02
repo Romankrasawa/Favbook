@@ -10,8 +10,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def photo_file_name(self, filename):
-    return f"photos/{self.pk}/{filename}"
 
 # Create your views here.
 @login_required(login_url=reverse_lazy('home'))
@@ -38,38 +36,44 @@ def log_in(request):
 
 def register(request):
     if request.method == "POST":
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        user = User.objects.create_user(username= username, email=email, password = password)
-        print(user)
+        form = RegisterUserForm(request.POST, request.FILES, request = request)
+        if form.is_valid():
+
+            username = request.POST['username']
+            email = request.POST['email']
+            password = request.POST['password']
+            user = User.objects.create_user(username= username, email=email, password = password)
+            print(user)
         return redirect(reverse_lazy('home'))
 
 @login_required(login_url=reverse_lazy('home'))
 def settings(request):
     if request.method == "POST":
-        settings_photo = request.FILES.get('photo', request.user.photo)
-        settings_email = request.POST.get('email', request.user.email)
-        settings_username = request.POST.get('username', request.user.username)
-        myuser = User.objects.get(pk=request.user.pk)
-        logger.debug(f"{myuser.pk}, {myuser.email}")
-        myuser.username = settings_username
-        myuser.email = settings_email
-        myuser.photo = settings_photo
-        myuser.save()
-        # if request.user.photo != settings_photo:
-        #     with open(conf_settings.MEDIA_ROOT + "/"+ settings_photo, "wb") as photo:
-        #         photo.write(request.FILES.get('photo', request.FILES.get('photo', request.user.photo)).content)
-        #     os.remove(conf_settings.MEDIA_ROOT + "/"+ str(request.user.photo))
-
-
-
-        return redirect(reverse_lazy('account'))
+        form = SettingsUserForm(request.POST, request.FILES, request = request)
+        logger.debug("form is on post")
+        if form.is_valid():
+            logger.debug("Form is okey")
+            settings_photo = request.FILES.get('photo', request.user.photo)
+            settings_email = request.POST.get('email', request.user.email)
+            settings_username = request.POST.get('username', request.user.username)
+            myuser = User.objects.get(pk=request.user.pk)
+            logger.debug(f"{myuser.pk}, {myuser.email}")
+            myuser.username = settings_username
+            myuser.email = settings_email
+            myuser.photo = settings_photo
+            myuser.save()
+            return redirect(reverse_lazy('account'))
+        else:
+            form = SettingsUserForm(initial={'username':request.user.username,
+                                         'email':request.user.email,
+                                        })
+            return render(request, template_name='user/settings.html', context = {'form':form, 'title':'Налаштування'})
     else:
         form = SettingsUserForm(initial={'username':request.user.username,
                                          'email':request.user.email,
                                         })
         return render(request, template_name='user/settings.html', context = {'form':form, 'title':'Налаштування'})
+
 @login_required(login_url=reverse_lazy('home'))
 def log_out(request):
     logout(request)
