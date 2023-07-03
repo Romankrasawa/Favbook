@@ -121,14 +121,23 @@
           <div class="form-floating">
             {{registerform.username}}
             <label for="{{registerform.username.id}}">{{registerform.username.label}}</label>
+            <div class="help-block text-danger">
+              {{registerform.username.errors}}
+            </div>
           </div>
           <div class="form-floating">
             {{registerform.email}}
             <label for="{{registerform.email.id}}">{{registerform.email.label}}</label>
+            <div class="help-block text-danger">
+              {{registerform.email.errors}}
+            </div>
           </div>
           <div class="form-floating">
             {{registerform.password}}
             <label for="{{registerform.password.id}}">{{registerform.password.label}}</label>
+            <div class="help-block text-danger">
+              {{registerform.password.errors}}
+            </div>
           </div>
         </form>
       </div>

@@ -6,48 +6,76 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('forum', '0001_initial'),
+        ("forum", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='discussion_comment',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Користувач'),
+            model_name="discussion_comment",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Користувач",
+            ),
         ),
         migrations.AddField(
-            model_name='discussion',
-            name='book',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='discussion_book', to='forum.book', verbose_name='Книга'),
+            model_name="discussion",
+            name="book",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="discussion_book",
+                to="forum.book",
+                verbose_name="Книга",
+            ),
         ),
         migrations.AddField(
-            model_name='discussion',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_discussion', to=settings.AUTH_USER_MODEL, verbose_name='Користувач'),
+            model_name="discussion",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="user_discussion",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Користувач",
+            ),
         ),
         migrations.AddField(
-            model_name='book_comment',
-            name='book',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='book_comments', to='forum.book', verbose_name='Книга'),
+            model_name="book_comment",
+            name="book",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="book_comments",
+                to="forum.book",
+                verbose_name="Книга",
+            ),
         ),
         migrations.AddField(
-            model_name='book_comment',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Користувач'),
+            model_name="book_comment",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Користувач",
+            ),
         ),
         migrations.AddField(
-            model_name='book',
-            name='category',
-            field=models.ManyToManyField(to='forum.category', verbose_name='Жанри'),
+            model_name="book",
+            name="category",
+            field=models.ManyToManyField(to="forum.category", verbose_name="Жанри"),
         ),
         migrations.AddField(
-            model_name='book',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_book', to=settings.AUTH_USER_MODEL, verbose_name='Користувач'),
+            model_name="book",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="user_book",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Користувач",
+            ),
         ),
     ]

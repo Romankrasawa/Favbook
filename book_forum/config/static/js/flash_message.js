@@ -1,9 +1,13 @@
-document.getElementById('account_image').addEventListener('click', function() { 
-    $('.flash_area').css('display', 'flex')
-    $('.flash_area').slideDown(500)
-    console.log('ok')
-    setTimeout(() => {
-        $('.flash_area').slideUp(500)
-    }, 5000)
 
- })
+function timer(ms) { return new Promise(res => setTimeout(res, ms)); }
+
+async function show_flash_messages(){
+flash_messages = document.getElementsByClassName("flash_area")
+for (const element of flash_messages){
+    element.style.display = "flex"
+
+    await timer(3500)
+    element.style.display = "none"
+};}
+show_flash_messages()
+

@@ -1,5 +1,5 @@
-<div class="flash_area">
-    <div class="flash_body">
-        djsdjsj;d j;kljldsj;djksjdk sjkdshdjsjdjl;sjdjls'jl'd sjl'djl;sjld's'jdj' sjdl;sjl;'ds'jldj sjldsjlsjl
+<div class="flash_area  ">
+    <div class="flash_body {%if message.tags == 'error'%}bg-danger{%else%}bg-{{message.tags}}{%endif%}">
+        {{message}}
     </div>
 </div>

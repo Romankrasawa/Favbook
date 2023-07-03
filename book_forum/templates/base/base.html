@@ -30,7 +30,12 @@
         {% endblock %}
 
     </div>
-    {%include "base/flash_message.html"%}
+    {% if messages %}
+        {% for mess in messages %}
+            {%include "base/flash_message.html" with message=mess%} 
+        {% endfor %}
+    {% endif %}
+
     {%include "base/footer.html"%}
     {% block extra_script %}
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
@@ -39,6 +44,7 @@
     <script src="{% static 'bootstrap/js/slick.min.js'%}"></script>
     <script src="{% static 'bootstrap/js/Chart.js'%}"></script>
     <script src="{% static 'bootstrap/js/autosize.min.js'%}"></script>
+    <script src="{% static 'js/flash_message.js'%}"></script> 
     <script src="{% static 'js/readmore.js'%}"></script>
     <script src="{% static 'js/tabs.js'%}"></script>
     <script src="{% static 'js/sliders.js'%}"></script>

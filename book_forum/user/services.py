@@ -6,10 +6,14 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def validate_user_username(instance):
-    username = instance.cleaned_data['username']
-    if username != instance.request.user.username and User.objects.filter(username__iexact=username).exists():
-        raise ValidationError('Назва не повинна починатись з цифри')
-    if re.match('@', username):
-        raise ValidationError('Назва не повинна починатись з цифри')
+    username = instance.cleaned_data["username"]
+    if (
+        username != instance.request.user.username
+        and User.objects.filter(username__iexact=username).exists()
+    ):
+        raise ValidationError("Назва не повинна починатись з цифри")
+    if re.match("@", username):
+        raise ValidationError("Назва не повинна починатись з цифри")
     return username

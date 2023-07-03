@@ -7,89 +7,199 @@ import uuid
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('slug', models.SlugField(blank=True)),
-                ('title', models.CharField(max_length=100, unique=True, verbose_name='Назва')),
-                ('search_title', models.CharField(max_length=100)),
-                ('description', models.TextField(max_length=2000, verbose_name='Опис')),
-                ('author', models.CharField(max_length=100, verbose_name='Автор')),
-                ('status', models.CharField(choices=[('OG', 'Виходить'), ('FN', 'Закінчене')], default='OG', max_length=2, verbose_name='Статус')),
-                ('year', models.IntegerField(verbose_name='Рік')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Створено')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Оновлено')),
-                ('cover', models.ImageField(default='default/default_cover.jpg', upload_to=forum.models.covers_file_name, verbose_name='Обкладинка')),
-                ('views', models.IntegerField(default=0)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("slug", models.SlugField(blank=True)),
+                (
+                    "title",
+                    models.CharField(max_length=100, unique=True, verbose_name="Назва"),
+                ),
+                ("search_title", models.CharField(max_length=100)),
+                ("description", models.TextField(max_length=2000, verbose_name="Опис")),
+                ("author", models.CharField(max_length=100, verbose_name="Автор")),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("OG", "Виходить"), ("FN", "Закінчене")],
+                        default="OG",
+                        max_length=2,
+                        verbose_name="Статус",
+                    ),
+                ),
+                ("year", models.IntegerField(verbose_name="Рік")),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="Створено"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="Оновлено"),
+                ),
+                (
+                    "cover",
+                    models.ImageField(
+                        default="default/default_cover.jpg",
+                        upload_to=forum.models.covers_file_name,
+                        verbose_name="Обкладинка",
+                    ),
+                ),
+                ("views", models.IntegerField(default=0)),
             ],
             options={
-                'verbose_name': 'Книга',
-                'verbose_name_plural': 'Книги',
+                "verbose_name": "Книга",
+                "verbose_name_plural": "Книги",
             },
         ),
         migrations.CreateModel(
-            name='Book_comment',
+            name="Book_comment",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('content', models.TextField(max_length=2000, verbose_name='Зміст коментаря')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата')),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                (
+                    "content",
+                    models.TextField(max_length=2000, verbose_name="Зміст коментаря"),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="Дата"),
+                ),
             ],
             options={
-                'verbose_name': 'Коментар книги',
-                'verbose_name_plural': 'Коментарі книги',
-                'ordering': ['-created_at'],
+                "verbose_name": "Коментар книги",
+                "verbose_name_plural": "Коментарі книги",
+                "ordering": ["-created_at"],
             },
         ),
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('slug', models.SlugField(blank=True)),
-                ('title', models.CharField(max_length=100, unique=True)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("slug", models.SlugField(blank=True)),
+                ("title", models.CharField(max_length=100, unique=True)),
             ],
             options={
-                'verbose_name': 'Категорія',
-                'verbose_name_plural': 'Категорії',
+                "verbose_name": "Категорія",
+                "verbose_name_plural": "Категорії",
             },
         ),
         migrations.CreateModel(
-            name='Discussion',
+            name="Discussion",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('slug', models.SlugField(blank=True)),
-                ('title', models.CharField(max_length=100, unique=True, verbose_name='Назва')),
-                ('search_title', models.CharField(max_length=100)),
-                ('description', models.TextField(max_length=2000, verbose_name='Опис')),
-                ('status', models.CharField(choices=[('OP', 'Відкрите'), ('CL', 'Закрите')], default='OP', max_length=2, verbose_name='Статус')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Створено')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Оновлено')),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("slug", models.SlugField(blank=True)),
+                (
+                    "title",
+                    models.CharField(max_length=100, unique=True, verbose_name="Назва"),
+                ),
+                ("search_title", models.CharField(max_length=100)),
+                ("description", models.TextField(max_length=2000, verbose_name="Опис")),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("OP", "Відкрите"), ("CL", "Закрите")],
+                        default="OP",
+                        max_length=2,
+                        verbose_name="Статус",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="Створено"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="Оновлено"),
+                ),
             ],
             options={
-                'verbose_name': 'Обговорення',
-                'verbose_name_plural': 'Обговорення',
+                "verbose_name": "Обговорення",
+                "verbose_name_plural": "Обговорення",
             },
         ),
         migrations.CreateModel(
-            name='Discussion_comment',
+            name="Discussion_comment",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('content', models.TextField(max_length=2000, verbose_name='Зміст коментаря')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата')),
-                ('answer', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='discussion_answer', to='forum.discussion_comment', verbose_name='Відповідь на')),
-                ('discussion', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='discussion_comments', to='forum.discussion', verbose_name='Обговорення')),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                (
+                    "content",
+                    models.TextField(max_length=2000, verbose_name="Зміст коментаря"),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="Дата"),
+                ),
+                (
+                    "answer",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="discussion_answer",
+                        to="forum.discussion_comment",
+                        verbose_name="Відповідь на",
+                    ),
+                ),
+                (
+                    "discussion",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="discussion_comments",
+                        to="forum.discussion",
+                        verbose_name="Обговорення",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Коментар обговорення',
-                'verbose_name_plural': 'Коментарі обговорення',
-                'ordering': ['-created_at'],
+                "verbose_name": "Коментар обговорення",
+                "verbose_name_plural": "Коментарі обговорення",
+                "ordering": ["-created_at"],
             },
         ),
     ]
