@@ -8,7 +8,6 @@ from .services import *
 
 
 def book(request, book_slug):
-    logger.debug(type(request))
     book = get_book_by_slug(book_slug)
     increase_book_views(book)
     form = CreateBook_commentForm
