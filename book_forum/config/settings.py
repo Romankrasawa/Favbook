@@ -117,26 +117,32 @@ LOGGING = {
         },
     },
     "handlers": {
-        "file": {
+        "debug_handler": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
             "filename": BASE_DIR.parent / "DEBUG.log",
             "formatter": "verbose",
         },
+        "error_handler": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": BASE_DIR.parent / "ERROR.log",
+            "formatter": "verbose",
+        },
     },
     "loggers": {
         "home": {
-            "handlers": ["file"],
+            "handlers": ["debug_handler", "error_handler"],
             "level": "DEBUG",
             "propagate": True,
         },
         "user": {
-            "handlers": ["file"],
+            "handlers": ["debug_handler", "error_handler"],
             "level": "DEBUG",
             "propagate": True,
         },
         "forum": {
-            "handlers": ["file"],
+            "handlers": ["debug_handler", "error_handler"],
             "level": "DEBUG",
             "propagate": True,
         },

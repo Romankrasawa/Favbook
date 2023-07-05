@@ -1,8 +1,12 @@
 import pytest
 
-from forum.services import *
 from forum.models import *
 from user.models import *
+
+
+@pytest.fixture
+def user_password():
+    return "fhgsdfhgszdfgsa"
 
 
 @pytest.fixture
@@ -12,13 +16,19 @@ def category(db):
 
 @pytest.fixture
 def user(db):
-    return User.objects.create(username="Test", email="test@gmail.com", password="1111")
+    return User.objects.create(username="Test", email="test@gmail.com", password=user_password)
+
+
+@pytest.fixture
+def logged_in_client(client, user):
+    client.force_login(user)
+    return client
 
 
 @pytest.fixture
 def book(category, user):
     book = Book.objects.create(
-        title="SUPER POOPER BOOK",
+        title="test1",
         cover="cover.png",
         description="lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
         author="Myke Tyson",
@@ -39,9 +49,4 @@ def discussion(book, user):
         book=book,
         user=user,
     )
-
-
-@pytest.mark.django_db
-def test_create_category():
-    Category.objects.create(title="Horror")
-    assert Category.objects.count() == 1
+    return discussion

@@ -63,7 +63,7 @@ def add_book(request):
     else:
         form = CreateBookForm
         context = {"form": form, "title": "Додати книгу"}
-        return render(request, template_name="book/add_book.html", context=context)
+        return custom_render(request, "book/add_book.html", context)
 
 
 @login_required(login_url=reverse_lazy("home"))
@@ -72,11 +72,8 @@ def add_discussion(request):
         return add_discussion_func(request)
     else:
         form = CreateDiscussionForm()
-        return render(
-            request,
-            template_name="book/add_discussion.html",
-            context={"form": form, "title": f"Додати обговорення"},
-        )
+        context={"form": form, "title": f"Додати обговорення"}
+        return custom_render(request, "book/add_discussion.html", context)
 
 
 @login_required(login_url=reverse_lazy("home"))

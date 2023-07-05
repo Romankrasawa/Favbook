@@ -9,6 +9,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+def custom_render(request:HttpResponse, template_name:str, context:dict) -> HttpResponse:
+    return render(request, template_name=template_name, context=context)
+
+
 def redirect_to_discussion(book_slug: str, discussion_slug: str) -> HttpResponse:
     return redirect(
         reverse_lazy(
@@ -19,6 +23,7 @@ def redirect_to_discussion(book_slug: str, discussion_slug: str) -> HttpResponse
 
 
 def get_book_by_slug(slug: str) -> Book:
+    logger.error("error")
     return get_object_or_404(Book, slug=slug)
 
 
@@ -95,10 +100,10 @@ def add_book_func(request: HttpResponse) -> HttpResponse:
         return create_book(request, form)
     else:
         messages.add_message(request, messages.ERROR, "Книгу не було створено.")
-        return redirect(reverse_lazy("add_book"))
+        context = {"form": form, "title": "Додати книгу"}
+        return custom_render(request, "book/add_book.html", context)
 
 def create_discussion(request: HttpResponse, form: CreateDiscussionForm) -> HttpResponse:
-    form.cleaned_data.pop("category", None)
     discussion = Discussion.objects.create(**form.cleaned_data, user=request.user)
     messages.add_message(request, messages.SUCCESS, "Обговорення було успішно створено.")
     return redirect(discussion.get_absolute_url())
@@ -110,7 +115,8 @@ def add_discussion_func(request: HttpResponse) -> HttpResponse:
         return create_discussion(request, form)
     else:
         messages.add_message(request, messages.ERROR, "Обговорення не було створено.")
-        return redirect(reverse_lazy("add_discussion"))
+        context={"form": form, "title": f"Додати обговорення"}
+        return custom_render(request, "book/add_discussion.html", context)
 
 
 def create_book_comment(request:HttpResponse, form:CreateBook_commentForm, book: Book) -> None:

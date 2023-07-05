@@ -10,8 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 def covers_file_name(self, filename):
-    logger.debug(f"Path::/covers/{slugify(self.title)}/{filename}")
-    return f"covers/{slugify(self.pk)}/{filename}"
+    return f"covers/{self.pk}/{filename}"
 
 
 class Category(models.Model):

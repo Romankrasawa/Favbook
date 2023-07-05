@@ -23,6 +23,7 @@
     <div class="active_search_area">
               
       <button type="button" data-bs-toggle="modal" data-bs-target="#FilterModal" class="btn">Фільтрувати</button>
+      <button type="button" data-bs-toggle="modal" data-bs-target="#SortModal" class="btn">Сортувати</button>
     </div>
     {%if type == 'book'%}
     <div class="search_result_profiles_books">
@@ -86,5 +87,26 @@
         </div>
     </div>
     </div>
+    <div class="modal fade" id="SortModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Сортування</h5>
+          <button type="button" class="close rounded-circle" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body">
+          <form action="" method="get" class="modal_form" id="Sorting_form">
+                                                              {% csrf_token %}
+                 {{sorting}}
+          </form>
+          </div>
+          <div class="modal-footer">
+          <input type="submit" class="btn btn-primary" value="Сортувати" form="Sorting_form">
+      </div>
+      </div>
+  </div>
+  </div>
         {%endif%}
 {%endblock%}

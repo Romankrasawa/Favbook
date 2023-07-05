@@ -12,7 +12,7 @@
             <form action="{%url 'search'%}" method="get" class="search_area">
                                                 {% csrf_token %}
               <div class="search">
-                <input type="search" name="search" id="search_input"  autocomplete="off" placeholder="Для пошуку обговорень введіть #">
+                <input type="search" name="search" id="search_input"  autocomplete="off" placeholder="Для пошуку обговорень введіть #" value={%if type == 'discussion'%}#{%endif%}{{search}}>
               </div>
 
             </form>
@@ -63,14 +63,6 @@
     <form action="/search/" method="get" class="search_area">
       <div class="search">
         <input type="search" name="search" id="search_input"  autocomplete="off" placeholder="Пошук">
-      </div>
-      <div id="search_autocomplete">
-        {%for i in '012345678'|make_list%}
-        <div class="search_autocomplete_item">
-          <img src="{%static '/img/ico/find.png'%}" alt="">
-          <a href="/search">search sssssfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</a>
-        </div>
-        {%endfor%}
       </div>
     </form>
       {%if request.user.is_authenticated %}

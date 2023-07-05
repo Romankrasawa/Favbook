@@ -166,6 +166,7 @@ class SearchBookSort(forms.Form):
     sort = forms.CharField(
         widget=forms.Select(
             attrs={
+                "value": "views",
                 "class": "form-control",
                 "placeholder": "Книга",
                 "autocomplete": "off",
@@ -173,9 +174,10 @@ class SearchBookSort(forms.Form):
             choices=Sorts.choices,
         )
     )
-    sort_types = forms.CharField(
+    sort_type = forms.CharField(
         widget=forms.Select(
             attrs={
+                "value":"-",
                 "class": "form-control",
                 "placeholder": "Книга",
                 "autocomplete": "off",

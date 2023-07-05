@@ -7,14 +7,13 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 import logging
 from django.contrib import messages
-
+from .services import *
 
 logger = logging.getLogger(__name__)
 
 
 # Create your views here.
 def home(request):
-    messages.add_message(request, messages.INFO, "Hello world.")
     popular_book = (
         Book.objects.annotate(likes=Count("liked_book")).all().order_by("-views")[:25]
     )
@@ -38,9 +37,8 @@ def home(request):
         "popular_discussions": popular_discussion,
         "new_books": new_book,
         "new_discussions": new_discussion,
-        "title": f"Головна",
+        "title": "Головна",
     }
-    logger.debug("okey")
     return render(request, template_name="home/home.html", context=context)
 
 
@@ -62,8 +60,9 @@ def search(request):
 
 
 def search_books(request, search):
+    sorting = SearchBookSort(request.GET)
     filter = SearchBookFilter(
-        request.GET, queryset=Book.objects.filter(search_title__icontains=search)
+        request.GET, queryset=Book.objects.filter(search_title__icontains=search).order_by(f"{request.GET.get('sort_type', '-')}{request.GET.get('sort', 'views')}")
     )
     paginator = Paginator(filter.qs, 2)
     page_number = request.GET.get("page")
@@ -71,6 +70,7 @@ def search_books(request, search):
     context = {
         "type": "book",
         "filter": filter,
+        "sorting": sorting,
         "page_obj": page_obj,
         "search": search,
         "title": f"Пошук книги {search}",
