@@ -72,8 +72,25 @@ class Book(models.Model):
     @property
     def get_category(self):
         return [discussion.title for discussion in self.category.all()]
-
     get_category.fget.short_description = "Категорії"
+
+
+    @property
+    def get_likes_num(self):
+        return self.liked_book.count()
+    get_likes_num.fget.short_description = "Лайки"
+
+    @property
+    def get_dislikes_num(self):
+        return self.disliked_book.count()
+    get_dislikes_num.fget.short_description = "Дизлайки"
+
+
+    @property
+    def get_comments_num(self):
+        return self.book_comments.count()
+    get_comments_num.fget.short_description = "Комментарі"
+
 
     def get_absolute_url(self):
         return reverse_lazy("book", kwargs={"book_slug": self.slug})
@@ -144,10 +161,29 @@ class Discussion(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Створено")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Оновлено")
 
+    views = models.IntegerField(default=0)
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         self.search_title = self.title.lower()
         super(Discussion, self).save(*args, **kwargs)
+
+    @property
+    def get_likes_num(self):
+        return self.liked_discussion.count()
+    get_likes_num.fget.short_description = "Лайки"
+
+    @property
+    def get_dislikes_num(self):
+        return self.disliked_discussion.count()
+    get_dislikes_num.fget.short_description = "Дизлайки"
+
+
+    @property
+    def get_comments_num(self):
+        return self.discussion_comments.count()
+    get_comments_num.fget.short_description = "Комментарі"
+
 
     def get_absolute_url(self):
         return reverse_lazy(

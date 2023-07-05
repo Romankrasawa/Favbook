@@ -18,7 +18,7 @@
         </div>
         <div class="discussion-view">
                 <img src="{%static '/img/ico/reply.png'%}" alt="">
-        {% num_to_short discussion.comments%}
+        {% num_to_short discussion.get_comments_num%}
         </div>
     </a>
 </div>

@@ -61,8 +61,9 @@
           {%num_to_short discussion.disliked_discusion.count%}</span
         >
         <span class="answer-comment"
-          ><img src="{%static '/img/ico/reply.png'%}" alt=""> {%num_to_short discussion.discussion_comments.count%}</span
+          ><img src="{%static '/img/ico/reply.png'%}" alt=""> {%num_to_short discussion.get_comments_num%}</span
         >
+        <span>Перегляди: {{discussion.views}}</span>
       </div>
     </div>
 

@@ -31,6 +31,7 @@ def books(request):
 def discussion(request, book_slug, discussion_slug):
     book = get_book_by_slug(book_slug)
     discussion = get_discussion_by_book_and_slug(book, discussion_slug)
+    increase_discussion_views(discussion)
     form = CreateDiscussion_commentForm
     answerform = AnswerDiscussion_commentForm
     context = {

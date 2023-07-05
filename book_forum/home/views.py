@@ -60,17 +60,24 @@ def search(request):
 
 
 def search_books(request, search):
-    sorting = SearchBookSort(request.GET)
+    sort_type = request.GET.get('sort_type', '-')
+    sort = request.GET.get('sort', 'views')
+    sorting_form = SearchBookSort(request.GET)
     filter = SearchBookFilter(
-        request.GET, queryset=Book.objects.filter(search_title__icontains=search).order_by(f"{request.GET.get('sort_type', '-')}{request.GET.get('sort', 'views')}")
+        request.GET, queryset=Book.objects.filter(
+            search_title__icontains=search
+            ).annotate(
+                liked_book_num=Count('liked_book'),
+                disliked_book_num=Count('disliked_book')
+            ).order_by(f"{sort_type}{sort}")
     )
-    paginator = Paginator(filter.qs, 2)
+    paginator = Paginator(filter.qs, 9)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     context = {
         "type": "book",
         "filter": filter,
-        "sorting": sorting,
+        "sorting": sorting_form,
         "page_obj": page_obj,
         "search": search,
         "title": f"Пошук книги {search}",

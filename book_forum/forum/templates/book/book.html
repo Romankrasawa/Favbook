@@ -6,11 +6,6 @@
 <link rel="stylesheet" href="{% static 'css/discussion_element.css'%}" />
 <link rel="stylesheet" href="{% static 'css/commentary.css'%}" />
 {% endblock %} {%block title%}{{title}} {%endblock%} {%block content%}
-<div class="book_page_header">
-  <div class="book_page_background_img">
-
-  </div>
-</div>
 <div class="book_page_body_area p-0">
   <div class="book_page_info_area">
     <div class="book_page_cover">
@@ -23,7 +18,7 @@
       <span>Статус: {{book.get_status_display}}</span>
       <span>Жанри: {%for i in book.category.all%}{{i.title}}, {%endfor%}</span>
       <span>Рік: {{book.year}}</span>
-      <span>Рейтинг: {{book.liked_book.count}}</span>
+      <span>Лайки: {{book.get_likes_num}}</span>
       <span>Перегляди: {{book.views}}</span>
     </div>
   </div>
@@ -55,7 +50,7 @@
                {%num_to_short book.disliked_book.count%}</span
             >
             <span class="answer-comment"
-              ><img src="{%static '/img/ico/reply.png'%}" alt=""> {{book.book_comments.count}}</span
+              ><img src="{%static '/img/ico/reply.png'%}" alt=""> {{book.get_comments_num}}</span
             >
           </div>
         </div>

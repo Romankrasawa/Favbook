@@ -158,6 +158,45 @@ class SearchBookSort(forms.Form):
         VIEWS = "views", "Перегляди"
         YEAR = "year", "Роки"
         TITLE = "title", "Назви"
+        LIKES = "liked_book_num", "Лайки"
+        DISLIKES = "disliked_book_num", "Дизлайки"
+
+    class Sorts_types(models.TextChoices):
+        DOWN = "-", "Спадання"
+        UP = "", "Зростання"
+
+    sort = forms.CharField(
+        widget=forms.Select(
+            attrs={
+                "value": "views",
+                "class": "form-control",
+                "placeholder": "Книга",
+                "autocomplete": "off",
+            },
+            choices=Sorts.choices,
+        )
+    )
+    sort_type = forms.CharField(
+        widget=forms.Select(
+            attrs={
+                "value":"-",
+                "class": "form-control",
+                "placeholder": "Книга",
+                "autocomplete": "off",
+            },
+            choices=Sorts_types.choices,
+        )
+    )
+
+
+
+class SearchDiscussionSort(forms.Form):
+    class Sorts(models.TextChoices):
+        VIEWS = "views", "Перегляди"
+        YEAR = "year", "Роки"
+        TITLE = "title", "Назви"
+        LIKES = "liked_book_num", "Лайки"
+        DISLIKES = "disliked_book_num", "Дизлайки"
 
     class Sorts_types(models.TextChoices):
         DOWN = "-", "Спадання"

@@ -39,6 +39,11 @@ def increase_book_views(book: Book) -> None:
     book.save()
 
 
+def increase_discussion_views(discussion: Discussion) -> None:
+    discussion.views += 1
+    discussion.save()
+
+
 def get_all_books_created_by_user(request: HttpResponse) -> Book | None:
     return request.user.user_book.all()
 

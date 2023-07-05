@@ -12,7 +12,7 @@
     <div class="book_preview_reactions">
         <div class="rating">
             <img src="{%static 'img/ico/like.png'%}" alt="">
-             {%num_to_short book.likes%}
+             {%num_to_short book.get_likes_num%}
         </div>
         <div class="view">
             <img src="{%static 'img/ico/view.png'%}" alt="">
