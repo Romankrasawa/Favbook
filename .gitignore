@@ -3,3 +3,5 @@
 venv
 .vscode
 *.log
+book_forum/media/covers
+book_forum/media/photos
