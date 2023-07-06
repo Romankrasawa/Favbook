@@ -127,7 +127,7 @@ def change_book_func(request: HttpResponse, book: Book) -> HttpResponse:
     else:
         messages.add_message(request, messages.ERROR, "Книгу не було змінено.")
         context = {"form": form, "title": "Додати книгу"}
-        return custom_render(request, "book/add_book.html", context)
+        return custom_render(request, "book/change_book.html", context)
 
 
 def create_discussion(
@@ -147,7 +147,27 @@ def add_discussion_func(request: HttpResponse) -> HttpResponse:
     else:
         messages.add_message(request, messages.ERROR, "Обговорення не було створено.")
         context = {"form": form, "title": f"Додати обговорення"}
-        return custom_render(request, "book/add_discussion.html", context)
+        return custom_render(request, "book/change_discussion.html", context)
+
+
+def change_discussion(
+    request: HttpResponse, form: CreateBookForm, discussion: Discussion
+) -> HttpResponse:
+    form.save()
+    messages.add_message(request, messages.SUCCESS, "Обговорення бул успішно змінено.")
+    return redirect(discussion.get_absolute_url())
+
+
+def change_discussion_func(
+    request: HttpResponse, discussion: Discussion
+) -> HttpResponse:
+    form = ChangeDiscussionForm(request.POST, instance=discussion)
+    if is_form_valid(form):
+        return change_book(request, form, discussion)
+    else:
+        messages.add_message(request, messages.ERROR, "Обговорення не було змінено.")
+        context = {"form": form, "title": "Додати книгу"}
+        return custom_render(request, "book/add_book.html", context)
 
 
 def create_book_comment(
@@ -183,27 +203,23 @@ def create_discussion_comment(
 
 
 def add_discussion_comment_func(
-    request: HttpResponse, book_slug: str, discussion_slug: str
+    request: HttpResponse, book: Book, discussion: Discussion
 ) -> HttpResponse:
-    book = get_book_by_slug(book_slug)
-    discussion = get_discussion_by_book_and_slug(book, discussion_slug)
     form = CreateDiscussion_commentForm(request.POST)
     if is_form_valid(form):
         create_discussion_comment(request, form, discussion)
         messages.add_message(request, messages.SUCCESS, "Ваш коментар опубліковано.")
-        return redirect_to_discussion(book_slug, discussion_slug)
+        return redirect_to_discussion(book.slug, discussion.slug)
     else:
         messages.add_message(
             request, messages.ERROR, "Ваш коментар не було опубліковано."
         )
-        redirect_to_discussion(book_slug, discussion_slug)
+        redirect_to_discussion(book.slug, discussion.slug)
 
 
 def answer_discussion_comment_func(
-    request: HttpResponse, book_slug: str, discussion_slug: str
+    request: HttpResponse, book: Book, discussion: Discussion
 ) -> HttpResponse:
-    book = get_book_by_slug(book_slug)
-    discussion = get_discussion_by_book_and_slug(book, discussion_slug)
     answer_id = request.POST.get("answer")
     answer = get_discussion_comment_by_id(answer_id)
     content = request.POST.get("content")
@@ -213,12 +229,12 @@ def answer_discussion_comment_func(
         form.cleaned_data.pop("answer")
         create_discussion_comment(request, form, discussion, answer)
         messages.add_message(request, messages.SUCCESS, "Ваш коментар опубліковано.")
-        return redirect_to_discussion(book_slug, discussion_slug)
+        return redirect_to_discussion(book.slug, discussion.slug)
     else:
         messages.add_message(
             request, messages.ERROR, "Ваш коментар не було опубліковано."
         )
-        redirect_to_discussion(book_slug, discussion_slug)
+        redirect_to_discussion(book.slug, discussion.slug)
 
 
 def like_book_func(request: HttpResponse, book_slug: str) -> HttpResponse:

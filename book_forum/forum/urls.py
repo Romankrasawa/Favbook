@@ -4,6 +4,11 @@ from .views import *
 
 urlpatterns = [
     path(
+        "<slug:book_slug>/discussion/<slug:discussion_slug>/change_discussion/",
+        change_discussion,
+        name="change_discussion",
+    ),
+    path(
         "<slug:book_slug>/discussion/<slug:discussion_slug>/add_comment",
         add_discussion_comment,
         name="add_discussion_comment",

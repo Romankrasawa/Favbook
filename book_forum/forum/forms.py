@@ -65,9 +65,6 @@ class CreateDiscussionForm(forms.ModelForm):
             "description": forms.Textarea(
                 attrs={"class": "form-control", "rows": "2", "placeholder": "Книга"}
             ),
-            "status": forms.Select(
-                attrs={"class": "form-control", "placeholder": "Книга"}
-            ),
         }
 
     def clean_title(self):
@@ -127,11 +124,8 @@ class ChangeBookForm(forms.ModelForm):
 class ChangeDiscussionForm(forms.ModelForm):
     class Meta:
         model = Discussion
-        fields = ["book", "title", "description"]
+        fields = ["title", "description", "status"]
         widgets = {
-            "book": forms.Select(
-                attrs={"class": "form-control", "placeholder": "Книга"}
-            ),
             "title": forms.TextInput(
                 attrs={"class": "form-control", "placeholder": "Книга"}
             ),

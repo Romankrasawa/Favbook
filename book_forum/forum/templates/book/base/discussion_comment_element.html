@@ -6,55 +6,44 @@
         <div class="account-image">
           <a href="">
             <div class="rounded-circle" style="width: 25px; height: 25px">
-              <img
-                src="{{comment.user.photo.url}}"
-                alt=""
-                id="account_image"
-                class="rounded-circle"
-                style="
-                  object-fit: cover;
-                  object-position: center;
-                  height: 100%;
-                  width: 100%;
-                "
-              />
+              <img src="{{ comment.user.photo.url }}"
+                   alt=""
+                   id="account_image"
+                   class="rounded-circle"
+                   style="object-fit: cover;
+                          object-position: center;
+                          height: 100%;
+                          width: 100%" />
             </div>
           </a>
         </div>
-        <span
-          ><a href="{{comment.user.get_absolute_url}}">@{{comment.user.username}}</a>{%if comment.answer%} до
-          <a href="{{comment.answer.user.get_absolute_url}}">@{{comment.answer.user.username}}</a>{%endif%}</span
-        >
-      </div>
-      <div class="comment-make-answer">
-                                 {%if request.user.is_authenticated%}
-        <button
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#Add_comment_Modal"
-          class="btn btn-dark"
-          data-id="{{comment.id}}"
-          onclick="answerComment(this)"
-        >
-          Відповісти
-        </button>
-        {%endif%}
-      </div>
+      <span><a href="{{ comment.user.get_absolute_url }}">@{{ comment.user.username }}</a>
+      {% if comment.answer %}
+        до
+        <a href="{{ comment.answer.user.get_absolute_url }}">@{{ comment.answer.user.username }}</a>{% endif %}</span>
     </div>
-    {%if comment.answer%}
-      <div class="comment-show-original">
-        <span>{{comment.answer.content}} </span>
-      </div>
-  {%endif%}
-    <div class="comment-content" data-id="{{comment.id}}">
-      <p>
-        {{comment.content}}
-      </p>
-      <button onclick ="read_more(this)" data-mode="More">Більше</button>
-    </div>
-    <div class="comment-footer">
-
-      <span class="comment-date"> {{comment.created_at|date:"M d, Y"}}</span>
+    <div class="comment-make-answer">
+      {% if request.user.is_authenticated and status == "OP" %}
+        <button type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#Add_comment_Modal"
+                class="btn btn-dark"
+                data-id="{{ comment.id }}"
+                onclick="answerComment(this)">Відповісти</button>
+      {% endif %}
     </div>
   </div>
+  {% if comment.answer %}
+    <div class="comment-show-original">
+      <span>{{ comment.answer.content }}</span>
+    </div>
+  {% endif %}
+  <div class="comment-content" data-id="{{ comment.id }}">
+    <p>{{ comment.content }}</p>
+    <button onclick ="read_more(this)" data-mode="More">Більше</button>
+  </div>
+  <div class="comment-footer">
+    <span class="comment-date">{{ comment.created_at|date:"M d, Y" }}</span>
+  </div>
+</div>
 </div>

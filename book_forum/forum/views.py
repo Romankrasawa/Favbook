@@ -103,9 +103,21 @@ def add_concrete_discussion(request, book_slug):
 
 
 @login_required(login_url=reverse_lazy("home"))
-def add_discussion_comment(request, book_slug, discussion_slug):
-    if request.method == "POST":
-        return add_discussion_comment_func(request, book_slug, discussion_slug)
+def change_discussion(request, book_slug, discussion_slug):
+    book = get_book_by_slug(book_slug)
+    discussion = get_discussion_by_book_and_slug(book, discussion_slug)
+    if request.user == discussion.user or request.user.is_staff:
+        if request.method == "POST":
+            return change_discussion_func(request, discussion)
+        else:
+            form = ChangeDiscussionForm(instance=discussion)
+            context = {"form": form, "title": "Додати книгу"}
+            return custom_render(request, "book/change_discussion.html", context)
+    else:
+        redirect(
+            "discussion",
+            kwargs={"book_slug": book_slug, "discussion_slug": discussion_slug},
+        )
 
 
 @login_required(login_url=reverse_lazy("home"))
@@ -115,9 +127,25 @@ def add_book_comment(request, book_slug):
 
 
 @login_required(login_url=reverse_lazy("home"))
+def add_discussion_comment(request, book_slug, discussion_slug):
+    book = get_book_by_slug(book_slug)
+    discussion = get_discussion_by_book_and_slug(book, discussion_slug)
+    if discussion.status == "OP":
+        if request.method == "POST":
+            return add_discussion_comment_func(request, book, discussion)
+    else:
+        redirect_to_discussion(book_slug, discussion_slug)
+
+
+@login_required(login_url=reverse_lazy("home"))
 def answer_discussion_comment(request, book_slug, discussion_slug):
-    if request.method == "POST":
-        return answer_discussion_comment_func(request, book_slug, discussion_slug)
+    book = get_book_by_slug(book_slug)
+    discussion = get_discussion_by_book_and_slug(book, discussion_slug)
+    if discussion.status == "OP":
+        if request.method == "POST":
+            return answer_discussion_comment_func(request, book, discussion)
+    else:
+        redirect_to_discussion(book_slug, discussion_slug)
 
 
 @login_required(login_url=reverse_lazy("home"))

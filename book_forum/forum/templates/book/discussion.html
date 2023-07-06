@@ -1,139 +1,123 @@
-{%extends "base/base.html"%}
+{% extends "base/base.html" %}
 {% load static %}
-{%load tags%}
+{% load tags %}
 {% block extra_css %}
-{{block.super}}
-<link rel="stylesheet" href="{% static 'css/book_element.css'%}" />
-<link rel="stylesheet" href="{% static 'css/discussion.css'%}" />
-<link rel="stylesheet" href="{% static 'css/commentary.css'%}" />
-{% endblock %} {%block title%}{{title}} {%endblock%} {%block content%}
-<div class="discussion_page_area">
-  <div class="discussion_page_header">
-    <div class="discusssion_page_info_area">
-      <div class="discussion_page_info">
-        <div class="discussion_page_user">
-          <div class="account-image">
-            <a href="">
-              <div class="rounded-circle" style="width: 25px; height: 25px">
-                <img
-                  src="{{discussion.user.photo.url}}"
-                  alt=""
-                  id="account_image"
-                  class="rounded-circle"
-                  style="
-                    object-fit: cover;
-                    object-position: center;
-                    height: 100%;
-                    width: 100%;
-                  "
-                />
-              </div>
-            </a>
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/book_element.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/discussion.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/commentary.css' %}" />
+{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+  <div class="discussion_page_area">
+    <div class="discussion_page_header">
+      <div class="discusssion_page_info_area">
+        <div class="discussion_page_info">
+          <div class="discussion_page_user">
+            <div class="account-image">
+              <a href="">
+                <div class="rounded-circle" style="width: 25px; height: 25px">
+                  <img src="{{ discussion.user.photo.url }}"
+                       alt=""
+                       id="account_image"
+                       class="rounded-circle"
+                       style="object-fit: cover;
+                              object-position: center;
+                              height: 100%;
+                              width: 100%" />
+                </div>
+              </a>
+            </div>
+            <span><a href="{{ discussion.user.get_absolute_url }}">@{{ discussion.user.username }}</a></span>
           </div>
-          <span><a href="{{discussion.user.get_absolute_url}}">@{{discussion.user.username}}</a></span>
-        </div>
-
-        <div class="discussion_page_title_area">
-          <div class="discussion_page_title">
-            <h2>
-              {{discussion.title}}
-            </h2>
-          </div>
-
-          <div class="discussion_page_status">
-            <h4>[{{discussion.get_status_display}}]</h4>
+          <div class="discussion_page_title_area">
+            <div class="discussion_page_title">
+              <h2>{{ discussion.title }}</h2>
+            </div>
+            <div class="discussion_page_status">
+              <h4>[{{ discussion.get_status_display }}]</h4>
+            </div>
           </div>
         </div>
+        <div class="discussion_page_description">
+          <p>{{ discussion.description }}</p>
+          <button onclick="read_more(this)" data-mode="More">Більше</button>
+        </div>
+        <div class="discussion_reaction">
+          <span class="like-comment">
+            <img src="{% static 'img/ico/like.png' %} "
+                 alt="Like"
+                 class="reaction_icon{% if discussion in request.user.liked_discussion.all %} reaction_icon_active{% endif %}" />
+          {% num_to_short discussion.liked_discusion.count %}</span>
+          <span class="dislike-comment">
+            <img src="{% static 'img/ico/dislike.png' %} "
+                 alt="Dislike"
+                 class="reaction_icon{% if discussion in request.user.disliked_discussion.all %} reaction_icon_active{% endif %}" />
+          {% num_to_short discussion.disliked_discusion.count %}</span>
+          <span class="answer-comment">
+            <img src="{% static '/img/ico/reply.png' %}" alt="" />
+          {% num_to_short discussion.get_comments_num %}</span>
+          <span>Перегляди: {{ discussion.views }}</span>
+        </div>
       </div>
-
-      <div class="discussion_page_description">
-        <p>
-                        {{discussion.description}}
-        </p>
-        <button onclick ="read_more(this)" data-mode="More">Більше</button>
-      </div>
-      <div class="discussion_reaction">
-        <span class="like-comment"
-          ><img src="{% static 'img/ico/like.png' %} " alt="Like" class="reaction_icon{%if discussion in request.user.liked_discussion.all%} reaction_icon_active{%endif%}"/>{%num_to_short discussion.liked_discusion.count%}</span
-        >
-        <span class="dislike-comment"
-          ><img src="{% static 'img/ico/dislike.png' %} " alt="Dislike" class="reaction_icon{%if discussion in request.user.disliked_discussion.all%} reaction_icon_active{%endif%}"/>
-          {%num_to_short discussion.disliked_discusion.count%}</span
-        >
-        <span class="answer-comment"
-          ><img src="{%static '/img/ico/reply.png'%}" alt=""> {%num_to_short discussion.get_comments_num%}</span
-        >
-        <span>Перегляди: {{discussion.views}}</span>
-      </div>
+      <div class="discussion_page_book">{% include "base/book_element.html" %}</div>
+      {% if request.user == discussion.user %}
+        <div>
+          <a href="{% url 'change_discussion' book_slug=book.slug discussion_slug=discussion.slug %}"
+             class="btn">Змінити обговорення</a>
+        </div>
+      {% endif %}
     </div>
-
-    <div class="discussion_page_book">{%include "base/book_element.html"%}</div>
-  </div>
-  <div class="discussion_page_comment_area">
-                         {%if request.user.is_authenticated%}
-    <form action="{%url 'add_discussion_comment' book_slug=book.slug discussion_slug=discussion.slug%}" class="add_comment" method="post">
-            {% csrf_token %}
-      {{form.content}}
-      <button type="submit" class="btn">
-        Додати коментар
-      </button>
-    </form>
-            {%endif%}
-    {%for comment in discussion.discussion_comments.all%}
-
-      {%include "book/base/discussion_comment_element.html" with comment=comment%}
-
-    {%endfor%}
-  </div>
-</div>
-                                 {%if request.user.is_authenticated%}
-<div
-  class="modal fade"
-  id="Add_comment_Modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="CommentModalCenterTitle"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="CommentModalLongTitle">Додати коментар</h5>
-        <button
-          type="button"
-          class="close rounded-circle"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="answer_comment">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
-          corporis culpa sapiente dignissimos tempora assumenda eos sit
-          incidunt, exercitationem eaque perspiciatis laudantium suscipit
-          voluptas? Sequi consectetur perspiciatis excepturi minus tempore?
-        </div>
-        <form
-          action="{%url 'answer_discussion_comment' book_slug=book.slug discussion_slug=discussion.slug%}"
-          method="post"
-          class="modal_form"
-          id="answer_form"
-        >
-                      {% csrf_token %}
-            {{answerform.answer}}
-          <div class="form-floating">
-            {{answerform.content}}
-            <label for="{{answerform.content.id}}">{{answerform.content.label}}</label>
-          </div>
+    <div class="discussion_page_comment_area">
+      {% if request.user.is_authenticated and discussion.status == "OP" %}
+        <form action="{% url 'add_discussion_comment' book_slug=book.slug discussion_slug=discussion.slug %}"
+              class="add_comment"
+              method="post">
+          {% csrf_token %} {{ form.content }}
+          <button type="submit" class="btn">Додати коментар</button>
         </form>
-      </div>
-      <div class="modal-footer">
-        <input type="submit" class="btn" form="answer_form" value="Відповісти"/>
-      </div>
+      {% endif %}
+      {% for comment in discussion.discussion_comments.all %}
+        {% include "book/base/discussion_comment_element.html" with comment=comment status=discussion.status %}
+      {% endfor %}
     </div>
   </div>
-</div>
-{%endif%}
-{%endblock%}
+  {% if request.user.is_authenticated and discussion.status == "OP" %}
+    <div class="modal fade"
+         id="Add_comment_Modal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="CommentModalCenterTitle"
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="CommentModalLongTitle">Додати коментар</h5>
+            <button type="button"
+                    class="close rounded-circle"
+                    data-bs-dismiss="modal"
+                    aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="answer_comment"></div>
+            <form action="{% url 'answer_discussion_comment' book_slug=book.slug discussion_slug=discussion.slug %}"
+                  method="post"
+                  class="modal_form"
+                  id="answer_form">
+              {% csrf_token %} {{ answerform.answer }}
+              <div class="form-floating">
+                {{ answerform.content }}
+                <label for="{{ answerform.content.id }}">{{ answerform.content.label }}</label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn" form="answer_form" value="Відповісти" />
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
