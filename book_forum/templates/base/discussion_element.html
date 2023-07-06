@@ -1,24 +1,32 @@
-{% load static %}
-{%load tags%}
+{% load static %} {%load tags%}
 <div class="discussion-element">
-    <a href="{{discussion.get_absolute_url}}">
-        <div class="discussion-user">
-            <div class="rounded-circle" style="width:50px;height:50px;">
-                    <img src="{{discussion.user.photo.url}}" alt="" id="account_image" class="rounded-circle" style="object-fit: cover;object-position: center;height: 100%;width:100%;">
-            </div>
-          <span>@{{discussion.user.username}}</span>
-        </div>
-        <div class="discussion-info">
-            <h4 class="discussion-title">
-                {{discussion.title}}
-            </h4>
-            <span class="discussion-status">
-                [ {{discussion.get_status_display}}]
-            </span>
-        </div>
-        <div class="discussion-view">
-                <img src="{%static '/img/ico/reply.png'%}" alt="">
-        {% num_to_short discussion.get_comments_num%}
-        </div>
-    </a>
+  <a href="{{discussion.get_absolute_url}}">
+    <div class="discussion-user">
+      <div class="rounded-circle" style="width: 50px; height: 50px">
+        <img
+          src="{{discussion.user.photo.url}}"
+          alt=""
+          id="account_image"
+          class="rounded-circle"
+          style="
+            object-fit: cover;
+            object-position: center;
+            height: 100%;
+            width: 100%;
+          "
+        />
+      </div>
+      <span>@{{discussion.user.username}}</span>
+    </div>
+    <div class="discussion-info">
+      <h4 class="discussion-title">{{discussion.title}}</h4>
+      <span class="discussion-status">
+        [ {{discussion.get_status_display}}]
+      </span>
+    </div>
+    <div class="discussion-view">
+      <img src="{%static '/img/ico/reply.png'%}" alt="" />
+      {% num_to_short discussion.get_comments_num%}
+    </div>
+  </a>
 </div>

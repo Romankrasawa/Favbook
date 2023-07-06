@@ -68,12 +68,26 @@ def add_book(request):
 
 
 @login_required(login_url=reverse_lazy("home"))
+def change_book(request, book_slug):
+    book = get_book_by_slug(book_slug)
+    if request.user == book.user or request.user.is_staff:
+        if request.method == "POST":
+            return change_book_func(request, book)
+        else:
+            form = ChangeBookForm(instance=book)
+            context = {"form": form, "title": "Додати книгу", "book": book}
+            return custom_render(request, "book/change_book.html", context)
+    else:
+        redirect("book", kwargs={"book_slug": book_slug})
+
+
+@login_required(login_url=reverse_lazy("home"))
 def add_discussion(request):
     if request.method == "POST":
         return add_discussion_func(request)
     else:
         form = CreateDiscussionForm()
-        context={"form": form, "title": f"Додати обговорення"}
+        context = {"form": form, "title": f"Додати обговорення"}
         return custom_render(request, "book/add_discussion.html", context)
 
 

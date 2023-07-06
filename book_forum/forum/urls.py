@@ -36,6 +36,7 @@ urlpatterns = [
     path("add_discussion/", add_discussion, name="add_discussion"),
     path("discussion/", discussions, name="discussions"),
     path("add_book/", add_book, name="add_book"),
+    path("<slug:book_slug>/change_book/", change_book, name="change_book"),
     path("<slug:book_slug>/add_comment/", add_book_comment, name="add_book_comment"),
     path("<slug:book_slug>/dislike", dislike_book, name="dislike_book"),
     path("<slug:book_slug>/like", like_book, name="like_book"),
