@@ -69,11 +69,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         Book, related_name="disliked_book", verbose_name="Невподобані книги"
     )
     liked_discussion = models.ManyToManyField(
-        Discussion, related_name="liked_discusion", verbose_name="Вподобані обговорення"
+        Discussion,
+        related_name="liked_discussion",
+        verbose_name="Вподобані обговорення",
     )
     disliked_discussion = models.ManyToManyField(
         Discussion,
-        related_name="disliked_discusion",
+        related_name="disliked_discussion",
         verbose_name="Невподобані обговорення",
     )
 

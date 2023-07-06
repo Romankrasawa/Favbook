@@ -1,17 +1,21 @@
-{%extends "base/base.html"%} {% load static %} {% block extra_css %}
-{{block.super}}
-<link rel="stylesheet" href="{% static 'css/books.css'%}" />
-<link rel="stylesheet" href="{% static 'css/book_element.css'%}" />
-
-{% endblock %} {%block title%}{{title}} {%endblock%} {%block content%}
-<form action="" method="post" class="form" enctype="multipart/form-data">
-  {% csrf_token %} {%for input in form%}
-  <div class="form-floating">
-    {{input}}
-    <label for="{{input.id}}">{{input.label}}</label>
-  </div>
-  {%endfor%}
-  <input type="submit" value="Створити" class="btn form_submit" />
-</form>
-<style></style>
-{%endblock%}
+{% extends "base/base.html" %}
+{% load static %}
+{% block extra_css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/books.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/book_element.css' %}" />
+{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+  <form action="" method="post" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for input in form %}
+      <div class="form-floating">
+        {{ input }}
+        <label for="{{ input.id }}">{{ input.label }}</label>
+      </div>
+    {% endfor %}
+    <input type="submit" value="Змінити" class="btn form_submit" />
+  </form>
+  <style></style>
+{% endblock %}

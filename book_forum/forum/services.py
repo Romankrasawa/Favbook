@@ -112,7 +112,7 @@ def add_book_func(request: HttpResponse) -> HttpResponse:
         return custom_render(request, "book/add_book.html", context)
 
 
-def change_book(
+def change_book_util(
     request: HttpResponse, form: CreateBookForm, book: Book
 ) -> HttpResponse:
     form.save()
@@ -123,7 +123,7 @@ def change_book(
 def change_book_func(request: HttpResponse, book: Book) -> HttpResponse:
     form = ChangeBookForm(request.POST, request.FILES, instance=book)
     if is_form_valid(form):
-        return change_book(request, form, book)
+        return change_book_util(request, form, book)
     else:
         messages.add_message(request, messages.ERROR, "Книгу не було змінено.")
         context = {"form": form, "title": "Додати книгу"}
@@ -150,7 +150,7 @@ def add_discussion_func(request: HttpResponse) -> HttpResponse:
         return custom_render(request, "book/change_discussion.html", context)
 
 
-def change_discussion(
+def change_discussion_util(
     request: HttpResponse, form: CreateBookForm, discussion: Discussion
 ) -> HttpResponse:
     form.save()
@@ -163,7 +163,7 @@ def change_discussion_func(
 ) -> HttpResponse:
     form = ChangeDiscussionForm(request.POST, instance=discussion)
     if is_form_valid(form):
-        return change_book(request, form, discussion)
+        return change_discussion_util(request, form, discussion)
     else:
         messages.add_message(request, messages.ERROR, "Обговорення не було змінено.")
         context = {"form": form, "title": "Додати книгу"}
@@ -242,6 +242,8 @@ def like_book_func(request: HttpResponse, book_slug: str) -> HttpResponse:
     if book in request.user.disliked_book.all():
         request.user.disliked_book.remove(book)
         request.user.liked_book.add(book)
+    elif book in request.user.liked_book.all():
+        request.user.liked_book.remove(book)
     else:
         request.user.liked_book.add(book)
     return HttpResponse(200)
@@ -252,6 +254,8 @@ def dislike_book_func(request: HttpResponse, book_slug: str) -> HttpResponse:
     if book in request.user.liked_book.all():
         request.user.liked_book.remove(book)
         request.user.disliked_book.add(book)
+    elif book in request.user.disliked_book.all():
+        request.user.disliked_book.remove(book)
     else:
         request.user.disliked_book.add(book)
     return HttpResponse(200)
@@ -265,6 +269,8 @@ def like_discussion_func(
     if discussion in request.user.disliked_discussion.all():
         request.user.disliked_discussion.remove(discussion)
         request.user.liked_discussion.add(discussion)
+    elif discussion in request.user.liked_discussion.all():
+        request.user.liked_discussion.remove(discussion)
     else:
         request.user.liked_discussion.add(discussion)
     return HttpResponse(200)
@@ -278,6 +284,8 @@ def dislike_discussion_func(
     if discussion in request.user.liked_discussion.all():
         request.user.liked_discussion.remove(discussion)
         request.user.disliked_discussion.add(discussion)
+    elif discussion in request.user.disliked_discussion.all():
+        request.user.disliked_discussion.remove(discussion)
     else:
         request.user.disliked_discussion.add(discussion)
     return HttpResponse(200)

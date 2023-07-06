@@ -1,132 +1,132 @@
-{%extends "base/base.html"%} {% load static %} {% block extra_css %}
-{{block.super}}
-{%load tags%}
-<link rel="stylesheet" href="{% static 'css/book.css'%}" />
-<link rel="stylesheet" href="{% static 'css/book_element.css'%}" />
-<link rel="stylesheet" href="{% static 'css/discussion_element.css'%}" />
-<link rel="stylesheet" href="{% static 'css/commentary.css'%}" />
-{% endblock %} {%block title%}{{title}} {%endblock%} {%block content%}
-<div class="book_page_body_area p-0">
-  <div class="book_page_info_area">
-    <div class="book_page_cover">
-      <img src="{{book.cover.url}}" alt="Cover" />
-      <!-- {% static 'img/deffault_cover.jpg'%} -->
+{% extends "base/base.html" %}
+{% load static %}
+{% block extra_css %}
+  {{ block.super }}
+  {% load tags %}
+  <link rel="stylesheet" href="{% static 'css/book.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/book_element.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/discussion_element.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/commentary.css' %}" />
+{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+  <div class="book_page_body_area p-0">
+    <div class="book_page_info_area">
+      <div class="book_page_cover">
+        <img src="{{ book.cover.url }}" alt="Cover" />
+        <!-- {% static 'img/deffault_cover.jpg'%} -->
+      </div>
+      <div class="book_page_info">
+        <span>Назва: {{ book.title }}</span>
+        <span>Автор: {{ book.author }}</span>
+        <span>Статус: {{ book.get_status_display }}</span>
+        <span>Жанри:
+          {% for i in book.category.all %}{{ i.title }},{% endfor %}
+        </span>
+        <span>Рік: {{ book.year }}</span>
+        <span>Лайки: {{ book.get_likes_num }}</span>
+        <span>Перегляди: {{ book.views }}</span>
+      </div>
     </div>
-    <div class="book_page_info">
-      <span>Назва: {{book.title}}</span>
-      <span>Автор: {{book.author}}</span>
-      <span>Статус: {{book.get_status_display}}</span>
-      <span>Жанри: {%for i in book.category.all%}{{i.title}}, {%endfor%}</span>
-      <span>Рік: {{book.year}}</span>
-      <span>Лайки: {{book.get_likes_num}}</span>
-      <span>Перегляди: {{book.views}}</span>
-    </div>
-  </div>
-  <div class="book_page_body">
-    <div id="tabs-list" class="container-fluid p-0">
-      <ul class="row row-cols-2">
-        <li class="col-6">
-          <a href="#book_page_info" class="tab">Інформація</a>
-        </li>
-        <li class="col-6">
-          <a href="#book_discussion_area" class="tab">Обговорення</a>
-        </li>
-      </ul>
-      <div id="book_page_info">
-        <h1>{{book.title}}</h1>
-        <div class="book_page_description">
-          <p>
-          {{book.description}}
-          </p>
-          <button onclick="read_more(this)" id="readmore" data-mode="More">Більше</button>
-        </div>
-        <div class="book_page_rating">
-          <div class="book_reaction">
-            <span class="like-comment"
-              ><img src="{% static 'img/ico/like.png' %} " alt="Like"  class="reaction_icon {%if book in request.user.liked_book.all%}reaction_icon_active{%endif%}"/>                {%num_to_short book.liked_book.count%}</span
-            >
-            <span class="dislike-comment"
-              ><img src="{% static 'img/ico/dislike.png' %} " alt="Dislike" class="reaction_icon {%if book in request.user.disliked_book.all%}reaction_icon_active{%endif%}" />
-               {%num_to_short book.disliked_book.count%}</span
-            >
-            <span class="answer-comment"
-              ><img src="{%static '/img/ico/reply.png'%}" alt=""> {{book.get_comments_num}}</span
-            >
+    <div class="book_page_body">
+      <div id="tabs-list" class="container-fluid p-0">
+        <ul class="row row-cols-2">
+          <li class="col-6">
+            <a href="#book_page_info" class="tab">Інформація</a>
+          </li>
+          <li class="col-6">
+            <a href="#book_discussion_area" class="tab">Обговорення</a>
+          </li>
+        </ul>
+        <div id="book_page_info">
+          <h1>{{ book.title }}</h1>
+          <div class="book_page_description">
+            <p>{{ book.description }}</p>
+            <button onclick="read_more(this)" id="readmore" data-mode="More">Більше</button>
+          </div>
+          <div class="book_page_rating">
+            <div class="book_reaction">
+              <span class="like-comment">
+                <img src="{% static 'img/ico/like.png' %} "
+                     alt="Like"
+                     class="reaction_icon {% if book in request.user.liked_book.all %}reaction_icon_active{% endif %}" />
+                <span class="reactions_num">{% num_to_short book.get_likes_num %}</span></span>
+                <span class="dislike-comment">
+                  <img src="{% static 'img/ico/dislike.png' %} "
+                       alt="Dislike"
+                       class="reaction_icon {% if book in request.user.disliked_book.all %}reaction_icon_active{% endif %}" />
+                  <span class="reactions_num">{% num_to_short book.get_dislikes_num %}</span> </span>
+                  <span class="answer-comment">
+                    <img src="{% static '/img/ico/reply.png' %}" alt="">
+                  {{ book.get_comments_num }}</span>
+                </div>
+              </div>
+              {% if request.user == book.user %}
+                <div>
+                  <a href="{% url 'change_book' book_slug=book.slug %}" class="btn">Змінити книгу</a>
+                </div>
+              {% endif %}
+              <div class="book_page_comment_area">
+                <h2>Комментарі</h2>
+                {% if request.user.is_authenticated %}
+                  <button type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target="#Add_comment_Modal"
+                          class="btn"
+                          type="button">Додати коментар</button>
+                {% endif %}
+                {% for comment in book.book_comments.all %}
+                  {% include "book/base/book_comment_element.html" with comment=comment %}
+                {% endfor %}
+              </div>
+            </div>
+            <div id="book_discussion_area">
+              {% if request.user.is_authenticated %}
+                <a href="{% url 'add_concrete_discussion' book_slug=book.slug %}"
+                   class="btn">Додати обговорення</a>
+              {% endif %}
+              {% for discussion in book.discussion_book.all %}
+                {% include "base/discussion_element.html" with discussion=discussion %}
+              {% endfor %}
+            </div>
           </div>
         </div>
-        <div class="book_page_comment_area">
-          <h2>Комментарі</h2>
-             {%if request.user.is_authenticated%}
- <button
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#Add_comment_Modal"
-            class="btn" type="button">
-            Додати коментар
-          </button>
-          {%endif%}
-        {%for comment in book.book_comments.all%}
-            {%include "book/base/book_comment_element.html" with comment=comment%}
-        {%endfor%}
-
-        </div>
       </div>
-
-      <div id="book_discussion_area">
-                     {%if request.user.is_authenticated%}
-        <a href="{%url 'add_concrete_discussion' book_slug=book.slug%}" class="btn">Додати обговорення</a>
-                    {%endif%}
-        {%for discussion in book.discussion_book.all%}
-            {%include "base/discussion_element.html" with discussion=discussion%}
-        {%endfor%}
-
-      </div>
-    </div>
-  </div>
-</div>
-             {%if request.user.is_authenticated%}
-
-<div
-  class="modal fade"
-  id="Add_comment_Modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="CommentModalCenterTitle"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="CommentModalLongTitle">Додати коментар</h5>
-        <button
-          type="button"
-          class="close rounded-circle"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form
-          action="{%url 'add_book_comment' book_slug=book.slug%}"
-          method="post"
-          class="modal_form"
-          id="add_comment_form"
-        >
-          <div class="form-floating">
-                        {% csrf_token %}
-                        {{form.content}}
-            <label for="{{form.content.id}}">{{form.content.label}}</label>
+      {% if request.user.is_authenticated %}
+        <div class="modal fade"
+             id="Add_comment_Modal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="CommentModalCenterTitle"
+             aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="CommentModalLongTitle">Додати коментар</h5>
+                <button type="button"
+                        class="close rounded-circle"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="{% url 'add_book_comment' book_slug=book.slug %}"
+                      method="post"
+                      class="modal_form"
+                      id="add_comment_form">
+                  <div class="form-floating">
+                    {% csrf_token %}
+                    {{ form.content }}
+                    <label for="{{ form.content.id }}">{{ form.content.label }}</label>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <input type="submit" class="btn" form="add_comment_form" value="Добавити">
+              </div>
+            </div>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <input type="submit" class="btn" form="add_comment_form" value="Добавити">
-
-      </div>
-    </div>
-  </div>
-</div>
-{%endif%}
-{%endblock%}
+        </div>
+      {% endif %}
+    {% endblock %}
