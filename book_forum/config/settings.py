@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "forum.apps.ForumConfig",
     "user.apps.UserConfig",
-    "home.apps.HomeConfig",
     "django_filters",
     "django_cleanup.apps.CleanupConfig",
 ]

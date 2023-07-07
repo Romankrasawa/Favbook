@@ -1,17 +1,19 @@
-.search_info_area{
+.search_info_area {
     width: 100%;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center ;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    & h2{
+
+    & h2 {
         font-style: italic;
     }
 }
-.search_result_profiles_books{
+
+.search_result_profiles_books {
     width: 82%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -19,7 +21,8 @@
     gap: 25px;
     padding: 10px;
 }
-.search_result_discusions{
+
+.search_result_discusions {
     width: 90%;
     display: grid;
     grid-template-columns: 1fr;
@@ -27,7 +30,8 @@
     gap: 25px;
     padding: 10px;
 }
-.active_search_area{
+
+.active_search_area {
     height: 60px;
     width: auto;
     padding: 10px;
@@ -36,13 +40,16 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
-    & button{
+
+    & button {
         width: 140px;
         height: 40px;
         border-radius: 30px;
     }
 }
-#SortingModal .modal-footer, #FilterModal .modal-footer{
+
+#SortingModal .modal-footer,
+#FilterModal .modal-footer {
     display: flex;
     justify-content: center;
     align-items: center;
