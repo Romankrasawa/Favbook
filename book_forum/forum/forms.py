@@ -4,6 +4,19 @@ import re
 from django.core.exceptions import ValidationError
 
 
+class CreateCategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = [
+            "title",
+        ]
+        widgets = {
+            "title": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Книга"}
+            ),
+        }
+
+
 class CreateBookForm(forms.ModelForm):
     class Meta:
         model = Book

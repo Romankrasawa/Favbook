@@ -20,14 +20,18 @@
         <div class="drag_and_drop">
           {{ input }}
           <label for="{{ input.id }}" id="value">Виберіть файл</label>
+          <div class="help-block text-danger">{{ input.errors }}</div>
         </div>
       {% elif input.label == 'Жанри' %}
         <label for="{{ input.id }}">{{ input.label }}</label>
+        <div class="help-block text-danger">{{ input.errors }}</div>
         {{ input }}
+        <div class="help-block text-danger">{{ input.errors }}</div>
       {% else %}
         <div class="form-floating">
           {{ input }}
           <label for="{{ input.id }}">{{ input.label }}</label>
+          <div class="help-block text-danger">{{ input.errors }}</div>
         </div>
       {% endif %}
     {% endfor %}

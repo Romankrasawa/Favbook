@@ -38,6 +38,7 @@ urlpatterns = [
         add_concrete_discussion,
         name="add_concrete_discussion",
     ),
+    path("book/add_category/", add_category, name="add_category"),
     path("book/add_discussion/", add_discussion, name="add_discussion"),
     path("book/discussion/", discussions, name="discussions"),
     path("book/add_book/", add_book, name="add_book"),

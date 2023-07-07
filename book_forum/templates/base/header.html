@@ -1,295 +1,241 @@
 {% load static %}
-
 <header class="container-fluid">
   <div class="row">
     <div class="col-3">
-      <a href="{%url 'home'%}" class="logo_area">
-        <img src="{% static 'img/logo.png'%}" alt="Logo" />
+      <a href="{% url 'home' %}" class="logo_area">
+        <img src="{% static 'img/logo.png' %}" alt="Logo" />
         <span id="logo_text">FavBook</span>
       </a>
     </div>
     <div class="col-5">
-      <form action="{%url 'search'%}" method="get" class="search_area">
+      <form action="{% url 'search' %}" method="get" class="search_area">
         {% csrf_token %}
         <div class="search">
-          <input type="search" name="search" id="search_input"
-          autocomplete="off" placeholder="Для пошуку обговорень введіть #"
-          value={%if type == 'discussion'%}#{%endif%}{{search}}>
+          <input type="search" name="search" id="search_input" autocomplete="off" placeholder="Для пошуку обговорень введіть #" value={% if type == 'discussion' %}#{% endif %}{{ search }}>
         </div>
       </form>
     </div>
-    {%if request.user.is_authenticated %}
-    <div class="account_area col-4">
-      <div class="account_list dropdown">
-        <div class="rounded-circle" style="width: 50px; height: 50px">
-          <a href="{%url 'account'%}">
-            <img
-              src="{{request.user.photo.url}}"
-              alt=""
-              id="account_image"
-              class="rounded-circle"
-              style="
-                object-fit: cover;
-                object-position: center;
-                height: 100%;
-                width: 100%;
-              "
-            />
-          </a>
+    {% if request.user.is_authenticated %}
+      <div class="account_area col-4">
+        <div class="account_list dropdown">
+          <div class="rounded-circle" style="width: 50px; height: 50px">
+            <a href="{% url 'account' %}">
+              <img src="{{ request.user.photo.url }}"
+                   alt=""
+                   id="account_image"
+                   class="rounded-circle"
+                   style="object-fit: cover;
+                          object-position: center;
+                          height: 100%;
+                          width: 100%" />
+            </a>
+          </div>
+          <button type="button"
+                  class="account-dropdown dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-auto-close="outside">
+            <span class="visually-hidden">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="{% url 'account' %}">Профіль</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'catalog' %}">Каталог</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'books' %}">Книги</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'discussions' %}">Обговорення</a>
+            </li>
+            {% if request.user.is_staff %}
+              <li>
+                <a class="dropdown-item" href="{% url 'add_category' %}">Додати категорію</a>
+              </li>
+            {% endif %}
+            <li>
+              <a class="dropdown-item" href="{% url 'add_book' %}">Додати книгу</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'add_discussion' %}">Створити обговорення</a>
+            </li>
+            <hr />
+            <li>
+              <a class="dropdown-item" href="{% url 'settings' %}">Налаштування</a>
+            </li>
+            <hr />
+            <li>
+              <a class="dropdown-item" href="{% url 'log_out' %}">Вийти</a>
+            </li>
+          </ul>
         </div>
-        <button
-          type="button"
-          class="account-dropdown dropdown-toggle"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          data-bs-auto-close="outside"
-        >
-          <span class="visually-hidden">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="{%url 'account'%}">Профіль</a></li>
-          <li><a class="dropdown-item" href="{%url 'books'%}">Книги</a></li>
-          <li>
-            <a class="dropdown-item" href="{%url 'discussions'%}"
-              >Обговорення</a
-            >
-          </li>
-          <li>
-            <a class="dropdown-item" href="{%url 'add_book'%}">Додати книгу</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="{%url 'add_discussion'%}"
-              >Створити обговорення</a
-            >
-          </li>
-          <hr />
-          <li>
-            <a class="dropdown-item" href="{%url 'settings'%}">Налаштування</a>
-          </li>
-          <hr />
-          <li><a class="dropdown-item" href="{%url 'log_out'%}">Вийти</a></li>
-        </ul>
       </div>
-    </div>
-    {%else%}
-    <div class="col-4 log_in_area">
-      <button
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#RegisterModal"
-        id="registerButton"
-      >
-        Зареєструватись
-      </button>
-
-      <button type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">
-        Увійти
-      </button>
-    </div>
-    {%endif%}
+    {% else %}
+      <div class="col-4 log_in_area">
+        <button type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#RegisterModal"
+                id="registerButton">Зареєструватись</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Увійти</button>
+      </div>
+    {% endif %}
   </div>
 </header>
-
 <div class="collapse" id="burgerMenu">
   <div class="burger_menu">
     <div class="">
       <a href="/home/" class="logo_area">
-        <img src="{% static 'img/logo.png'%}" alt="Logo" />
+        <img src="{% static 'img/logo.png' %}" alt="Logo" />
         <span id="logo_text">FavBook</span>
       </a>
       <form action="/search/" method="get" class="search_area">
         <div class="search">
-          <input
-            type="search"
-            name="search"
-            id="search_input"
-            autocomplete="off"
-            placeholder="Пошук"
-          />
+          <input type="search"
+                 name="search"
+                 id="search_input"
+                 autocomplete="off"
+                 placeholder="Пошук" />
         </div>
       </form>
-      {%if request.user.is_authenticated %}
-      <ul class="dropdown-menu">
-        <li><a class="burger-item" href="/profile/">Профіль</a></li>
-        <li><a class="burger-item" href="/book">Книги</a></li>
-        <li><a class="burger-item" href="/book/discussion/">Обговорення</a></li>
-        <li><a class="burger-item" href="/book/add_book/">Додати книгу</a></li>
-        <li>
-          <a class="dropdown-item" href="/book/sfdsfdsd/add_discussions"
-            >Створити обговорення</a
-          >
-        </li>
-        <hr />
-        <li>
-          <a class="burger-item" href="/profile/settings/">Налаштування</a>
-        </li>
-        <hr />
-        <li><a class="burger-item" href="/log_out/">Вийти</a></li>
-      </ul>
-      {%else%}
-      <div class="col-3 log_in_area">
-        <button
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#RegisterModal"
-        >
-          Зареєструватись
-        </button>
-
-        <button
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#LoginModal"
-        >
-          Увійти
-        </button>
-      </div>
-      {%endif%}
+      {% if request.user.is_authenticated %}
+        <ul class="dropdown-menu">
+          <li>
+            <a class="burger-item" href="/profile/">Профіль</a>
+          </li>
+          <li>
+            <a class="burger-item" href="/book">Книги</a>
+          </li>
+          <li>
+            <a class="burger-item" href="/book/discussion/">Обговорення</a>
+          </li>
+          <li>
+            <a class="burger-item" href="/book/add_book/">Додати книгу</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/book/sfdsfdsd/add_discussions">Створити обговорення</a>
+          </li>
+          <hr />
+          <li>
+            <a class="burger-item" href="/profile/settings/">Налаштування</a>
+          </li>
+          <hr />
+          <li>
+            <a class="burger-item" href="/log_out/">Вийти</a>
+          </li>
+        </ul>
+      {% else %}
+        <div class="col-3 log_in_area">
+          <button type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal">Зареєструватись</button>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Увійти</button>
+        </div>
+      {% endif %}
     </div>
   </div>
 </div>
 <nav class="navbar-burger navbar navbar-dark bg-dark">
   <div class="container-fluid">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#burgerMenu"
-      aria-controls="burgerMenu"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#burgerMenu"
+            aria-controls="burgerMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   </div>
 </nav>
-
-<div
-  class="modal fade"
-  id="RegisterModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="RegisterModalTitle"
-  aria-hidden="true"
->
+<div class="modal fade"
+     id="RegisterModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="RegisterModalTitle"
+     aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="RegisterModalTitle">Реєстрація</h5>
-        <button
-          type="button"
-          class="close rounded-circle"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button"
+                class="close rounded-circle"
+                data-bs-dismiss="modal"
+                aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form
-          action="{%url 'register'%}"
-          method="post"
-          class="modal_form"
-          id="register_user_form"
-        >
+        <form action="{% url 'register' %}"
+              method="post"
+              class="modal_form"
+              id="register_user_form">
           {% csrf_token %}
           <div class="form-floating">
-            {{registerform.username}}
-            <label for="{{registerform.username.id}}"
-              >{{registerform.username.label}}</label
-            >
-            <div class="help-block text-danger">
-              {{registerform.username.errors}}
-            </div>
+            {{ registerform.username }}
+            <label for="{{ registerform.username.id }}">{{ registerform.username.label }}</label>
+            <div class="help-block text-danger">{{ registerform.username.errors }}</div>
           </div>
           <div class="form-floating">
-            {{registerform.email}}
-            <label for="{{registerform.email.id}}"
-              >{{registerform.email.label}}</label
-            >
-            <div class="help-block text-danger">
-              {{registerform.email.errors}}
-            </div>
+            {{ registerform.email }}
+            <label for="{{ registerform.email.id }}">{{ registerform.email.label }}</label>
+            <div class="help-block text-danger">{{ registerform.email.errors }}</div>
           </div>
           <div class="form-floating">
-            {{registerform.password}}
-            <label for="{{registerform.password.id}}"
-              >{{registerform.password.label}}</label
-            >
-            <div class="help-block text-danger">
-              {{registerform.password.errors}}
-            </div>
+            {{ registerform.password }}
+            <label for="{{ registerform.password.id }}">{{ registerform.password.label }}</label>
+            <div class="help-block text-danger">{{ registerform.password.errors }}</div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <a type="button" data-bs-toggle="modal" data-bs-target="#LoginModal"
-          >Уже маєте аккаунт</a
-        >
-        <input
-          type="submit"
-          class="btn btn-primary"
-          value="Зареєструватись"
-          form="register_user_form"
-        />
+        <a type="button" data-bs-toggle="modal" data-bs-target="#LoginModal">Уже маєте аккаунт</a>
+        <input type="submit"
+               class="btn btn-primary"
+               value="Зареєструватись"
+               form="register_user_form" />
       </div>
     </div>
   </div>
 </div>
-
-<div
-  class="modal fade"
-  id="LoginModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true"
->
+<div class="modal fade"
+     id="LoginModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Вхід</h5>
-        <button
-          type="button"
-          class="close rounded-circle"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button"
+                class="close rounded-circle"
+                data-bs-dismiss="modal"
+                aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form
-          action="{%url 'log_in'%}"
-          method="post"
-          class="modal_form"
-          id="login_user_form"
-        >
+        <form action="{% url 'log_in' %}"
+              method="post"
+              class="modal_form"
+              id="login_user_form">
           {% csrf_token %}
           <div class="form-floating">
-            {{loginform.username}}
-            <label for="{{loginform.username.id}}"
-              >{{loginform.username.label}}</label
-            >
+            {{ loginform.username }}
+            <label for="{{ loginform.username.id }}">{{ loginform.username.label }}</label>
           </div>
           <div class="form-floating">
-            {{loginform.password}}
-            <label for="{{loginform.password.id}}"
-              >{{loginform.password.label}}</label
-            >
+            {{ loginform.password }}
+            <label for="{{ loginform.password.id }}">{{ loginform.password.label }}</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <a type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal"
-          >Ще не зареєстровані</a
-        >
-        <input
-          type="submit"
-          class="btn btn-primary"
-          value="Увійти"
-          form="login_user_form"
-        />
+        <a type="button" data-bs-toggle="modal" data-bs-target="#RegisterModal">Ще не зареєстровані</a>
+        <input type="submit"
+               class="btn btn-primary"
+               value="Увійти"
+               form="login_user_form" />
       </div>
     </div>
   </div>

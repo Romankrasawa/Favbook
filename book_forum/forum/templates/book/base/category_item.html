@@ -1,0 +1,15 @@
+{% load static %}
+<div class="w-100 d-flex text-white"
+     style="justify-content:center;
+            align-items: center;
+            border-radius:30px;
+            overflow:hidden;
+            background-color: #240046">
+    <a href="{{ category.get_absolute_url }}"
+       class="w-100"
+       style="display:flex;
+              justify-content:center;
+              align-items: center;
+              font-size:35px;
+              height:150px">{{ category.title }}</a>
+</div>

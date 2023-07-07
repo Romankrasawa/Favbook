@@ -25,6 +25,9 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse_lazy("category", kwargs={"category_slug": self.slug})
+
     class Meta:
         verbose_name = "Категорія"
         verbose_name_plural = "Категорії"
@@ -56,7 +59,9 @@ class Book(models.Model):
     year = models.IntegerField(verbose_name="Рік")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Створено")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Оновлено")
-    category = models.ManyToManyField(Category, verbose_name="Жанри")
+    category = models.ManyToManyField(
+        Category, verbose_name="Жанри", related_name="book_category"
+    )
     cover = models.ImageField(
         upload_to=covers_file_name,
         verbose_name="Обкладинка",
@@ -72,25 +77,26 @@ class Book(models.Model):
     @property
     def get_category(self):
         return [discussion.title for discussion in self.category.all()]
-    get_category.fget.short_description = "Категорії"
 
+    get_category.fget.short_description = "Категорії"
 
     @property
     def get_likes_num(self):
         return self.liked_book.count()
+
     get_likes_num.fget.short_description = "Лайки"
 
     @property
     def get_dislikes_num(self):
         return self.disliked_book.count()
-    get_dislikes_num.fget.short_description = "Дизлайки"
 
+    get_dislikes_num.fget.short_description = "Дизлайки"
 
     @property
     def get_comments_num(self):
         return self.book_comments.count()
-    get_comments_num.fget.short_description = "Комментарі"
 
+    get_comments_num.fget.short_description = "Комментарі"
 
     def get_absolute_url(self):
         return reverse_lazy("book", kwargs={"book_slug": self.slug})
@@ -171,19 +177,20 @@ class Discussion(models.Model):
     @property
     def get_likes_num(self):
         return self.liked_discussion.count()
+
     get_likes_num.fget.short_description = "Лайки"
 
     @property
     def get_dislikes_num(self):
         return self.disliked_discussion.count()
-    get_dislikes_num.fget.short_description = "Дизлайки"
 
+    get_dislikes_num.fget.short_description = "Дизлайки"
 
     @property
     def get_comments_num(self):
         return self.discussion_comments.count()
-    get_comments_num.fget.short_description = "Комментарі"
 
+    get_comments_num.fget.short_description = "Комментарі"
 
     def get_absolute_url(self):
         return reverse_lazy(

@@ -108,17 +108,40 @@ def search_discussions(request, search):
 
 
 def catalog(request):
+    categories = get_all_categories()
     context = {
+        "categories": categories,
         "title": "Каталог",
     }
     return render(request, template_name="book/catalog.html", context=context)
 
 
 def category_view(request, category_slug):
+    category = get_category_by_slug(category_slug)
+    books = get_books_by_category(category)
+    paginator = Paginator(books, 9)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
     context = {
+        "page_obj": page_obj,
+        "category": category,
         "title": f"Категорія {category_slug}",
     }
     return render(request, template_name="book/category.html", context=context)
+
+
+def add_category(request):
+    if request.method == "POST":
+        form = CreateCategoryForm(request.POST)
+        form.save()
+        return redirect(reverse_lazy("home"))
+    else:
+        form = CreateCategoryForm
+        return custom_render(
+            request,
+            "book/add_category.html",
+            {"title": "Додати категорію", "form": form},
+        )
 
 
 def book(request, book_slug):

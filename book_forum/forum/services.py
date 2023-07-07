@@ -24,9 +24,21 @@ def redirect_to_discussion(book_slug: str, discussion_slug: str) -> HttpResponse
     )
 
 
+def get_all_categories() -> tuple[Category]:
+    return Category.objects.all()
+
+
+def get_category_by_slug(slug: str) -> Category:
+    return get_object_or_404(Category, slug=slug)
+
+
 def get_book_by_slug(slug: str) -> Book:
-    logger.error("error")
     return get_object_or_404(Book, slug=slug)
+
+
+def get_books_by_category(category: Category) -> Book:
+    logger.debug(category.book_category.all())
+    return category.book_category.all()
 
 
 def get_discussion_by_book_and_slug(book: Book, discussion_slug: str) -> Discussion:
@@ -93,6 +105,10 @@ def is_form_valid(form) -> bool:
     return form.is_valid()
 
 
+def is_form_valid_multipart(form) -> bool:
+    return form.is_valid() and form.is_multipart()
+
+
 def create_book(request: HttpResponse, form: CreateBookForm) -> HttpResponse:
     category = form.cleaned_data["category"]
     form.cleaned_data.pop("category", None)
@@ -104,7 +120,7 @@ def create_book(request: HttpResponse, form: CreateBookForm) -> HttpResponse:
 
 def add_book_func(request: HttpResponse) -> HttpResponse:
     form = CreateBookForm(request.POST, request.FILES)
-    if is_form_valid(form):
+    if is_form_valid_multipart(form):
         return create_book(request, form)
     else:
         messages.add_message(request, messages.ERROR, "Книгу не було створено.")
@@ -122,7 +138,7 @@ def change_book_util(
 
 def change_book_func(request: HttpResponse, book: Book) -> HttpResponse:
     form = ChangeBookForm(request.POST, request.FILES, instance=book)
-    if is_form_valid(form):
+    if is_form_valid_multipart(form):
         return change_book_util(request, form, book)
     else:
         messages.add_message(request, messages.ERROR, "Книгу не було змінено.")

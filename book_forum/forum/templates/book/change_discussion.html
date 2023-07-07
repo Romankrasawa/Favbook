@@ -13,6 +13,7 @@
       <div class="form-floating">
         {{ input }}
         <label for="{{ input.id }}">{{ input.label }}</label>
+        <div class="help-block text-danger">{{ input.errors }}</div>
       </div>
     {% endfor %}
     <input type="submit" value="Змінити" class="btn form_submit" />
