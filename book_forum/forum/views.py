@@ -86,8 +86,18 @@ def search_books(request, search):
 
 
 def search_discussions(request, search):
+    sort_type = request.GET.get("sort_type", "-")
+    sort = request.GET.get("sort", "views")
+    sorting_form = SearchDiscussionSort(request.GET)
     filter = SearchDiscussionFilter(
-        request.GET, queryset=Discussion.objects.filter(search_title__icontains=search)
+        request.GET,
+        queryset=Discussion.objects.filter(search_title__icontains=search)
+        .annotate(
+            liked_discussion_num=Count("liked_discussion"),
+            disliked_discussion_num=Count("disliked_discussion"),
+            comment_discussion_num=Count("discussion_comments"),
+        )
+        .order_by(f"{sort_type}{sort}"),
     )
     paginator = Paginator(filter.qs, 2)
     page_number = request.GET.get("page")
@@ -95,6 +105,7 @@ def search_discussions(request, search):
     context = {
         "type": "discussion",
         "filter": filter,
+        "sorting": sorting_form,
         "page_obj": page_obj,
         "search": search,
         "title": f"Пошук обговорення {search}",

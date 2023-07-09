@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".ngrok.io"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".ngrok.io", "*"]
 
 
 # Application definition
@@ -81,7 +81,7 @@ DATABASES = {
         "NAME": "postgres",
         "USER": os.environ.get("POSTGRES_USER"),
         "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
-        "HOST": "localhost",
+        "HOST": "db",
         "PORT": "5432",
     }
 }

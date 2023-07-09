@@ -65,6 +65,11 @@
             <li>
               <a class="dropdown-item" href="{% url 'settings' %}">Налаштування</a>
             </li>
+            {% if request.user.is_staff %}
+              <li>
+                <a class="dropdown-item" href="/admin/">Адмін панель</a>
+              </li>
+            {% endif %}
             <hr />
             <li>
               <a class="dropdown-item" href="{% url 'log_out' %}">Вийти</a>

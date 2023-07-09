@@ -1,7 +1,19 @@
 version: '3.5'
 
 services:
-  postgres:
+  web:
+    build: ./book_forum
+    volumes:
+      - ./book_forum/:/home/app/web
+      - static_volume:/home/app/web/static
+      - media_volume:/home/app/web/media
+    expose:
+      - "8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+  db:
     container_name: postgres_container
     image: postgres
     environment:
@@ -9,9 +21,20 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGDATA: /data/postgres
     volumes:
-       - postgres:/data/postgres
+      - postgres:/data/postgres
     ports:
       - "5432:5432"
     restart: unless-stopped
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    volumes:
+      - static_volume:/home/app/web/static
+      - media_volume:/home/app/web/media
+    depends_on:
+      - web
 volumes:
-    postgres:
+  postgres:
+  static_volume:
+  media_volume:
