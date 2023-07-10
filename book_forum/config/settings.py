@@ -16,8 +16,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
-
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".ngrok.io", "*"]
+CSRF_TRUSTED_ORIGINS = ["https://favbook.tech"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "favboo", "*"]
 
 
 # Application definition
