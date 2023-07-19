@@ -9,8 +9,8 @@ services:
       - media_volume:/home/app/web/media
     expose:
       - "8000"
-    environment:
-      - ENV_FILE=".env.prod"
+    env_file:
+      - .env.prod
     depends_on:
       - db
     restart: unless-stopped
