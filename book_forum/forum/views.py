@@ -81,7 +81,6 @@ def search_books(request, search):
         "search": search,
         "title": f"Пошук книги {search}",
     }
-    print(filter.qs)
     return render(request, template_name="book/search.html", context=context)
 
 
@@ -110,7 +109,6 @@ def search_discussions(request, search):
         "search": search,
         "title": f"Пошук обговорення {search}",
     }
-    print(filter.qs)
     return render(request, template_name="book/search.html", context=context)
 
 
@@ -119,6 +117,7 @@ def search_discussions(request, search):
 
 
 def catalog(request):
+    raise ValueError("BAd rfsdiofoisjoidf")
     categories = get_all_categories()
     context = {
         "categories": categories,

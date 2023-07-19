@@ -39,7 +39,6 @@ def log_in(request):
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(username=username, password=password)
-        print(username, password, user)
         if request.session.get("register_form", None) != None:
             request.session.pop("register_form")
         if user is not None:
@@ -47,7 +46,6 @@ def log_in(request):
             return redirect(reverse_lazy("account"))
         else:
             return redirect(reverse_lazy("home"))
-    print("ok")
 
 
 def register(request):
@@ -60,7 +58,6 @@ def register(request):
             user = User.objects.create_user(
                 username=username, email=email, password=password
             )
-            print(user)
             messages.add_message(
                 request, messages.SUCCESS, "Користувач був успішно зареєстрований."
             )

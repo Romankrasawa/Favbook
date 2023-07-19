@@ -3,7 +3,6 @@ from .forms import *
 
 def registerForm(request):
     data = request.session.get("register_form", None)
-    print(data)
     if data != None:
         form = RegisterUserForm(data, request=request)
     else:

@@ -6,7 +6,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(dotenv_path=BASE_DIR.parent / ".env")
+load_dotenv(dotenv_path=BASE_DIR.parent / os.environ.get("ENV_FILE"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -16,8 +16,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
-CSRF_TRUSTED_ORIGINS = ["https://favbook.tech"]
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "favboo", "*"]
+CSRF_TRUSTED_ORIGINS = os.environ.get("DEBUG")
+ALLOWED_HOSTS = os.environ.get("DEBUG")
 
 
 # Application definition
@@ -43,6 +43,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "config.middleware.Process500",
 ]
 
 AUTHENTICATION_BACKENDS = ["user.Backend.UserBackend"]
@@ -78,11 +79,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
+        "NAME": os.environ.get("POSTGRES_DB"),
         "USER": os.environ.get("POSTGRES_USER"),
         "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
-        "HOST": "db",
-        "PORT": "5432",
+        "HOST": os.environ.get("POSTGRES_HOST"),
+        "PORT": os.environ.get("POSTGRES_PORT"),
+        "ATOMIC_REQUESTS": os.environ.get("POSTGRES_ATOMIC_REQUESTS"),
     }
 }
 
@@ -130,7 +132,7 @@ LOGGING = {
         },
     },
     "loggers": {
-        "home": {
+        "config": {
             "handlers": ["debug_handler", "error_handler"],
             "level": "DEBUG",
             "propagate": True,
