@@ -16,7 +16,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
-CSRF_TRUSTED_ORIGINS = ["https:/bookforum.favbook.tech"]
+CSRF_TRUSTED_ORIGINS = ["https://bookforum.favbook.tech"]
 ALLOWED_HOSTS = ["bookforum.favbook.tech"]
 
 
