@@ -15,5 +15,5 @@ services:
     restart: unless-stopped
 volumes:
   postgres:
-  static_volume:
-  media_volume:
+
+

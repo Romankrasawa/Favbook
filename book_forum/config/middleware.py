@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import render
 import logging
 
 logger = logging.getLogger(__name__)
@@ -12,5 +12,12 @@ class Process500:
         return self._get_responce(request)
 
     def process_exception(self, request, exception):
-        logger.error(f"Error: {exception}")
-        return redirect("home")
+        match exception:
+            case ValueError():
+                logger.error(f"Error: {exception}")
+                message = "Помилка даних"
+            case _:
+                logger.error(f"Error: {exception}")
+        response = render(request, "base/500.html", {"message": message})
+        response.status_code = 500
+        return response

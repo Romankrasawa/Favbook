@@ -1,4 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render,
+    redirect,
+    get_object_or_404,
+    HttpResponse,
+)
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.urls import reverse_lazy
@@ -42,6 +47,7 @@ def home(request):
 
 
 def search(request):
+    raise (ValueError)
     try:
         type = request.GET["search"][0]
         if type == "#":
@@ -313,3 +319,9 @@ def like_discussion(request, book_slug, discussion_slug):
 @login_required(login_url=reverse_lazy("home"))
 def dislike_discussion(request, book_slug, discussion_slug):
     return dislike_discussion_func(request, book_slug, discussion_slug)
+
+
+def handler404(request, *args, **argv):
+    response = render(request, "base/404.html", {})
+    response.status_code = 404
+    return response

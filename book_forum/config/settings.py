@@ -6,18 +6,16 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# load_dotenv(dotenv_path=BASE_DIR.parent / os.environ.get("ENV_FILE"))
-
+load_dotenv(dotenv_path=str(BASE_DIR.parent) + "/" + os.environ.get("ENV_FILE"))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
-CSRF_TRUSTED_ORIGINS = ["https://bookforum.favbook.tech"]
-ALLOWED_HOSTS = ["bookforum.favbook.tech"]
+CSRF_TRUSTED_ORIGINS = [os.environ.get("CSRF_TRUSTED_ORIGINS")]
+ALLOWED_HOSTS = [os.environ.get("HOST_DOMAIN")]
 
 
 # Application definition
@@ -133,8 +131,8 @@ LOGGING = {
     },
     "loggers": {
         "config": {
-            "handlers": ["debug_handler", "error_handler"],
-            "level": "DEBUG",
+            "handlers": ["error_handler"],
+            "level": "ERROR",
             "propagate": True,
         },
         "user": {
@@ -167,7 +165,6 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [
     BASE_DIR / "config/static",
-    BASE_DIR / "home/static",
     BASE_DIR / "user/static",
     BASE_DIR / "forum/static",
 ]
