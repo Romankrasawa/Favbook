@@ -10,8 +10,8 @@ services:
       - media_volume:/home/app/web/media
     expose:
       - "8000"
-    environment:
-      - ENV_FILE=.env.prod
+    env_file:
+      - .env.prod
     depends_on:
       - db
     restart: unless-stopped
@@ -37,7 +37,8 @@ services:
     volumes:
       - static_volume:/home/app/web/static
       - media_volume:/home/app/web/media
-      - ./certbot/www:/var/www/certbot/:ro
+      - ./data/certbot/conf:/etc/nginx/ssl
+      - ./data/certbot/www:/var/www/certbot
     depends_on:
       - web
     restart: unless-stopped
@@ -45,7 +46,8 @@ services:
   certbot:
     image: certbot/certbot:latest
     volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
 
 volumes:
   postgres:
