@@ -47,7 +47,6 @@ def home(request):
 
 
 def search(request):
-    raise (ValueError)
     try:
         type = request.GET["search"][0]
         if type == "#":
@@ -123,7 +122,6 @@ def search_discussions(request, search):
 
 
 def catalog(request):
-    raise ValueError("BAd rfsdiofoisjoidf")
     categories = get_all_categories()
     context = {
         "categories": categories,

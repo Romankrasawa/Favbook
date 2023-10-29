@@ -18,6 +18,7 @@ class Process500:
                 message = "Помилка даних"
             case _:
                 logger.error(f"Error: {exception}")
+                message = "Помилка"
         response = render(request, "base/500.html", {"message": message})
         response.status_code = 500
         return response
